@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# bkit
+.bkit/
+docs/.pdca-status.json
+docs/.bkit-memory.json
