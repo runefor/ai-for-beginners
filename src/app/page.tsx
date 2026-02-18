@@ -35,6 +35,10 @@ const GenerativeAIShowcase = dynamic(
   () => import('@/components/interactive/GenerativeAIShowcase'),
   { ssr: false }
 );
+const ChatGPTTimeline = dynamic(
+  () => import('@/components/interactive/ChatGPTTimeline'),
+  { ssr: false }
+);
 
 export default function Home() {
   return (
@@ -219,28 +223,12 @@ export default function Home() {
         <GenerativeAIShowcase />
       </Slide>
 
-      {/* 11. ChatGPT가 바꾼 세상 */}
+      {/* 11. ChatGPT가 바꾼 세상 - 인터랙티브 타임라인 */}
       <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-10 text-5xl font-bold text-white">
+        <h2 className="mb-8 text-5xl font-bold text-white">
           ChatGPT가 바꾼 세상
         </h2>
-        <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8">
-          {[
-            { number: '1억 명', desc: '2달 만에 달성한 사용자 수', sub: '역대 최빠 기록' },
-            { number: '1억 8천만', desc: 'ChatGPT 주간 활성 사용자', sub: '2025년 기준' },
-            { number: '92%', desc: 'Fortune 500 기업 도입률', sub: '비즈니스 필수 도구로' },
-            { number: '300+', desc: '생성형 AI 서비스 수', sub: '매달 새로운 도구 등장' },
-          ].map((item) => (
-            <div
-              key={item.desc}
-              className="rounded-2xl bg-white/5 p-8 text-center"
-            >
-              <div className="text-4xl font-bold text-cyan-400">{item.number}</div>
-              <p className="mt-2 text-2xl text-white">{item.desc}</p>
-              <p className="mt-1 text-xl text-gray-500">{item.sub}</p>
-            </div>
-          ))}
-        </div>
+        <ChatGPTTimeline />
       </Slide>
 
       {/* 12. 프롬프트 = 대화법 */}
