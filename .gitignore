@@ -43,6 +43,9 @@ next-env.d.ts
 # mnist training data
 .mnist-data/
 
+# large media files
+public/images/showcase/*.mp4
+
 # bkit
 .bkit/
 docs/.pdca-status.json

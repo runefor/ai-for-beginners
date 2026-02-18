@@ -31,6 +31,10 @@ const AILimitationsShowcase = dynamic(
   () => import('@/components/interactive/AILimitationsShowcase'),
   { ssr: false }
 );
+const GenerativeAIShowcase = dynamic(
+  () => import('@/components/interactive/GenerativeAIShowcase'),
+  { ssr: false }
+);
 
 export default function Home() {
   return (
@@ -206,28 +210,13 @@ export default function Home() {
 
       {/* ========== Part 4: 생성형 AI ========== */}
 
-      {/* 10. 생성형 AI란 */}
+      {/* 10. 생성형 AI란 - 인터랙티브 쇼케이스 */}
       <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-10 text-5xl font-bold text-white">생성형 AI의 시대</h2>
-        <div className="mx-auto flex max-w-5xl items-center gap-12">
-          <div className="flex-1 rounded-2xl bg-white/5 p-8 text-center">
-            <h3 className="mb-4 text-3xl font-semibold text-gray-400">
-              과거의 AI
-            </h3>
-            <p className="text-2xl text-gray-300">찾아주는 AI</p>
-            <p className="mt-2 text-xl text-gray-500">검색, 분류, 추천</p>
-          </div>
-          <span className="text-5xl text-cyan-400">→</span>
-          <div className="flex-1 rounded-2xl bg-cyan-900/40 p-8 text-center">
-            <h3 className="mb-4 text-3xl font-semibold text-cyan-300">
-              지금의 AI
-            </h3>
-            <p className="text-2xl text-white">만들어주는 AI</p>
-            <p className="mt-2 text-xl text-gray-400">
-              글, 그림, 영상, 코드, 음악
-            </p>
-          </div>
-        </div>
+        <h2 className="mb-2 text-5xl font-bold text-white">생성형 AI의 시대</h2>
+        <p className="mb-6 text-xl text-gray-400">
+          AI는 이제 찾아주는 것을 넘어, 직접 만들어냅니다
+        </p>
+        <GenerativeAIShowcase />
       </Slide>
 
       {/* 11. ChatGPT가 바꾼 세상 */}
