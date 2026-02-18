@@ -88,7 +88,7 @@ export default function AIvsHumanQuiz() {
         </p>
         <button
           onClick={handleReset}
-          className="mt-4 rounded-xl bg-white/10 px-8 py-3 text-xl text-white transition hover:bg-white/20"
+          className="mt-4 rounded-xl bg-white/10 px-8 py-3 text-2xl text-white transition hover:bg-white/20"
         >
           다시 도전
         </button>
@@ -98,11 +98,11 @@ export default function AIvsHumanQuiz() {
 
   return (
     <div className="flex flex-col items-center gap-6">
-      <div className="text-xl text-gray-400">
+      <div className="text-2xl text-gray-400">
         {current + 1} / {items.length}
       </div>
 
-      <div className="mb-2 inline-block rounded-full bg-white/10 px-6 py-2 text-lg text-cyan-300">
+      <div className="mb-2 inline-block rounded-full bg-white/10 px-6 py-2 text-xl text-cyan-300">
         {item.label}
       </div>
 
@@ -150,12 +150,12 @@ export default function AIvsHumanQuiz() {
           >
             {selected === item.answer ? '정답!' : '오답!'}
           </div>
-          <p className="max-w-3xl text-center text-xl text-gray-300">
+          <p className="max-w-3xl text-center text-2xl text-gray-300">
             {item.explanation}
           </p>
           <button
             onClick={handleNext}
-            className="mt-2 rounded-xl bg-cyan-600 px-8 py-3 text-xl text-white transition hover:bg-cyan-500"
+            className="mt-2 rounded-xl bg-cyan-600 px-8 py-3 text-2xl text-white transition hover:bg-cyan-500"
           >
             {current + 1 < items.length ? '다음' : '최종 결과'}
           </button>

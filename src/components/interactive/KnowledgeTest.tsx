@@ -94,7 +94,7 @@ export default function KnowledgeTest() {
         <p className="text-2xl text-gray-300">{message}</p>
         <button
           onClick={handleReset}
-          className="mt-4 rounded-xl bg-white/10 px-8 py-3 text-xl text-white transition hover:bg-white/20"
+          className="mt-4 rounded-xl bg-white/10 px-8 py-3 text-2xl text-white transition hover:bg-white/20"
         >
           다시 도전
         </button>
@@ -104,7 +104,7 @@ export default function KnowledgeTest() {
 
   return (
     <div className="flex flex-col items-center gap-6">
-      <div className="mb-2 text-xl text-gray-400">
+      <div className="mb-2 text-2xl text-gray-400">
         {current + 1} / {questions.length}
       </div>
 
@@ -152,12 +152,12 @@ export default function KnowledgeTest() {
           >
             {selected === q.answer ? '정답!' : '오답!'}
           </div>
-          <p className="max-w-3xl text-center text-xl text-gray-300">
+          <p className="max-w-3xl text-center text-2xl text-gray-300">
             {q.explanation}
           </p>
           <button
             onClick={handleNext}
-            className="mt-2 rounded-xl bg-cyan-600 px-8 py-3 text-xl text-white transition hover:bg-cyan-500"
+            className="mt-2 rounded-xl bg-cyan-600 px-8 py-3 text-2xl text-white transition hover:bg-cyan-500"
           >
             {current + 1 < questions.length ? '다음 문제' : '결과 보기'}
           </button>

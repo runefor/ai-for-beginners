@@ -38,7 +38,7 @@ export default function Home() {
           <p className="text-3xl text-gray-400">
             인공지능, 어렵지 않습니다
           </p>
-          <div className="mt-8 text-xl text-gray-600">
+          <div className="mt-8 text-2xl text-gray-600">
             화살표 키(← →)로 이동하세요
           </div>
         </div>
@@ -76,8 +76,8 @@ export default function Home() {
               className="flex flex-col items-center gap-3 rounded-2xl bg-white/5 p-6"
             >
               <span className="text-5xl">{item.icon}</span>
-              <h3 className="text-2xl font-semibold text-white">{item.title}</h3>
-              <p className="text-lg text-gray-400">{item.desc}</p>
+              <h3 className="whitespace-nowrap text-2xl font-semibold text-white">{item.title}</h3>
+              <p className="text-xl text-gray-400">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -106,42 +106,44 @@ export default function Home() {
         <h2 className="mb-12 text-5xl font-bold text-white">
           AI, 이런 일이 있었습니다
         </h2>
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
+        <div className="mx-auto grid max-w-7xl grid-cols-4 gap-6">
           {[
             {
               year: '2016',
-              title: '알파고 vs 이세돌',
-              desc: 'AI가 바둑 세계 최강을 이기다',
+              title: '알파고\nvs\n이세돌',
+              desc: 'AI가 바둑\n최강을 이기다',
               highlight: true,
             },
             {
-              year: '2022.11',
-              title: 'ChatGPT 등장',
-              desc: '2달 만에 사용자 1억 명 돌파',
+              year: '2022',
+              title: 'ChatGPT\n등장',
+              desc: '2달 만에\n1억 명 돌파',
               highlight: true,
             },
             {
               year: '2023',
-              title: 'AI 그림 대회 우승',
-              desc: 'Midjourney 작품이 미술대회 1등',
+              title: 'AI\n미술대회 우승',
+              desc: 'Midjourney\n작품 1등',
               highlight: false,
             },
             {
               year: '2025~',
-              title: 'AI 에이전트 시대',
-              desc: 'AI가 직접 컴퓨터를 조작',
+              title: 'AI\n에이전트 시대',
+              desc: 'AI가 직접\n컴퓨터 조작',
               highlight: true,
             },
           ].map((item) => (
             <div
               key={item.year}
-              className={`flex w-64 flex-col items-center gap-3 rounded-2xl p-6 ${
+              className={`flex h-[360px] flex-col items-center rounded-2xl px-6 py-8 ${
                 item.highlight ? 'bg-cyan-900/50' : 'bg-white/5'
               }`}
             >
-              <span className="text-2xl font-bold text-cyan-400">{item.year}</span>
-              <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-              <p className="text-center text-base text-gray-400">{item.desc}</p>
+              <span className="text-xl font-bold text-cyan-400">{item.year}</span>
+              <div className="flex flex-1 items-center">
+                <h3 className="whitespace-pre-line text-center text-xl font-semibold leading-tight text-white">{item.title}</h3>
+              </div>
+              <p className="whitespace-pre-line text-center text-lg leading-tight text-gray-400">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -246,7 +248,7 @@ export default function Home() {
               과거의 AI
             </h3>
             <p className="text-2xl text-gray-300">찾아주는 AI</p>
-            <p className="mt-2 text-lg text-gray-500">검색, 분류, 추천</p>
+            <p className="mt-2 text-xl text-gray-500">검색, 분류, 추천</p>
           </div>
           <span className="text-5xl text-cyan-400">→</span>
           <div className="flex-1 rounded-2xl bg-cyan-900/40 p-8 text-center">
@@ -254,7 +256,7 @@ export default function Home() {
               지금의 AI
             </h3>
             <p className="text-2xl text-white">만들어주는 AI</p>
-            <p className="mt-2 text-lg text-gray-400">
+            <p className="mt-2 text-xl text-gray-400">
               글, 그림, 영상, 코드, 음악
             </p>
           </div>
@@ -278,8 +280,8 @@ export default function Home() {
               className="rounded-2xl bg-white/5 p-8 text-center"
             >
               <div className="text-4xl font-bold text-cyan-400">{item.number}</div>
-              <p className="mt-2 text-xl text-white">{item.desc}</p>
-              <p className="mt-1 text-base text-gray-500">{item.sub}</p>
+              <p className="mt-2 text-2xl text-white">{item.desc}</p>
+              <p className="mt-1 text-xl text-gray-500">{item.sub}</p>
             </div>
           ))}
         </div>
@@ -292,13 +294,13 @@ export default function Home() {
         </h2>
         <div className="mx-auto max-w-5xl space-y-6">
           <div className="rounded-2xl bg-red-900/30 p-6">
-            <span className="text-xl font-bold text-red-400">나쁜 예 ❌</span>
+            <span className="text-2xl font-bold text-red-400">나쁜 예 ❌</span>
             <p className="mt-2 text-2xl text-gray-300">
               &ldquo;마케팅 전략 알려줘&rdquo;
             </p>
           </div>
           <div className="rounded-2xl bg-green-900/30 p-6">
-            <span className="text-xl font-bold text-green-400">좋은 예 ✅</span>
+            <span className="text-2xl font-bold text-green-400">좋은 예 ✅</span>
             <p className="mt-2 text-2xl text-gray-300">
               &ldquo;20대 여성을 타겟으로 한 화장품 브랜드의 인스타그램 마케팅 전략을 3가지 제안해줘. 예산은 월 100만원이야.&rdquo;
             </p>
@@ -322,62 +324,62 @@ export default function Home() {
         <h2 className="mb-10 text-5xl font-bold text-white">
           지금 바로 써보세요 (무료!)
         </h2>
-        <p className="mb-8 text-xl text-gray-500">카드를 클릭하면 설명이 나옵니다</p>
+        <p className="mb-8 text-2xl text-gray-500">카드를 클릭하면 설명이 나옵니다</p>
         <div className="mx-auto grid max-w-6xl grid-cols-3 gap-6">
           <FlipCard
-            className="h-64"
+            className="h-72"
             front={
               <>
                 <span className="text-5xl">🔍</span>
                 <h3 className="mt-3 text-2xl font-bold text-white">Perplexity</h3>
-                <p className="text-lg text-gray-400">AI 검색</p>
+                <p className="text-xl text-gray-400">AI 검색</p>
               </>
             }
             back={
               <>
-                <h3 className="text-xl font-bold text-white">Perplexity</h3>
-                <p className="mt-2 text-center text-lg text-gray-300">
+                <h3 className="text-2xl font-bold text-white">Perplexity</h3>
+                <p className="mt-2 text-center text-xl text-gray-300">
                   구글 대신 질문하면 AI가 답을 정리해줌. 출처도 함께 표시.
                 </p>
-                <p className="mt-3 text-base text-cyan-300">perplexity.ai</p>
+                <p className="mt-3 text-xl text-cyan-300">perplexity.ai</p>
               </>
             }
           />
           <FlipCard
-            className="h-64"
+            className="h-72"
             front={
               <>
                 <span className="text-5xl">📓</span>
                 <h3 className="mt-3 text-2xl font-bold text-white">NotebookLM</h3>
-                <p className="text-lg text-gray-400">AI 리서치</p>
+                <p className="text-xl text-gray-400">AI 리서치</p>
               </>
             }
             back={
               <>
-                <h3 className="text-xl font-bold text-white">NotebookLM</h3>
-                <p className="mt-2 text-center text-lg text-gray-300">
+                <h3 className="text-2xl font-bold text-white">NotebookLM</h3>
+                <p className="mt-2 text-center text-xl text-gray-300">
                   PDF, 문서를 올리면 AI가 요약·분석. 구글 무료 제공.
                 </p>
-                <p className="mt-3 text-base text-cyan-300">notebooklm.google.com</p>
+                <p className="mt-3 text-xl text-cyan-300">notebooklm.google.com</p>
               </>
             }
           />
           <FlipCard
-            className="h-64"
+            className="h-72"
             front={
               <>
                 <span className="text-5xl">📊</span>
                 <h3 className="mt-3 text-2xl font-bold text-white">Gamma</h3>
-                <p className="text-lg text-gray-400">AI 발표자료</p>
+                <p className="text-xl text-gray-400">AI 발표자료</p>
               </>
             }
             back={
               <>
-                <h3 className="text-xl font-bold text-white">Gamma</h3>
-                <p className="mt-2 text-center text-lg text-gray-300">
+                <h3 className="text-2xl font-bold text-white">Gamma</h3>
+                <p className="mt-2 text-center text-xl text-gray-300">
                   주제만 입력하면 PPT 자동 생성. 디자인까지 알아서.
                 </p>
-                <p className="mt-3 text-base text-cyan-300">gamma.app</p>
+                <p className="mt-3 text-xl text-cyan-300">gamma.app</p>
               </>
             }
           />
@@ -389,71 +391,71 @@ export default function Home() {
         <h2 className="mb-10 text-5xl font-bold text-white">
           AI가 만드는 세상
         </h2>
-        <p className="mb-8 text-xl text-gray-500">카드를 클릭해보세요</p>
+        <p className="mb-8 text-2xl text-gray-500">카드를 클릭해보세요</p>
         <div className="mx-auto grid max-w-6xl grid-cols-4 gap-5">
           <FlipCard
-            className="h-60"
+            className="h-64"
             front={
               <>
                 <span className="text-5xl">🎨</span>
-                <h3 className="mt-3 text-xl font-bold text-white">이미지</h3>
+                <h3 className="mt-3 text-2xl font-bold text-white">이미지</h3>
               </>
             }
             back={
               <>
-                <h3 className="text-lg font-bold text-white">ChatGPT / Midjourney</h3>
-                <p className="mt-2 text-center text-base text-gray-300">
+                <h3 className="text-xl font-bold text-white">ChatGPT / Midjourney</h3>
+                <p className="mt-2 text-center text-xl text-gray-300">
                   &ldquo;이런 그림 그려줘&rdquo; 한 마디로 이미지 생성
                 </p>
               </>
             }
           />
           <FlipCard
-            className="h-60"
+            className="h-64"
             front={
               <>
                 <span className="text-5xl">🎥</span>
-                <h3 className="mt-3 text-xl font-bold text-white">영상</h3>
+                <h3 className="mt-3 text-2xl font-bold text-white">영상</h3>
               </>
             }
             back={
               <>
-                <h3 className="text-lg font-bold text-white">Synthesia</h3>
-                <p className="mt-2 text-center text-base text-gray-300">
+                <h3 className="text-xl font-bold text-white">Synthesia</h3>
+                <p className="mt-2 text-center text-xl text-gray-300">
                   텍스트만 입력하면 AI 아바타가 말하는 영상 자동 생성
                 </p>
               </>
             }
           />
           <FlipCard
-            className="h-60"
+            className="h-64"
             front={
               <>
                 <span className="text-5xl">🎵</span>
-                <h3 className="mt-3 text-xl font-bold text-white">음성</h3>
+                <h3 className="mt-3 text-2xl font-bold text-white">음성</h3>
               </>
             }
             back={
               <>
-                <h3 className="text-lg font-bold text-white">ElevenLabs</h3>
-                <p className="mt-2 text-center text-base text-gray-300">
+                <h3 className="text-xl font-bold text-white">ElevenLabs</h3>
+                <p className="mt-2 text-center text-xl text-gray-300">
                   내 목소리를 복제해서 다국어 더빙까지 가능
                 </p>
               </>
             }
           />
           <FlipCard
-            className="h-60"
+            className="h-64"
             front={
               <>
                 <span className="text-5xl">📱</span>
-                <h3 className="mt-3 text-xl font-bold text-white">앱</h3>
+                <h3 className="mt-3 text-2xl font-bold text-white">앱</h3>
               </>
             }
             back={
               <>
-                <h3 className="text-lg font-bold text-white">Lovable</h3>
-                <p className="mt-2 text-center text-base text-gray-300">
+                <h3 className="text-xl font-bold text-white">Lovable</h3>
+                <p className="mt-2 text-center text-xl text-gray-300">
                   코딩 없이 &ldquo;이런 앱 만들어줘&rdquo;로 앱 완성
                 </p>
               </>
@@ -472,18 +474,18 @@ export default function Home() {
         </p>
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8">
           <FlipCard
-            className="h-72"
+            className="h-80"
             front={
               <>
                 <span className="text-5xl">🦞</span>
                 <h3 className="mt-3 text-3xl font-bold text-white">OpenClaw</h3>
-                <p className="mt-2 text-lg text-gray-400">AI 개인 비서</p>
+                <p className="mt-2 text-xl text-gray-400">AI 개인 비서</p>
               </>
             }
             back={
               <>
-                <h3 className="text-xl font-bold text-white">OpenClaw (오픈클로)</h3>
-                <p className="mt-2 text-center text-lg text-gray-300">
+                <h3 className="text-2xl font-bold text-white">OpenClaw (오픈클로)</h3>
+                <p className="mt-2 text-center text-xl text-gray-300">
                   이메일, 일정, 파일을 AI가 직접 관리. 메신저로 24시간 지시 가능.
                   Notion, 캘린더 등과 연동.
                 </p>
@@ -491,18 +493,18 @@ export default function Home() {
             }
           />
           <FlipCard
-            className="h-72"
+            className="h-80"
             front={
               <>
                 <span className="text-5xl">🤖</span>
                 <h3 className="mt-3 text-3xl font-bold text-white">Claude Cowork</h3>
-                <p className="mt-2 text-lg text-gray-400">AI 업무 자동화</p>
+                <p className="mt-2 text-xl text-gray-400">AI 업무 자동화</p>
               </>
             }
             back={
               <>
-                <h3 className="text-xl font-bold text-white">Claude Cowork (코워크)</h3>
-                <p className="mt-2 text-center text-lg text-gray-300">
+                <h3 className="text-2xl font-bold text-white">Claude Cowork (코워크)</h3>
+                <p className="mt-2 text-center text-xl text-gray-300">
                   데스크톱에서 파일 관리, 데이터 분석, 리서치를 AI가 자동 수행.
                   Fortune 500 기업에서 도입 중.
                 </p>
@@ -565,7 +567,7 @@ export default function Home() {
               <h3 className="text-2xl font-semibold text-yellow-300">
                 {item.title}
               </h3>
-              <p className="text-lg text-gray-400">{item.desc}</p>
+              <p className="text-xl text-gray-400">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -607,9 +609,9 @@ export default function Home() {
             >
               <div>
                 <h3 className="text-2xl font-semibold text-white">{item.tool}</h3>
-                <p className="text-lg text-gray-500">{item.url}</p>
+                <p className="text-xl text-gray-500">{item.url}</p>
               </div>
-              <span className="text-xl text-cyan-300">{item.action}</span>
+              <span className="text-2xl text-cyan-300">{item.action}</span>
             </div>
           ))}
         </div>
@@ -650,7 +652,7 @@ export default function Home() {
             AI와 함께하는 미래, 지금 시작하세요
           </p>
           <div className="mt-8 rounded-2xl bg-white/5 p-8 text-center">
-            <p className="text-xl text-gray-500">
+            <p className="text-2xl text-gray-500">
               {/* TODO: 발표자 연락처 */}
               발표자 이름 | email@example.com
             </p>
