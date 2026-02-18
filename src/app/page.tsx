@@ -27,6 +27,10 @@ const MNISTDemo = dynamic(
   () => import('@/components/interactive/MNISTDemo'),
   { ssr: false }
 );
+const AILimitationsShowcase = dynamic(
+  () => import('@/components/interactive/AILimitationsShowcase'),
+  { ssr: false }
+);
 
 export default function Home() {
   return (
@@ -168,42 +172,11 @@ export default function Home() {
 
       {/* 7. AI도 틀린다 */}
       <Slide dataBackgroundColor="#1a0a0a">
-        <h2 className="mb-10 text-5xl font-bold text-white">
+        <h2 className="mb-6 text-5xl font-bold text-white">
           하지만, AI도 틀립니다
         </h2>
-        <div className="mx-auto max-w-4xl space-y-8">
-          {[
-            {
-              icon: '🤥',
-              title: '환각 (Hallucination)',
-              desc: '그럴듯하지만 완전히 틀린 답을 자신있게 말함',
-            },
-            {
-              icon: '⚖️',
-              title: '편향 (Bias)',
-              desc: '학습 데이터에 편향이 있으면 AI 결과도 편향됨',
-            },
-            {
-              icon: '📅',
-              title: '최신 정보 부족',
-              desc: '학습 시점 이후의 정보는 모를 수 있음',
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="flex items-center gap-6 rounded-xl bg-white/5 p-6"
-            >
-              <span className="text-4xl">{item.icon}</span>
-              <div>
-                <h3 className="text-2xl font-semibold text-red-400">
-                  {item.title}
-                </h3>
-                <p className="text-xl text-gray-400">{item.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <p className="mt-8 text-3xl font-semibold text-yellow-300">
+        <AILimitationsShowcase />
+        <p className="mt-6 text-3xl font-semibold text-yellow-300">
           AI는 도구입니다. 맹신하지 마세요!
         </p>
       </Slide>
