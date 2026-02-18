@@ -131,6 +131,14 @@
   width: 100vw;
 }
 
+/* Override Reveal.js default image styles (theme adds white bg + border) */
+.reveal section img {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 auto !important;
+}
+
 /* Stamp animation for AI Limitations slide */
 @keyframes stamp {
   0% {

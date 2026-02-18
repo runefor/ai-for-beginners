@@ -188,9 +188,14 @@ export default function Home() {
         <div className="flex flex-col items-center gap-8">
           <h2 className="text-5xl font-bold text-white">AI가 만든 걸까?</h2>
           <p className="text-3xl text-gray-400">
-            다음 글을 읽고, AI가 쓴 건지 사람이 쓴 건지 맞춰보세요
+            다음 콘텐츠를 보고, AI가 만든 건지 사람이 만든 건지 맞춰보세요
           </p>
-          <div className="mt-6 text-8xl">🤔</div>
+          <div className="mt-6 flex gap-4 text-7xl">
+            <span>📝</span>
+            <span>🖼️</span>
+            <span>🎬</span>
+            <span>🤔</span>
+          </div>
         </div>
       </Slide>
 
