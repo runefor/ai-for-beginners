@@ -39,6 +39,10 @@ const ChatGPTTimeline = dynamic(
   () => import('@/components/interactive/ChatGPTTimeline'),
   { ssr: false }
 );
+const PromptCraftingDemo = dynamic(
+  () => import('@/components/interactive/PromptCraftingDemo'),
+  { ssr: false }
+);
 
 export default function Home() {
   return (
@@ -231,34 +235,12 @@ export default function Home() {
         <ChatGPTTimeline />
       </Slide>
 
-      {/* 12. 프롬프트 = 대화법 */}
+      {/* 12. 프롬프트 = 대화법 — 인터랙티브 프롬프트 빌더 */}
       <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-10 text-5xl font-bold text-white">
+        <h2 className="mb-6 text-5xl font-bold text-white">
           AI 잘 쓰는 법 = 잘 물어보는 법
         </h2>
-        <div className="mx-auto max-w-5xl space-y-6">
-          <div className="rounded-2xl bg-red-900/30 p-6">
-            <span className="text-2xl font-bold text-red-400">나쁜 예 ❌</span>
-            <p className="mt-2 text-2xl text-gray-300">
-              &ldquo;마케팅 전략 알려줘&rdquo;
-            </p>
-          </div>
-          <div className="rounded-2xl bg-green-900/30 p-6">
-            <span className="text-2xl font-bold text-green-400">좋은 예 ✅</span>
-            <p className="mt-2 text-2xl text-gray-300">
-              &ldquo;20대 여성을 타겟으로 한 화장품 브랜드의 인스타그램 마케팅 전략을 3가지 제안해줘. 예산은 월 100만원이야.&rdquo;
-            </p>
-          </div>
-          <div className="mt-8 rounded-2xl bg-white/5 p-6">
-            <h3 className="text-2xl font-semibold text-cyan-300">핵심 공식</h3>
-            <p className="mt-3 text-2xl text-gray-300">
-              <span className="text-yellow-300">역할</span> +{' '}
-              <span className="text-green-300">구체적 맥락</span> +{' '}
-              <span className="text-purple-300">원하는 형식</span> ={' '}
-              <span className="text-cyan-300">좋은 프롬프트</span>
-            </p>
-          </div>
-        </div>
+        <PromptCraftingDemo />
       </Slide>
 
       {/* ========== Part 5: AI 도구 소개 ========== */}
