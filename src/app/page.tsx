@@ -23,6 +23,10 @@ const AIvsHumanQuiz = dynamic(
   () => import('@/components/interactive/AIvsHumanQuiz'),
   { ssr: false }
 );
+const MNISTDemo = dynamic(
+  () => import('@/components/interactive/MNISTDemo'),
+  { ssr: false }
+);
 
 export default function Home() {
   return (
@@ -151,30 +155,15 @@ export default function Home() {
 
       {/* ========== Part 2: AI 기본 이해 ========== */}
 
-      {/* 6. AI의 학습 비유 */}
+      {/* 6. AI의 학습 — MNIST 인터랙티브 데모 */}
       <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-10 text-5xl font-bold text-white">
+        <h2 className="mb-4 text-5xl font-bold text-white">
           AI는 어떻게 배울까?
         </h2>
-        <div className="mx-auto flex max-w-5xl items-center gap-12">
-          <div className="flex flex-col items-center gap-4 rounded-2xl bg-white/5 p-8">
-            <span className="text-7xl">🐱</span>
-            <p className="text-2xl text-gray-300">고양이 사진 10만 장</p>
-          </div>
-          <span className="text-5xl text-cyan-400">→</span>
-          <div className="flex flex-col items-center gap-4 rounded-2xl bg-white/5 p-8">
-            <span className="text-7xl">🧠</span>
-            <p className="text-2xl text-gray-300">패턴 학습</p>
-          </div>
-          <span className="text-5xl text-cyan-400">→</span>
-          <div className="flex flex-col items-center gap-4 rounded-2xl bg-white/5 p-8">
-            <span className="text-7xl">✅</span>
-            <p className="text-2xl text-gray-300">새 사진도 구분!</p>
-          </div>
-        </div>
-        <p className="mt-10 text-2xl text-gray-400">
-          아이가 고양이를 배우듯, AI도 &ldquo;많이 보면&rdquo; 구분하게 됩니다
+        <p className="mb-6 text-2xl text-gray-400">
+          직접 숫자를 그려보세요 — AI가 실시간으로 인식합니다
         </p>
+        <MNISTDemo />
       </Slide>
 
       {/* 7. AI도 틀린다 */}

@@ -40,6 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# mnist training data
+.mnist-data/
+
 # bkit
 .bkit/
 docs/.pdca-status.json
