@@ -110,18 +110,72 @@ export default function Home() {
           <div className="max-w-4xl rounded-2xl bg-white/5 p-12">
             <p className="text-4xl leading-relaxed text-cyan-300">
               <TypingEffect
-                text="사람처럼 보고, 듣고, 판단하도록 만든 컴퓨터 프로그램"
-                speed={60}
+                text="사람처럼 보이는 결과를 만들지만, 실제로는 데이터를 보고 패턴을 찾는 컴퓨터 프로그램"
+                speed={45}
               />
             </p>
           </div>
           <p className="mt-4 text-2xl text-gray-400">
-            핵심은 &ldquo;패턴을 학습&rdquo;한다는 것
+            핵심은 &ldquo;많은 예시 속 규칙을 찾는 것&rdquo;입니다
           </p>
         </div>
       </Slide>
 
-      {/* 5. AI 역사 하이라이트 */}
+      {/* 5. 연결 슬라이드 - AI는 사람처럼 생각할까? */}
+      <Slide dataBackgroundColor="#111827">
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-10 text-center">
+          <span className="text-7xl">🤔</span>
+          <h2 className="text-5xl font-bold text-white">AI는 사람처럼 생각할까?</h2>
+          <p className="text-3xl leading-relaxed text-gray-300">
+            겉으로는 똑똑해 보여도,
+            <br />
+            실제로는 많은 데이터를 보고 <span className="text-cyan-300">패턴을 찾는 도구</span>입니다.
+          </p>
+          <p className="text-2xl text-gray-500">
+            그 원리를 아주 간단한 예시로 먼저 볼게요.
+          </p>
+        </div>
+      </Slide>
+
+      {/* 6. AI의 학습 — MNIST 인터랙티브 데모 */}
+      <Slide dataBackgroundColor="#0a0a0a">
+        <h2 className="mb-4 text-5xl font-bold text-white">
+          AI는 어떻게 배울까?
+        </h2>
+        <p className="mb-3 text-2xl text-gray-400">
+          직접 숫자를 그려보세요 — AI가 실시간으로 인식합니다
+        </p>
+        <p className="mb-6 text-xl text-gray-500">
+          AI는 숫자의 뜻을 이해하는 게 아니라, 수많은 예시를 보고 비슷한 모양의 패턴을 찾아냅니다.
+        </p>
+        <MNISTDemo />
+      </Slide>
+
+      {/* 7. AI도 틀린다 */}
+      <Slide dataBackgroundColor="#1a0a0a">
+        <h2 className="mb-6 text-5xl font-bold text-white">
+          하지만, AI도 틀립니다
+        </h2>
+        <AILimitationsShowcase />
+        <p className="mt-6 text-3xl font-semibold text-yellow-300">
+          AI는 도구입니다. 맹신하지 마세요!
+        </p>
+      </Slide>
+
+      {/* 8. 연결 슬라이드 - 왜 요즘 AI가 화제일까? */}
+      <Slide dataBackgroundColor="#0f172a">
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-10 text-center">
+          <span className="text-7xl">🚀</span>
+          <h2 className="text-5xl font-bold text-white">그런데 왜 요즘 AI가 더 화제가 될까요?</h2>
+          <p className="text-3xl leading-relaxed text-gray-300">
+            예전 AI는 추천하고 분류하는 데 강했다면,
+            <br />
+            지금 AI는 <span className="text-cyan-300">글, 그림, 영상까지 직접 만들어냅니다.</span>
+          </p>
+        </div>
+      </Slide>
+
+      {/* 9. AI 역사 하이라이트 */}
       <Slide dataBackgroundColor="#0a0a0a">
         <h2 className="mb-12 text-5xl font-bold text-white">
           AI, 이런 일이 있었습니다
@@ -169,55 +223,6 @@ export default function Home() {
         </div>
       </Slide>
 
-      {/* ========== Part 2: AI 기본 이해 ========== */}
-
-      {/* 6. AI의 학습 — MNIST 인터랙티브 데모 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-4 text-5xl font-bold text-white">
-          AI는 어떻게 배울까?
-        </h2>
-        <p className="mb-6 text-2xl text-gray-400">
-          직접 숫자를 그려보세요 — AI가 실시간으로 인식합니다
-        </p>
-        <MNISTDemo />
-      </Slide>
-
-      {/* 7. AI도 틀린다 */}
-      <Slide dataBackgroundColor="#1a0a0a">
-        <h2 className="mb-6 text-5xl font-bold text-white">
-          하지만, AI도 틀립니다
-        </h2>
-        <AILimitationsShowcase />
-        <p className="mt-6 text-3xl font-semibold text-yellow-300">
-          AI는 도구입니다. 맹신하지 마세요!
-        </p>
-      </Slide>
-
-      {/* ========== Part 3: AI vs 사람 퀴즈 ========== */}
-
-      {/* 8. AI vs 사람 인트로 */}
-      <Slide dataBackgroundColor="#0f172a">
-        <div className="flex flex-col items-center gap-8">
-          <h2 className="text-5xl font-bold text-white">AI가 만든 걸까?</h2>
-          <p className="text-3xl text-gray-400">
-            다음 콘텐츠를 보고, AI가 만든 건지 사람이 만든 건지 맞춰보세요
-          </p>
-          <div className="mt-6 flex gap-4 text-7xl">
-            <span>📝</span>
-            <span>🖼️</span>
-            <span>🎬</span>
-            <span>🤔</span>
-          </div>
-        </div>
-      </Slide>
-
-      {/* 9. AI vs 사람 퀴즈 */}
-      <Slide dataBackgroundColor="#0f172a">
-        <AIvsHumanQuiz />
-      </Slide>
-
-      {/* ========== Part 4: 생성형 AI ========== */}
-
       {/* 10. 생성형 AI란 - 인터랙티브 쇼케이스 */}
       <Slide dataBackgroundColor="#0a0a0a">
         <h2 className="mb-2 text-5xl font-bold text-white">생성형 AI의 시대</h2>
@@ -235,7 +240,28 @@ export default function Home() {
         <ChatGPTTimeline />
       </Slide>
 
-      {/* 12. 프롬프트 = 대화법 — 인터랙티브 프롬프트 빌더 */}
+      {/* 12. AI vs 사람 인트로 */}
+      <Slide dataBackgroundColor="#0f172a">
+        <div className="flex flex-col items-center gap-8">
+          <h2 className="text-5xl font-bold text-white">AI가 만든 걸까?</h2>
+          <p className="text-3xl text-gray-400">
+            이제는 사람 눈으로도 구분이 어려워졌습니다. 한번 맞춰보세요.
+          </p>
+          <div className="mt-6 flex gap-4 text-7xl">
+            <span>📝</span>
+            <span>🖼️</span>
+            <span>🎬</span>
+            <span>🤔</span>
+          </div>
+        </div>
+      </Slide>
+
+      {/* 13. AI vs 사람 퀴즈 */}
+      <Slide dataBackgroundColor="#0f172a">
+        <AIvsHumanQuiz />
+      </Slide>
+
+      {/* 14. 프롬프트 = 대화법 — 인터랙티브 프롬프트 빌더 */}
       <Slide dataBackgroundColor="#0a0a0a">
         <h2 className="mb-6 text-5xl font-bold text-white">
           AI 잘 쓰는 법 = 잘 물어보는 법
@@ -243,9 +269,7 @@ export default function Home() {
         <PromptCraftingDemo />
       </Slide>
 
-      {/* ========== Part 5: AI 도구 소개 ========== */}
-
-      {/* 13. 무료 AI 도구 - 카드 뒤집기 */}
+      {/* 15. 무료 AI 도구 - 카드 뒤집기 */}
       <Slide dataBackgroundColor="#0a0a0a">
         <h2 className="mb-10 text-5xl font-bold text-white">
           지금 바로 써보세요 (무료!)
@@ -312,7 +336,7 @@ export default function Home() {
         </div>
       </Slide>
 
-      {/* 14. AI가 만드는 세상 - 카드 뒤집기 */}
+      {/* 16. AI가 만드는 세상 - 카드 뒤집기 */}
       <Slide dataBackgroundColor="#0a0a0a">
         <h2 className="mb-10 text-5xl font-bold text-white">
           AI가 만드는 세상
@@ -390,7 +414,7 @@ export default function Home() {
         </div>
       </Slide>
 
-      {/* 15. 1%가 쓰는 AI - 카드 뒤집기 */}
+      {/* 17. 1%가 쓰는 AI - 카드 뒤집기 */}
       <Slide dataBackgroundColor="#0f172a">
         <h2 className="mb-4 text-5xl font-bold text-white">
           상위 1%가 쓰는 AI 도구
@@ -440,31 +464,20 @@ export default function Home() {
         </div>
       </Slide>
 
-      {/* ========== Part 6: AI와 미래 ========== */}
-
-      {/* 16. AI와 일자리 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-10 text-5xl font-bold text-white">AI가 내 일자리를 뺏을까?</h2>
-        <div className="mx-auto max-w-4xl">
-          <div className="mb-8 rounded-2xl bg-red-900/20 p-8">
-            <h3 className="text-3xl font-semibold text-red-400">흔한 걱정</h3>
-            <p className="mt-3 text-2xl text-gray-300">
-              &ldquo;AI가 발전하면 사람은 필요 없어지는 거 아닌가?&rdquo;
-            </p>
-          </div>
-          <div className="rounded-2xl bg-green-900/20 p-8">
-            <h3 className="text-3xl font-semibold text-green-400">현실</h3>
-            <p className="mt-3 text-2xl text-gray-300">
-              AI가 사람을 <span className="text-yellow-300">대체</span>하는 게 아니라,
-              <br />
-              AI를 쓰는 사람이 안 쓰는 사람을{' '}
-              <span className="text-cyan-300">대체</span>합니다.
-            </p>
-          </div>
+      {/* 18. 연결 슬라이드 - 써보기 전에 기억할 것 */}
+      <Slide dataBackgroundColor="#111827">
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-10 text-center">
+          <span className="text-7xl">⚠️</span>
+          <h2 className="text-5xl font-bold text-white">써보기 전에 이것만은 기억하세요</h2>
+          <p className="text-3xl leading-relaxed text-gray-300">
+            AI는 편리하지만,
+            <br />
+            <span className="text-cyan-300">개인정보</span>, <span className="text-cyan-300">틀린 정보</span>, <span className="text-cyan-300">저작권</span>은 꼭 주의해야 합니다.
+          </p>
         </div>
       </Slide>
 
-      {/* 17. AI 윤리 */}
+      {/* 19. AI 윤리 */}
       <Slide dataBackgroundColor="#0a0a0a">
         <h2 className="mb-10 text-5xl font-bold text-white">알아둬야 할 것들</h2>
         <div className="mx-auto grid max-w-5xl grid-cols-3 gap-6">
@@ -499,7 +512,29 @@ export default function Home() {
         </div>
       </Slide>
 
-      {/* 18. AI 시대 생존법 */}
+      {/* 20. AI와 일자리 */}
+      <Slide dataBackgroundColor="#0a0a0a">
+        <h2 className="mb-10 text-5xl font-bold text-white">AI가 내 일자리를 뺏을까?</h2>
+        <div className="mx-auto max-w-4xl">
+          <div className="mb-8 rounded-2xl bg-red-900/20 p-8">
+            <h3 className="text-3xl font-semibold text-red-400">흔한 걱정</h3>
+            <p className="mt-3 text-2xl text-gray-300">
+              &ldquo;AI가 발전하면 사람은 필요 없어지는 거 아닌가?&rdquo;
+            </p>
+          </div>
+          <div className="rounded-2xl bg-green-900/20 p-8">
+            <h3 className="text-3xl font-semibold text-green-400">현실</h3>
+            <p className="mt-3 text-2xl text-gray-300">
+              AI가 사람을 <span className="text-yellow-300">대체</span>하는 게 아니라,
+              <br />
+              AI를 쓰는 사람이 안 쓰는 사람을{' '}
+              <span className="text-cyan-300">대체</span>합니다.
+            </p>
+          </div>
+        </div>
+      </Slide>
+
+      {/* 21. AI 시대 생존법 */}
       <Slide dataBackgroundColor="#0a0a0a">
         <h2 className="mb-10 text-5xl font-bold text-white">AI 시대, 어떻게 준비할까?</h2>
         <div className="mx-auto max-w-4xl space-y-6">
@@ -517,7 +552,7 @@ export default function Home() {
         </div>
       </Slide>
 
-      {/* 19. 지금 시작하기 */}
+      {/* 22. 지금 시작하기 */}
       <Slide dataBackgroundColor="#0a0a0a">
         <h2 className="mb-10 text-5xl font-bold text-white">
           오늘 집에 가서 해보세요
@@ -545,7 +580,7 @@ export default function Home() {
 
       {/* ========== 마무리 ========== */}
 
-      {/* 20. 핵심 요약 */}
+      {/* 23. 핵심 요약 */}
       <Slide dataBackgroundColor="#0a0a0a">
         <h2 className="mb-12 text-5xl font-bold text-white">오늘의 핵심</h2>
         <div className="mx-auto max-w-4xl space-y-8">
@@ -561,7 +596,7 @@ export default function Home() {
         </div>
       </Slide>
 
-      {/* 21. Q&A */}
+      {/* 24. Q&A */}
       <Slide dataBackgroundColor="#0f172a">
         <div className="flex flex-col items-center gap-8">
           <h2 className="text-6xl font-bold text-white">Q&A</h2>
@@ -570,7 +605,7 @@ export default function Home() {
         </div>
       </Slide>
 
-      {/* 22. 감사합니다 */}
+      {/* 25. 감사합니다 */}
       <Slide dataBackgroundColor="#0a0a0a">
         <div className="flex flex-col items-center gap-8">
           <h2 className="text-6xl font-bold text-white">감사합니다</h2>
