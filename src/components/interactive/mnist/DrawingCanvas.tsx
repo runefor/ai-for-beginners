@@ -9,34 +9,67 @@ interface DrawingCanvasProps {
 
 export default function DrawingCanvas({ onDraw, onClear }: DrawingCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const isDrawingRef = useRef(false);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastRectRef = useRef<DOMRect | null>(null);
+  const hasDrawnRef = useRef(false);
   const [hasDrawn, setHasDrawn] = useState(false);
 
   const fillCanvasBackground = useCallback(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const ctx = contextRef.current;
+    if (!canvas || !ctx) return;
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }, []);
 
   const clearCanvas = useCallback(() => {
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
+      debounceRef.current = null;
+    }
+
     fillCanvasBackground();
+    hasDrawnRef.current = false;
+    lastRectRef.current = null;
+    isDrawingRef.current = false;
     setHasDrawn(false);
     onClear();
   }, [fillCanvasBackground, onClear]);
 
   useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    contextRef.current = ctx;
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 18;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
     fillCanvasBackground();
+
+    return () => {
+      contextRef.current = null;
+    };
   }, [fillCanvasBackground]);
+
+  useEffect(() => {
+    return () => {
+      if (debounceRef.current) {
+        clearTimeout(debounceRef.current);
+      }
+    };
+  }, []);
 
   const getPos = useCallback(
     (e: MouseEvent | TouchEvent): { x: number; y: number } | null => {
       const canvas = canvasRef.current;
       if (!canvas) return null;
-      const rect = canvas.getBoundingClientRect();
+      const rect = lastRectRef.current ?? canvas.getBoundingClientRect();
       const scaleX = canvas.width / rect.width;
       const scaleY = canvas.height / rect.height;
 
@@ -68,10 +101,17 @@ export default function DrawingCanvas({ onDraw, onClear }: DrawingCanvasProps) {
     (e: MouseEvent | TouchEvent) => {
       e.stopPropagation();
       e.preventDefault();
+
+      if (debounceRef.current) {
+        clearTimeout(debounceRef.current);
+        debounceRef.current = null;
+      }
+
       isDrawingRef.current = true;
+      lastRectRef.current = canvasRef.current?.getBoundingClientRect() ?? null;
       const pos = getPos(e);
       if (!pos) return;
-      const ctx = canvasRef.current?.getContext("2d");
+      const ctx = contextRef.current;
       if (!ctx) return;
       ctx.beginPath();
       ctx.moveTo(pos.x, pos.y);
@@ -86,15 +126,15 @@ export default function DrawingCanvas({ onDraw, onClear }: DrawingCanvasProps) {
       if (!isDrawingRef.current) return;
       const pos = getPos(e);
       if (!pos) return;
-      const ctx = canvasRef.current?.getContext("2d");
+      const ctx = contextRef.current;
       if (!ctx) return;
-      ctx.strokeStyle = "#ffffff";
-      ctx.lineWidth = 18;
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
       ctx.lineTo(pos.x, pos.y);
       ctx.stroke();
-      setHasDrawn(true);
+
+      if (!hasDrawnRef.current) {
+        hasDrawnRef.current = true;
+        setHasDrawn(true);
+      }
     },
     [getPos],
   );
@@ -104,6 +144,7 @@ export default function DrawingCanvas({ onDraw, onClear }: DrawingCanvasProps) {
       e.stopPropagation();
       if (isDrawingRef.current) {
         isDrawingRef.current = false;
+        lastRectRef.current = null;
         triggerPrediction();
       }
     },
@@ -122,6 +163,7 @@ export default function DrawingCanvas({ onDraw, onClear }: DrawingCanvasProps) {
     canvas.addEventListener("touchstart", startDraw, opts);
     canvas.addEventListener("touchmove", draw, opts);
     canvas.addEventListener("touchend", endDraw);
+    canvas.addEventListener("touchcancel", endDraw);
 
     return () => {
       canvas.removeEventListener("mousedown", startDraw);
@@ -131,6 +173,7 @@ export default function DrawingCanvas({ onDraw, onClear }: DrawingCanvasProps) {
       canvas.removeEventListener("touchstart", startDraw);
       canvas.removeEventListener("touchmove", draw);
       canvas.removeEventListener("touchend", endDraw);
+      canvas.removeEventListener("touchcancel", endDraw);
     };
   }, [startDraw, draw, endDraw]);
 
