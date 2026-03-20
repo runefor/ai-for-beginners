@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback } from 'react';
-import TypingEffect from './TypingEffect';
+import { useState, useEffect, useCallback } from "react";
+import TypingEffect from "./TypingEffect";
 
-type ElementKey = 'role' | 'context' | 'format';
+type ElementKey = "role" | "context" | "format";
 
 interface ToggleState {
   role: boolean;
@@ -20,36 +20,56 @@ const ELEMENTS: {
   textOn: string;
 }[] = [
   {
-    key: 'role',
-    label: '역할',
-    icon: '🎭',
-    bgOn: 'bg-yellow-900/40',
-    borderOn: 'border-yellow-500/50',
-    textOn: 'text-yellow-300',
+    key: "role",
+    label: "역할",
+    icon: "🎭",
+    bgOn: "bg-yellow-900/40",
+    borderOn: "border-yellow-500/50",
+    textOn: "text-yellow-300",
   },
   {
-    key: 'context',
-    label: '구체적 맥락',
-    icon: '📋',
-    bgOn: 'bg-green-900/40',
-    borderOn: 'border-green-500/50',
-    textOn: 'text-green-300',
+    key: "context",
+    label: "구체적 맥락",
+    icon: "📋",
+    bgOn: "bg-green-900/40",
+    borderOn: "border-green-500/50",
+    textOn: "text-green-300",
   },
   {
-    key: 'format',
-    label: '원하는 형식',
-    icon: '📐',
-    bgOn: 'bg-purple-900/40',
-    borderOn: 'border-purple-500/50',
-    textOn: 'text-purple-300',
+    key: "format",
+    label: "원하는 형식",
+    icon: "📐",
+    bgOn: "bg-purple-900/40",
+    borderOn: "border-purple-500/50",
+    textOn: "text-purple-300",
   },
 ];
 
 const QUALITY_LEVELS = [
-  { pct: 10, color: 'bg-red-500', textColor: 'text-red-400', label: '아직 부족해요' },
-  { pct: 40, color: 'bg-orange-500', textColor: 'text-orange-300', label: '조금 나아졌어요!' },
-  { pct: 70, color: 'bg-yellow-500', textColor: 'text-yellow-300', label: '거의 다 왔어요!' },
-  { pct: 100, color: 'bg-cyan-400', textColor: 'text-cyan-300', label: '완벽한 프롬프트!' },
+  {
+    pct: 10,
+    color: "bg-red-500",
+    textColor: "text-red-400",
+    label: "아직 부족해요",
+  },
+  {
+    pct: 40,
+    color: "bg-orange-500",
+    textColor: "text-orange-300",
+    label: "조금 나아졌어요!",
+  },
+  {
+    pct: 70,
+    color: "bg-yellow-500",
+    textColor: "text-yellow-300",
+    label: "거의 다 왔어요!",
+  },
+  {
+    pct: 100,
+    color: "bg-cyan-400",
+    textColor: "text-cyan-300",
+    label: "완벽한 프롬프트!",
+  },
 ];
 
 const AI_RESPONSE = `1. 릴스 챌린지 캠페인
@@ -81,30 +101,30 @@ export default function PromptCraftingDemo() {
   const quality = QUALITY_LEVELS[activeCount];
 
   useEffect(() => {
-    if (allOn) {
-      const timer = setTimeout(() => {
-        setShowResponse(true);
-        setTypingKey((k) => k + 1);
-      }, 500);
-      return () => clearTimeout(timer);
-    } else {
-      setShowResponse(false);
-    }
+    if (!allOn) return;
+
+    const timer = setTimeout(() => {
+      setShowResponse(true);
+      setTypingKey((k) => k + 1);
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, [allOn]);
 
   const toggle = useCallback((key: ElementKey) => {
+    setShowResponse(false);
     setActive((prev) => ({ ...prev, [key]: !prev[key] }));
   }, []);
 
   const rolePart = active.role
-    ? '너는 10년 경력의 디지털 마케팅 전문가야. '
-    : '';
+    ? "너는 10년 경력의 디지털 마케팅 전문가야. "
+    : "";
   const mainPart = active.context
-    ? '20대 여성을 타겟으로 한 화장품 브랜드의 인스타그램 마케팅 전략을 알려줘. 예산은 월 100만원이야.'
-    : '마케팅 전략 알려줘';
+    ? "20대 여성을 타겟으로 한 화장품 브랜드의 인스타그램 마케팅 전략을 알려줘. 예산은 월 100만원이야."
+    : "마케팅 전략 알려줘";
   const formatPart = active.format
-    ? ' 3가지 전략을 각각 제목, 설명, 예상 효과로 나눠서 정리해줘.'
-    : '';
+    ? " 3가지 전략을 각각 제목, 설명, 예상 효과로 나눠서 정리해줘."
+    : "";
 
   return (
     <div
@@ -117,9 +137,7 @@ export default function PromptCraftingDemo() {
           <span>💬</span> 프롬프트 미리보기
         </div>
         <p className="text-xl leading-relaxed text-gray-200">
-          {active.role && (
-            <span className="text-yellow-300">{rolePart}</span>
-          )}
+          {active.role && <span className="text-yellow-300">{rolePart}</span>}
           {active.context ? (
             <span className="text-green-300">{mainPart}</span>
           ) : (
@@ -138,11 +156,12 @@ export default function PromptCraftingDemo() {
           return (
             <button
               key={el.key}
+              type="button"
               onClick={() => toggle(el.key)}
               className={`flex items-center gap-2 rounded-xl border-2 px-5 py-3 text-lg font-semibold transition-all duration-300 ${
                 isOn
                   ? `${el.bgOn} ${el.borderOn} ${el.textOn}`
-                  : 'border-white/20 bg-white/10 text-gray-500'
+                  : "border-white/20 bg-white/10 text-gray-500"
               }`}
             >
               <span>{el.icon}</span>

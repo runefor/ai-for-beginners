@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { useState, useCallback } from 'react';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import TypingEffect from '@/components/interactive/TypingEffect';
+import { useState, useCallback } from "react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import TypingEffect from "@/components/interactive/TypingEffect";
 
-type TabId = 'text' | 'image' | 'video' | 'code' | 'music';
+type TabId = "text" | "image" | "video" | "code" | "music";
 
 const tabConfig: { id: TabId; icon: string; label: string }[] = [
-  { id: 'text', icon: '\u270D\uFE0F', label: '글' },
-  { id: 'image', icon: '\uD83C\uDFA8', label: '그림' },
-  { id: 'video', icon: '\uD83C\uDFAC', label: '영상' },
-  { id: 'code', icon: '\uD83D\uDCBB', label: '코드' },
-  { id: 'music', icon: '\uD83C\uDFB5', label: '음악' },
+  { id: "text", icon: "\u270D\uFE0F", label: "글" },
+  { id: "image", icon: "\uD83C\uDFA8", label: "그림" },
+  { id: "video", icon: "\uD83C\uDFAC", label: "영상" },
+  { id: "code", icon: "\uD83D\uDCBB", label: "코드" },
+  { id: "music", icon: "\uD83C\uDFB5", label: "음악" },
 ];
 
 const tabData: Record<
@@ -25,44 +25,46 @@ const tabData: Record<
   }
 > = {
   text: {
-    description: 'AI가 글을 써줍니다',
-    prompt: '서울의 가을을 주제로 감성적인 시 한 편 써줘',
-    tool: 'ChatGPT',
-    toolColor: 'bg-green-600',
-    time: '~5초',
+    description: "AI가 글을 써줍니다",
+    prompt: "서울의 가을을 주제로 감성적인 시 한 편 써줘",
+    tool: "ChatGPT",
+    toolColor: "bg-green-600",
+    time: "~5초",
   },
   image: {
-    description: 'AI가 그림을 그려줍니다',
-    prompt: '우주를 떠다니는 고양이 우주비행사, 디지털 아트',
-    tool: 'DALL-E',
-    toolColor: 'bg-purple-600',
-    time: '~15초',
+    description: "AI가 그림을 그려줍니다",
+    prompt: "우주를 떠다니는 고양이 우주비행사, 디지털 아트",
+    tool: "DALL-E",
+    toolColor: "bg-purple-600",
+    time: "~15초",
   },
   video: {
-    description: 'AI가 영상을 만들어줍니다',
-    prompt: '석양 속 도쿄 거리를 걷는 여성',
-    tool: 'Sora',
-    toolColor: 'bg-rose-600',
-    time: '~1분',
+    description: "AI가 영상을 만들어줍니다",
+    prompt: "석양 속 도쿄 거리를 걷는 여성",
+    tool: "Sora",
+    toolColor: "bg-rose-600",
+    time: "~1분",
   },
   code: {
-    description: 'AI가 코드를 작성합니다',
-    prompt: '소수 판별 Python 함수 만들어줘',
-    tool: 'Copilot',
-    toolColor: 'bg-blue-600',
-    time: '~3초',
+    description: "AI가 코드를 작성합니다",
+    prompt: "소수 판별 Python 함수 만들어줘",
+    tool: "Copilot",
+    toolColor: "bg-blue-600",
+    time: "~3초",
   },
   music: {
-    description: 'AI가 음악을 만들어줍니다',
-    prompt: '공부할 때 듣기 좋은 lo-fi 비트 만들어줘',
-    tool: 'Suno',
-    toolColor: 'bg-amber-600',
-    time: '~30초',
+    description: "AI가 음악을 만들어줍니다",
+    prompt: "공부할 때 듣기 좋은 lo-fi 비트 만들어줘",
+    tool: "Suno",
+    toolColor: "bg-amber-600",
+    time: "~30초",
   },
 };
 
+const WAVE_DELAYS = Array.from({ length: 24 }, (_, index) => index * 0.08);
+
 export default function GenerativeAIShowcase() {
-  const [activeTab, setActiveTab] = useState<TabId>('text');
+  const [activeTab, setActiveTab] = useState<TabId>("text");
   const [steps, setSteps] = useState<Record<TabId, number>>({
     text: 0,
     image: 0,
@@ -93,10 +95,8 @@ export default function GenerativeAIShowcase() {
   }, []);
 
   const renderResult = (tabId: TabId) => {
-    const data = tabData[tabId];
-
     switch (tabId) {
-      case 'text':
+      case "text":
         return (
           <div className="animate-fade-slide-up rounded-xl bg-white/5 p-5 text-left">
             <p className="text-lg leading-relaxed text-gray-200 italic">
@@ -116,7 +116,7 @@ export default function GenerativeAIShowcase() {
           </div>
         );
 
-      case 'image':
+      case "image":
         return (
           <div className="animate-fade-slide-up flex flex-col items-center gap-3">
             {/* CSS art: space cat astronaut */}
@@ -124,7 +124,7 @@ export default function GenerativeAIShowcase() {
               className="flex h-48 w-72 items-center justify-center overflow-hidden rounded-xl"
               style={{
                 background:
-                  'linear-gradient(135deg, #0c0033 0%, #1a0a4a 30%, #2d1b69 50%, #1a0a4a 70%, #0c0033 100%)',
+                  "linear-gradient(135deg, #0c0033 0%, #1a0a4a 30%, #2d1b69 50%, #1a0a4a 70%, #0c0033 100%)",
               }}
             >
               <div className="relative flex flex-col items-center">
@@ -151,7 +151,7 @@ export default function GenerativeAIShowcase() {
           </div>
         );
 
-      case 'video':
+      case "video":
         return (
           <div className="animate-fade-slide-up">
             <div className="overflow-hidden rounded-xl">
@@ -174,76 +174,76 @@ export default function GenerativeAIShowcase() {
           </div>
         );
 
-      case 'code':
+      case "code":
         return (
           <pre className="animate-fade-slide-up overflow-x-auto rounded-xl bg-[#1e1e2e] p-5 text-left text-sm leading-relaxed">
             <code>
-              <span style={{ color: '#c678dd' }}>def </span>
-              <span style={{ color: '#61afef' }}>is_prime</span>
-              <span style={{ color: '#abb2bf' }}>(</span>
-              <span style={{ color: '#e06c75' }}>n</span>
-              <span style={{ color: '#abb2bf' }}>):</span>
-{'\n'}
-              <span style={{ color: '#abb2bf' }}>{'    '}</span>
-              <span style={{ color: '#c678dd' }}>if </span>
-              <span style={{ color: '#e06c75' }}>n</span>
-              <span style={{ color: '#abb2bf' }}> &lt; </span>
-              <span style={{ color: '#d19a66' }}>2</span>
-              <span style={{ color: '#abb2bf' }}>:</span>
-{'\n'}
-              <span style={{ color: '#abb2bf' }}>{'        '}</span>
-              <span style={{ color: '#c678dd' }}>return </span>
-              <span style={{ color: '#d19a66' }}>False</span>
-{'\n'}
-              <span style={{ color: '#abb2bf' }}>{'    '}</span>
-              <span style={{ color: '#c678dd' }}>for </span>
-              <span style={{ color: '#e06c75' }}>i</span>
-              <span style={{ color: '#c678dd' }}> in </span>
-              <span style={{ color: '#61afef' }}>range</span>
-              <span style={{ color: '#abb2bf' }}>(</span>
-              <span style={{ color: '#d19a66' }}>2</span>
-              <span style={{ color: '#abb2bf' }}>, </span>
-              <span style={{ color: '#61afef' }}>int</span>
-              <span style={{ color: '#abb2bf' }}>(</span>
-              <span style={{ color: '#e06c75' }}>n</span>
-              <span style={{ color: '#abb2bf' }}>**</span>
-              <span style={{ color: '#d19a66' }}>0.5</span>
-              <span style={{ color: '#abb2bf' }}>) + </span>
-              <span style={{ color: '#d19a66' }}>1</span>
-              <span style={{ color: '#abb2bf' }}>):</span>
-{'\n'}
-              <span style={{ color: '#abb2bf' }}>{'        '}</span>
-              <span style={{ color: '#c678dd' }}>if </span>
-              <span style={{ color: '#e06c75' }}>n</span>
-              <span style={{ color: '#abb2bf' }}> % </span>
-              <span style={{ color: '#e06c75' }}>i</span>
-              <span style={{ color: '#abb2bf' }}> == </span>
-              <span style={{ color: '#d19a66' }}>0</span>
-              <span style={{ color: '#abb2bf' }}>:</span>
-{'\n'}
-              <span style={{ color: '#abb2bf' }}>{'            '}</span>
-              <span style={{ color: '#c678dd' }}>return </span>
-              <span style={{ color: '#d19a66' }}>False</span>
-{'\n'}
-              <span style={{ color: '#abb2bf' }}>{'    '}</span>
-              <span style={{ color: '#c678dd' }}>return </span>
-              <span style={{ color: '#d19a66' }}>True</span>
+              <span style={{ color: "#c678dd" }}>def </span>
+              <span style={{ color: "#61afef" }}>is_prime</span>
+              <span style={{ color: "#abb2bf" }}>(</span>
+              <span style={{ color: "#e06c75" }}>n</span>
+              <span style={{ color: "#abb2bf" }}>):</span>
+              {"\n"}
+              <span style={{ color: "#abb2bf" }}>{"    "}</span>
+              <span style={{ color: "#c678dd" }}>if </span>
+              <span style={{ color: "#e06c75" }}>n</span>
+              <span style={{ color: "#abb2bf" }}> &lt; </span>
+              <span style={{ color: "#d19a66" }}>2</span>
+              <span style={{ color: "#abb2bf" }}>:</span>
+              {"\n"}
+              <span style={{ color: "#abb2bf" }}>{"        "}</span>
+              <span style={{ color: "#c678dd" }}>return </span>
+              <span style={{ color: "#d19a66" }}>False</span>
+              {"\n"}
+              <span style={{ color: "#abb2bf" }}>{"    "}</span>
+              <span style={{ color: "#c678dd" }}>for </span>
+              <span style={{ color: "#e06c75" }}>i</span>
+              <span style={{ color: "#c678dd" }}> in </span>
+              <span style={{ color: "#61afef" }}>range</span>
+              <span style={{ color: "#abb2bf" }}>(</span>
+              <span style={{ color: "#d19a66" }}>2</span>
+              <span style={{ color: "#abb2bf" }}>, </span>
+              <span style={{ color: "#61afef" }}>int</span>
+              <span style={{ color: "#abb2bf" }}>(</span>
+              <span style={{ color: "#e06c75" }}>n</span>
+              <span style={{ color: "#abb2bf" }}>**</span>
+              <span style={{ color: "#d19a66" }}>0.5</span>
+              <span style={{ color: "#abb2bf" }}>) + </span>
+              <span style={{ color: "#d19a66" }}>1</span>
+              <span style={{ color: "#abb2bf" }}>):</span>
+              {"\n"}
+              <span style={{ color: "#abb2bf" }}>{"        "}</span>
+              <span style={{ color: "#c678dd" }}>if </span>
+              <span style={{ color: "#e06c75" }}>n</span>
+              <span style={{ color: "#abb2bf" }}> % </span>
+              <span style={{ color: "#e06c75" }}>i</span>
+              <span style={{ color: "#abb2bf" }}> == </span>
+              <span style={{ color: "#d19a66" }}>0</span>
+              <span style={{ color: "#abb2bf" }}>:</span>
+              {"\n"}
+              <span style={{ color: "#abb2bf" }}>{"            "}</span>
+              <span style={{ color: "#c678dd" }}>return </span>
+              <span style={{ color: "#d19a66" }}>False</span>
+              {"\n"}
+              <span style={{ color: "#abb2bf" }}>{"    "}</span>
+              <span style={{ color: "#c678dd" }}>return </span>
+              <span style={{ color: "#d19a66" }}>True</span>
             </code>
           </pre>
         );
 
-      case 'music':
+      case "music":
         return (
           <div className="animate-fade-slide-up flex flex-col items-center gap-4 rounded-xl bg-white/5 p-5">
             {/* Waveform visualization */}
             <div className="flex h-20 items-end gap-1">
-              {Array.from({ length: 24 }).map((_, i) => (
+              {WAVE_DELAYS.map((delay) => (
                 <div
-                  key={i}
+                  key={`wave-${delay}`}
                   className="w-2 rounded-full bg-amber-400/80 animate-waveform"
                   style={{
-                    animationDelay: `${i * 0.08}s`,
-                    height: '30%',
+                    animationDelay: `${delay}s`,
+                    height: "30%",
                   }}
                 />
               ))}
@@ -351,6 +351,7 @@ export default function GenerativeAIShowcase() {
               {/* Next button */}
               {step < 2 && activeTab === tab.id && (
                 <button
+                  type="button"
                   onClick={advance}
                   className="absolute right-4 bottom-4 rounded-lg bg-white/10 px-4 py-2 text-sm text-gray-300 transition-colors hover:bg-white/20"
                 >
