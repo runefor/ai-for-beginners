@@ -51,3 +51,17 @@ public/images/showcase/*.mp4
 .bkit/
 docs/.pdca-status.json
 docs/.bkit-memory.json
+
+# local presentation review captures
+/align-check-*.png
+/check-slide-*.png
+/check2-slide-*.png
+/ppt-home.png
+/redesign-slide*.png
+/slide*.png
+/slides-contact-sheet.png
+/timeline-fixed*.png
+
+# local agent logs
+/.codex-dev.err
+/.codex-dev.log
