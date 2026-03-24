@@ -38,11 +38,11 @@ const milestones: Milestone[] = [
     icon: '🎙️',
   },
   {
-    date: '2025.현재',
-    title: '1.8억 주간 사용자',
-    detail: 'Fortune 500 기업 92% 도입, 300+ AI 서비스 등장',
+    date: '2026.02',
+    title: '일상 도구로 자리잡음',
+    detail: 'OpenAI는 9억+ 주간 사용자와 92%의 Fortune 500 사용 사례를 언급했습니다',
     icon: '🌍',
-    stat: '1.8억',
+    stat: '9억+',
   },
 ];
 
@@ -72,7 +72,7 @@ export default function ChatGPTTimeline() {
               >
                 {/* Left content */}
                 <div
-                  className={`flex w-[calc(50%-24px)] ${
+                  className={`flex w-[calc(50%_-_1.5rem)] ${
                     isLeft ? 'justify-end pr-4' : ''
                   }`}
                 >
@@ -118,7 +118,7 @@ export default function ChatGPTTimeline() {
 
                 {/* Right content */}
                 <div
-                  className={`flex w-[calc(50%-24px)] ${
+                  className={`flex w-[calc(50%_-_1.5rem)] ${
                     !isLeft ? 'pl-4' : ''
                   }`}
                 >

@@ -45,6 +45,7 @@ next-env.d.ts
 
 # large media files
 public/images/showcase/*.mp4
+!public/images/showcase/sora-tokyo-walk.mp4
 
 # bkit
 .bkit/

@@ -127,10 +127,7 @@ export default function PromptCraftingDemo() {
     : "";
 
   return (
-    <div
-      className="mx-auto flex w-full max-w-5xl flex-col gap-4"
-      style={{ zoom: 0.78 }}
-    >
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 lg:scale-[0.9] lg:origin-top">
       {/* Prompt bubble */}
       <div className="rounded-2xl bg-white/5 p-6">
         <div className="mb-2 flex items-center gap-2 text-lg text-gray-500">
@@ -150,7 +147,7 @@ export default function PromptCraftingDemo() {
       </div>
 
       {/* Toggle buttons */}
-      <div className="flex justify-center gap-4">
+      <div className="flex flex-wrap justify-center gap-4">
         {ELEMENTS.map((el) => {
           const isOn = active[el.key];
           return (
@@ -161,7 +158,7 @@ export default function PromptCraftingDemo() {
               className={`flex items-center gap-2 rounded-xl border-2 px-5 py-3 text-lg font-semibold transition-all duration-300 ${
                 isOn
                   ? `${el.bgOn} ${el.borderOn} ${el.textOn}`
-                  : "border-white/20 bg-white/10 text-gray-500"
+                  : "border-white/20 bg-white/10 text-gray-300"
               }`}
             >
               <span>{el.icon}</span>
@@ -173,8 +170,8 @@ export default function PromptCraftingDemo() {
 
       {/* Quality meter */}
       <div className="rounded-2xl bg-white/5 px-6 py-4">
-        <div className="flex items-center justify-between text-lg">
-          <span className="text-gray-400">프롬프트 품질</span>
+        <div className="flex flex-wrap items-center justify-between gap-2 text-lg">
+          <span className="text-gray-300">프롬프트 품질</span>
           <span className={`font-semibold ${quality.textColor}`}>
             {quality.pct}% — {quality.label}
           </span>
@@ -193,7 +190,7 @@ export default function PromptCraftingDemo() {
           <div className="mb-3 flex items-center gap-2 text-lg text-cyan-400">
             <span>🤖</span> AI 응답
           </div>
-          <div className="whitespace-pre-line text-lg leading-relaxed text-gray-300">
+          <div className="overflow-x-auto whitespace-pre-line text-lg leading-relaxed text-gray-300">
             <TypingEffect key={typingKey} text={AI_RESPONSE} speed={10} />
           </div>
         </div>

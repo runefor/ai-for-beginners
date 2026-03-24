@@ -82,7 +82,7 @@ export default function Home() {
         <h2 className="mb-12 text-5xl font-bold text-white">
           사실, 이미 AI를 쓰고 있습니다
         </h2>
-        <div className="mx-auto grid max-w-5xl grid-cols-3 gap-8">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
           {[
             { icon: '🎬', title: '넷플릭스', desc: '"이 영화 어때요?" 추천' },
             { icon: '🗣️', title: '시리 / 빅스비', desc: '"오늘 날씨 알려줘"' },
@@ -180,7 +180,7 @@ export default function Home() {
         <h2 className="mb-12 text-5xl font-bold text-white">
           AI, 이런 일이 있었습니다
         </h2>
-        <div className="mx-auto grid max-w-7xl grid-cols-4 gap-6">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
           {[
             {
               year: '2016',
@@ -275,7 +275,7 @@ export default function Home() {
           지금 바로 써보세요 (무료!)
         </h2>
         <p className="mb-8 text-2xl text-gray-500">카드를 클릭하면 설명이 나옵니다</p>
-        <div className="mx-auto grid max-w-6xl grid-cols-3 gap-6">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
           <FlipCard
             className="h-72"
             front={
@@ -342,7 +342,7 @@ export default function Home() {
           AI가 만드는 세상
         </h2>
         <p className="mb-8 text-2xl text-gray-500">카드를 클릭해보세요</p>
-        <div className="mx-auto grid max-w-6xl grid-cols-4 gap-5">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
           <FlipCard
             className="h-64"
             front={
@@ -422,7 +422,7 @@ export default function Home() {
         <p className="mb-8 text-2xl text-gray-400">
           챗봇을 넘어, AI가 직접 일을 합니다
         </p>
-        <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
           <FlipCard
             className="h-80"
             front={
@@ -480,7 +480,7 @@ export default function Home() {
       {/* 19. AI 윤리 */}
       <Slide dataBackgroundColor="#0a0a0a">
         <h2 className="mb-10 text-5xl font-bold text-white">알아둬야 할 것들</h2>
-        <div className="mx-auto grid max-w-5xl grid-cols-3 gap-6">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
           {[
             {
               icon: '⚖️',
@@ -544,7 +544,7 @@ export default function Home() {
             { num: '3', text: '나의 전문성 + AI = 최강 조합', color: 'text-yellow-400' },
             { num: '4', text: '변화를 두려워하지 마세요 — 도구일 뿐입니다', color: 'text-purple-400' },
           ].map((item) => (
-            <div key={item.num} className="flex items-center gap-6 rounded-xl bg-white/5 p-6">
+            <div key={item.num} className="flex flex-col items-start gap-4 rounded-xl bg-white/5 p-6 md:flex-row md:items-center md:gap-6">
               <span className={`text-4xl font-bold ${item.color}`}>{item.num}</span>
               <p className="text-2xl text-gray-200">{item.text}</p>
             </div>
@@ -566,7 +566,7 @@ export default function Home() {
           ].map((item) => (
             <div
               key={item.tool}
-              className="flex items-center justify-between rounded-xl bg-white/5 px-8 py-5"
+              className="flex flex-col gap-3 rounded-xl bg-white/5 px-8 py-5 md:flex-row md:items-center md:justify-between"
             >
               <div>
                 <h3 className="text-2xl font-semibold text-white">{item.tool}</h3>

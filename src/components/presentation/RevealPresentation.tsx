@@ -16,6 +16,10 @@ export default function RevealPresentation({ children }: RevealPresentationProps
   useEffect(() => {
     if (!deckRef.current || revealRef.current) return;
 
+    const handleNextSlide = () => {
+      revealRef.current?.next();
+    };
+
     const deck = new Reveal(deckRef.current, {
       hash: true,
       slideNumber: true,
@@ -33,9 +37,11 @@ export default function RevealPresentation({ children }: RevealPresentationProps
 
     deck.initialize().then(() => {
       revealRef.current = deck;
+      window.addEventListener('presentation:next-slide', handleNextSlide);
     });
 
     return () => {
+      window.removeEventListener('presentation:next-slide', handleNextSlide);
       if (revealRef.current) {
         revealRef.current.destroy();
         revealRef.current = null;

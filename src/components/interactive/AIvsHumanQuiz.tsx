@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 interface QuizItem {
   label: string;
@@ -69,57 +70,41 @@ const items: QuizItem[] = [
 export default function AIvsHumanQuiz() {
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<'ai' | 'human' | null>(null);
-  const [score, setScore] = useState(0);
-  const [finished, setFinished] = useState(false);
 
   const item = items[current];
+
+  function resetQuiz() {
+    setCurrent(0);
+    setSelected(null);
+  }
+
+  function goToNextSlide() {
+    window.dispatchEvent(new CustomEvent('presentation:next-slide'));
+  }
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#/12') {
+        resetQuiz();
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   function handleAnswer(answer: 'ai' | 'human') {
     if (selected !== null) return;
     setSelected(answer);
-    if (answer === item.answer) {
-      setScore((s) => s + 1);
-    }
   }
 
   function handleNext() {
     if (current + 1 >= items.length) {
-      setFinished(true);
+      goToNextSlide();
     } else {
       setCurrent((c) => c + 1);
       setSelected(null);
     }
-  }
-
-  function handleReset() {
-    setCurrent(0);
-    setScore(0);
-    setSelected(null);
-    setFinished(false);
-  }
-
-  if (finished) {
-    return (
-      <div className="flex flex-col items-center gap-6">
-        <h2 className="text-4xl font-bold text-white">
-          {score >= 4
-            ? '대단해요! 감별사 수준이네요'
-            : 'AI와 사람의 경계가 이렇게 모호합니다'}
-        </h2>
-        <div className="text-6xl font-bold text-cyan-400">
-          {score} / {items.length}
-        </div>
-        <p className="text-2xl text-gray-300">
-          이미 AI가 만든 콘텐츠는 사람과 구분하기 어려운 수준입니다.
-        </p>
-        <button
-          onClick={handleReset}
-          className="mt-4 rounded-xl bg-white/10 px-8 py-3 text-2xl text-white transition hover:bg-white/20"
-        >
-          다시 도전
-        </button>
-      </div>
-    );
   }
 
   const isMedia = item.type === 'image' || item.type === 'video';
@@ -144,51 +129,52 @@ export default function AIvsHumanQuiz() {
       )}
 
       {item.type === 'image' && (
-        <div className="flex flex-col items-center gap-2">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={item.mediaUrl}
-            alt={item.label}
-            loading="eager"
-            style={{
-              maxHeight: selected ? '250px' : '350px',
-              width: 'auto',
-              borderRadius: '1rem',
-              objectFit: 'contain',
-              background: 'none',
-              border: 'none',
-              boxShadow: 'none',
-              margin: '0 auto',
-              display: 'block',
-              transition: 'max-height 0.3s ease',
-            }}
-          />
+        <div className="flex w-full max-w-5xl flex-col items-center gap-3">
+          <div className="flex w-full justify-center rounded-2xl bg-black/20 p-2">
+            <Image
+              src={item.mediaUrl as string}
+              alt={`${item.label}: ${item.description}`}
+              width={1200}
+              height={900}
+              priority
+              className="block h-auto max-w-full rounded-2xl object-contain"
+              sizes="(max-width: 768px) 92vw, 880px"
+              style={{
+                maxHeight: selected ? '380px' : '520px',
+                maxWidth: 'min(78vw, 880px)',
+                transition: 'max-height 0.3s ease, max-width 0.3s ease',
+              }}
+            />
+          </div>
           <p className="text-lg text-gray-400">{item.description}</p>
         </div>
       )}
 
       {item.type === 'video' && (
-        <div className="flex flex-col items-center gap-2">
-          <iframe
-            width={selected ? '420' : '520'}
-            height={selected ? '236' : '293'}
-            src={`https://www.youtube.com/embed/${item.mediaUrl}`}
-            title={item.label}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            style={{
-              borderRadius: '1rem',
-              border: 'none',
-              transition: 'all 0.3s ease',
-            }}
-          />
+        <div className="flex w-full max-w-6xl flex-col items-center gap-3">
+          <div className="w-full rounded-2xl bg-black/20 p-2">
+            <iframe
+              src={`https://www.youtube.com/embed/${item.mediaUrl}`}
+              title={item.label}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+              className={`mx-auto aspect-video w-full ${selected ? 'max-w-[760px]' : 'max-w-[1040px]'}`}
+              style={{
+                borderRadius: '1rem',
+                border: 'none',
+                transition: 'max-width 0.3s ease',
+              }}
+            />
+          </div>
           <p className="text-lg text-gray-400">{item.description}</p>
         </div>
       )}
 
       {/* 버튼 */}
-      <div className={`flex gap-4 ${isMedia ? 'mt-1' : 'mt-4'}`}>
+      <div className={`flex flex-wrap justify-center gap-4 ${isMedia ? 'mt-1' : 'mt-4'}`}>
         <button
+          type="button"
           onClick={() => handleAnswer('ai')}
           disabled={selected !== null}
           className={`rounded-2xl px-8 py-3 text-xl font-bold transition ${
@@ -204,6 +190,7 @@ export default function AIvsHumanQuiz() {
           🤖 AI가 만듦
         </button>
         <button
+          type="button"
           onClick={() => handleAnswer('human')}
           disabled={selected !== null}
           className={`rounded-2xl px-8 py-3 text-xl font-bold transition ${
@@ -232,10 +219,11 @@ export default function AIvsHumanQuiz() {
             {item.explanation}
           </p>
           <button
+            type="button"
             onClick={handleNext}
             className="rounded-xl bg-cyan-600 px-6 py-2 text-xl text-white transition hover:bg-cyan-500"
           >
-            {current + 1 < items.length ? '다음 →' : '최종 결과 보기'}
+            {current + 1 < items.length ? '다음 →' : '다음 페이지'}
           </button>
         </div>
       )}

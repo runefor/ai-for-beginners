@@ -154,7 +154,7 @@ export default function GenerativeAIShowcase() {
       case "video":
         return (
           <div className="animate-fade-slide-up">
-            <div className="overflow-hidden rounded-xl">
+            <div className="mx-auto max-w-4xl overflow-hidden rounded-xl bg-black/20 p-2">
               <video
                 width="560"
                 height="215"
@@ -163,7 +163,7 @@ export default function GenerativeAIShowcase() {
                 autoPlay
                 loop
                 playsInline
-                className="w-full rounded-xl"
+                className="w-full rounded-xl bg-black object-contain"
               >
                 <source
                   src="/images/showcase/sora-tokyo-walk.mp4"
@@ -268,7 +268,7 @@ export default function GenerativeAIShowcase() {
       onValueChange={handleTabChange}
       className="mx-auto w-full max-w-4xl"
     >
-      <TabsList className="mx-auto w-fit bg-white/10">
+      <TabsList className="mx-auto h-auto max-w-full flex-wrap justify-center bg-white/10">
         {tabConfig.map((tab) => (
           <TabsTrigger
             key={tab.id}
@@ -339,7 +339,7 @@ export default function GenerativeAIShowcase() {
                         >
                           {data.tool}
                         </span>
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-gray-300">
                           &#x23F1; {data.time}
                         </span>
                       </div>
@@ -353,7 +353,7 @@ export default function GenerativeAIShowcase() {
                 <button
                   type="button"
                   onClick={advance}
-                  className="absolute right-4 bottom-4 rounded-lg bg-white/10 px-4 py-2 text-sm text-gray-300 transition-colors hover:bg-white/20"
+                  className="absolute right-4 bottom-4 rounded-lg bg-white/10 px-4 py-2 text-sm text-gray-200 transition-colors hover:bg-white/20"
                 >
                   다음 &rarr;
                 </button>

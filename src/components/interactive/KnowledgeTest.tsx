@@ -38,68 +38,29 @@ const questions: Question[] = [
 
 export default function KnowledgeTest() {
   const [current, setCurrent] = useState(0);
-  const [score, setScore] = useState(0);
   const [selected, setSelected] = useState<boolean | null>(null);
   const [showResult, setShowResult] = useState(false);
-  const [finished, setFinished] = useState(false);
 
   const q = questions[current];
+
+  function goToNextSlide() {
+    window.dispatchEvent(new CustomEvent('presentation:next-slide'));
+  }
 
   function handleAnswer(answer: boolean) {
     if (selected !== null) return;
     setSelected(answer);
     setShowResult(true);
-    if (answer === q.answer) {
-      setScore((s) => s + 1);
-    }
   }
 
   function handleNext() {
     if (current + 1 >= questions.length) {
-      setFinished(true);
+      goToNextSlide();
     } else {
       setCurrent((c) => c + 1);
       setSelected(null);
       setShowResult(false);
     }
-  }
-
-  function handleReset() {
-    setCurrent(0);
-    setScore(0);
-    setSelected(null);
-    setShowResult(false);
-    setFinished(false);
-  }
-
-  if (finished) {
-    const level =
-      score >= 4 ? 'AI 고수' : score >= 2 ? 'AI 중수' : 'AI 입문자';
-    const emoji = score >= 4 ? '🏆' : score >= 2 ? '👍' : '🌱';
-    const message =
-      score >= 4
-        ? '이미 AI에 대해 잘 알고 계시네요!'
-        : score >= 2
-          ? '기본기가 있으시네요! 오늘 더 배워가세요.'
-          : '걱정 마세요! 오늘 발표가 끝나면 달라질 거예요.';
-
-    return (
-      <div className="flex flex-col items-center gap-8">
-        <h2 className="text-4xl font-bold text-white">결과 발표</h2>
-        <div className="text-8xl">{emoji}</div>
-        <div className="text-6xl font-bold text-cyan-400">
-          {score} / {questions.length}
-        </div>
-        <div className="text-3xl font-semibold text-yellow-300">{level}</div>
-        <p className="text-2xl text-gray-300">{message}</p>
-        <button
-          onClick={handleReset}
-          className="mt-4 rounded-xl bg-white/10 px-8 py-3 text-2xl text-white transition hover:bg-white/20"
-        >
-          다시 도전
-        </button>
-      </div>
-    );
   }
 
   return (
@@ -112,8 +73,9 @@ export default function KnowledgeTest() {
         &ldquo;{q.question}&rdquo;
       </h3>
 
-      <div className="mt-4 flex gap-6">
+      <div className="mt-4 flex flex-wrap justify-center gap-6">
         <button
+          type="button"
           onClick={() => handleAnswer(true)}
           disabled={selected !== null}
           className={`h-24 w-40 rounded-2xl text-4xl font-bold transition ${
@@ -129,6 +91,7 @@ export default function KnowledgeTest() {
           O
         </button>
         <button
+          type="button"
           onClick={() => handleAnswer(false)}
           disabled={selected !== null}
           className={`h-24 w-40 rounded-2xl text-4xl font-bold transition ${
@@ -156,10 +119,11 @@ export default function KnowledgeTest() {
             {q.explanation}
           </p>
           <button
+            type="button"
             onClick={handleNext}
             className="mt-2 rounded-xl bg-cyan-600 px-8 py-3 text-2xl text-white transition hover:bg-cyan-500"
           >
-            {current + 1 < questions.length ? '다음 문제' : '결과 보기'}
+            {current + 1 < questions.length ? '다음 문제' : '다음 페이지'}
           </button>
         </div>
       )}

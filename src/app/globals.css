@@ -49,6 +49,11 @@
 
 :root {
   --radius: 0.625rem;
+  --font-geist-sans:
+    "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+    system-ui, sans-serif;
+  --font-geist-mono:
+    "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -131,6 +136,13 @@
   width: 100vw;
 }
 
+.reveal button:focus-visible,
+.reveal [role="button"]:focus-visible,
+.reveal a:focus-visible {
+  outline: 3px solid rgb(34 211 238 / 0.9);
+  outline-offset: 4px;
+}
+
 /* Override Reveal.js default image styles (theme adds white bg + border) */
 .reveal section img {
   background: none !important;
@@ -205,4 +217,25 @@
 
 .animate-waveform {
   animation: waveform 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+
+  .animate-stamp,
+  .animate-fade-slide-up,
+  .timeline-node,
+  .animate-waveform,
+  .animate-pulse,
+  .animate-ping {
+    animation: none !important;
+  }
+
+  .reveal * {
+    transition-duration: 0.01ms !important;
+  }
 }

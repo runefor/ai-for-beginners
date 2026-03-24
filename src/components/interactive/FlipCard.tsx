@@ -12,8 +12,10 @@ export default function FlipCard({ front, back, className = '' }: FlipCardProps)
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <div
-      className={`group cursor-pointer [perspective:1000px] ${className}`}
+    <button
+      type="button"
+      aria-pressed={flipped}
+      className={`group block cursor-pointer rounded-2xl text-left [perspective:1000px] ${className}`}
       onClick={() => setFlipped(!flipped)}
     >
       <div
@@ -30,6 +32,6 @@ export default function FlipCard({ front, back, className = '' }: FlipCardProps)
           {back}
         </div>
       </div>
-    </div>
+    </button>
   );
 }
