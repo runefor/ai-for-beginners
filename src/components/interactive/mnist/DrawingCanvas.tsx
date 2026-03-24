@@ -20,7 +20,7 @@ export default function DrawingCanvas({ onDraw, onClear }: DrawingCanvasProps) {
     const canvas = canvasRef.current;
     const ctx = contextRef.current;
     if (!canvas || !ctx) return;
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = "#020617";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }, []);
 
@@ -178,18 +178,22 @@ export default function DrawingCanvas({ onDraw, onClear }: DrawingCanvasProps) {
   }, [startDraw, draw, endDraw]);
 
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="flex flex-col items-center gap-4">
+      <div className="flex w-full items-center justify-between">
+        <span className="deck-pill">Input</span>
+        <span className="text-sm text-slate-500">손가락이나 마우스로 그리기</span>
+      </div>
       <div className="relative">
         <canvas
           ref={canvasRef}
-          width={280}
-          height={280}
-          className="cursor-crosshair rounded-xl border-2 border-white/20"
-          style={{ width: 200, height: 200, touchAction: "none" }}
+          width={320}
+          height={320}
+          className="cursor-crosshair rounded-[1.6rem] border border-white/14 shadow-[0_18px_50px_rgba(0,0,0,0.28)]"
+          style={{ width: 240, height: 240, touchAction: "none" }}
         />
         {!hasDrawn && (
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-            <p className="text-center text-sm text-gray-500">
+            <p className="text-center text-base leading-relaxed text-slate-500">
               여기에 숫자를
               <br />
               그려주세요
@@ -200,9 +204,9 @@ export default function DrawingCanvas({ onDraw, onClear }: DrawingCanvasProps) {
       <button
         type="button"
         onClick={clearCanvas}
-        className="rounded-lg bg-white/10 px-4 py-1.5 text-sm text-gray-300 transition hover:bg-white/20"
+        className="rounded-full border border-white/12 bg-white/6 px-5 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/12"
       >
-        지우기
+        다시 그리기
       </button>
     </div>
   );

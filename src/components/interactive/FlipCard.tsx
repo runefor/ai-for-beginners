@@ -15,7 +15,7 @@ export default function FlipCard({ front, back, className = '' }: FlipCardProps)
     <button
       type="button"
       aria-pressed={flipped}
-      className={`group block cursor-pointer rounded-2xl text-left [perspective:1000px] ${className}`}
+      className={`group block cursor-pointer rounded-[1.8rem] text-left [perspective:1200px] ${className}`}
       onClick={() => setFlipped(!flipped)}
     >
       <div
@@ -23,12 +23,13 @@ export default function FlipCard({ front, back, className = '' }: FlipCardProps)
           flipped ? '[transform:rotateY(180deg)]' : ''
         }`}
       >
-        {/* Front */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl bg-white/10 p-6 [backface-visibility:hidden]">
+        <div className="absolute inset-0 flex flex-col rounded-[1.8rem] border border-white/12 bg-linear-to-b from-slate-900/85 to-[#08111d] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] [backface-visibility:hidden]">
           {front}
+          <div className="mt-4 border-t border-white/10 pt-3 text-sm tracking-[0.16em] text-slate-500 uppercase">
+            Click to reveal
+          </div>
         </div>
-        {/* Back */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl bg-cyan-900/80 p-6 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+        <div className="absolute inset-0 flex flex-col rounded-[1.8rem] border border-cyan-400/20 bg-linear-to-b from-cyan-950/80 to-slate-950 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] [backface-visibility:hidden] [transform:rotateY(180deg)]">
           {back}
         </div>
       </div>

@@ -11,20 +11,16 @@ const TypingEffect = dynamic(
   () => import('@/components/interactive/TypingEffect'),
   { ssr: false }
 );
-const KnowledgeTest = dynamic(
-  () => import('@/components/interactive/KnowledgeTest'),
-  { ssr: false }
-);
 const FlipCard = dynamic(
   () => import('@/components/interactive/FlipCard'),
   { ssr: false }
 );
-const AIvsHumanQuiz = dynamic(
-  () => import('@/components/interactive/AIvsHumanQuiz'),
+const KnowledgeTest = dynamic(
+  () => import('@/components/interactive/KnowledgeTest'),
   { ssr: false }
 );
-const MNISTDemo = dynamic(
-  () => import('@/components/interactive/MNISTDemo'),
+const AIvsHumanQuiz = dynamic(
+  () => import('@/components/interactive/AIvsHumanQuiz'),
   { ssr: false }
 );
 const AILimitationsShowcase = dynamic(
@@ -35,588 +31,750 @@ const GenerativeAIShowcase = dynamic(
   () => import('@/components/interactive/GenerativeAIShowcase'),
   { ssr: false }
 );
-const ChatGPTTimeline = dynamic(
-  () => import('@/components/interactive/ChatGPTTimeline'),
+const AIShiftTimeline = dynamic(
+  () => import('@/components/interactive/AIShiftTimeline'),
   { ssr: false }
 );
 const PromptCraftingDemo = dynamic(
   () => import('@/components/interactive/PromptCraftingDemo'),
   { ssr: false }
 );
+const MNISTDemo = dynamic(
+  () => import('@/components/interactive/MNISTDemo'),
+  { ssr: false }
+);
+
+function Eyebrow({
+  children,
+  className = '',
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return <p className={`deck-eyebrow ${className}`}>{children}</p>;
+}
+
+function SectionHeader({
+  eyebrow,
+  title,
+  description,
+}: {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+}) {
+  return (
+    <div className="flex flex-col gap-3">
+      {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
+      <h2 className="deck-title">{title}</h2>
+      {description ? <p className="deck-copy max-w-4xl">{description}</p> : null}
+    </div>
+  );
+}
+
+function AccentCard({
+  children,
+  className = '',
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return <div className={`deck-card ${className}`}>{children}</div>;
+}
 
 export default function Home() {
   return (
     <RevealPresentation>
-      {/* ========== Part 1: AI란? ========== */}
-
-      {/* 1. 타이틀 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <div className="flex flex-col items-center gap-8">
-          <h1 className="text-7xl font-bold text-white">
-            <TypingEffect text="AI for Beginners" speed={80} />
-          </h1>
-          <p className="text-3xl text-gray-400">
-            인공지능, 어렵지 않습니다
-          </p>
-          <div className="mt-8 text-2xl text-gray-600">
-            화살표 키(← →)로 이동하세요
-          </div>
-        </div>
-      </Slide>
-
-      {/* 2. AI 상식 테스트 */}
-      <Slide dataBackgroundColor="#0f172a">
-        <div className="flex flex-col items-center gap-6">
-          <h2 className="mb-4 text-5xl font-bold text-white">
-            당신의 AI 상식은 몇 점?
-          </h2>
-          <p className="mb-6 text-2xl text-gray-400">
-            O 또는 X를 클릭하세요
-          </p>
-          <KnowledgeTest />
-        </div>
-      </Slide>
-
-      {/* 3. 일상 속 AI */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-12 text-5xl font-bold text-white">
-          사실, 이미 AI를 쓰고 있습니다
-        </h2>
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
-          {[
-            { icon: '🎬', title: '넷플릭스', desc: '"이 영화 어때요?" 추천' },
-            { icon: '🗣️', title: '시리 / 빅스비', desc: '"오늘 날씨 알려줘"' },
-            { icon: '🌐', title: '번역기', desc: '실시간 언어 번역' },
-            { icon: '📸', title: '카메라', desc: '인물모드 배경 흐림' },
-            { icon: '🛒', title: '쇼핑몰', desc: '"이 상품도 좋아하실걸요?"' },
-            { icon: '📧', title: '이메일', desc: '스팸 자동 분류' },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="flex flex-col items-center gap-3 rounded-2xl bg-white/5 p-6"
-            >
-              <span className="text-5xl">{item.icon}</span>
-              <h3 className="whitespace-nowrap text-2xl font-semibold text-white">{item.title}</h3>
-              <p className="text-xl text-gray-400">{item.desc}</p>
+      <Slide dataBackgroundColor="#06101b">
+        <div className="deck-shell deck-spotlight flex h-full items-center justify-center">
+          <div className="inline-flex max-w-max flex-col rounded-[1.9rem] border border-cyan-400/16 bg-black/22 px-8 py-6 shadow-[0_24px_70px_rgba(0,0,0,0.28)] backdrop-blur-md">
+            <div className="flex items-center gap-3 text-[0.75rem] font-semibold tracking-[0.24em] text-slate-400 uppercase">
+              <span className="h-2.5 w-2.5 rounded-full bg-rose-400/85 shadow-[0_0_14px_rgba(251,113,133,0.35)]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-amber-300/85 shadow-[0_0_14px_rgba(252,211,77,0.28)]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-emerald-300/80 shadow-[0_0_14px_rgba(110,231,183,0.28)]" />
+              <span className="ml-3 font-mono tracking-[0.2em] text-cyan-200/72">launch keynote</span>
             </div>
-          ))}
-        </div>
-      </Slide>
-
-      {/* 4. AI의 정의 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <div className="flex flex-col items-center gap-10">
-          <h2 className="text-5xl font-bold text-white">그래서 AI가 뭔가요?</h2>
-          <div className="max-w-4xl rounded-2xl bg-white/5 p-12">
-            <p className="text-4xl leading-relaxed text-cyan-300">
+            <h1 className="deck-title deck-title-hero mt-5 max-w-none whitespace-nowrap font-mono tracking-[-0.06em]">
+              <span className="mr-4 text-cyan-200/78">&gt;</span>
               <TypingEffect
-                text="사람처럼 보이는 결과를 만들지만, 실제로는 데이터를 보고 패턴을 찾는 컴퓨터 프로그램"
-                speed={45}
+                text="AI for Beginners"
+                speed={72}
+                startDelay={280}
+                cursorVariant="block"
+                keepCursor
+                cursorClassName="bg-cyan-100"
               />
-            </p>
-          </div>
-          <p className="mt-4 text-2xl text-gray-400">
-            핵심은 &ldquo;많은 예시 속 규칙을 찾는 것&rdquo;입니다
-          </p>
-        </div>
-      </Slide>
-
-      {/* 5. 연결 슬라이드 - AI는 사람처럼 생각할까? */}
-      <Slide dataBackgroundColor="#111827">
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-10 text-center">
-          <span className="text-7xl">🤔</span>
-          <h2 className="text-5xl font-bold text-white">AI는 사람처럼 생각할까?</h2>
-          <p className="text-3xl leading-relaxed text-gray-300">
-            겉으로는 똑똑해 보여도,
-            <br />
-            실제로는 많은 데이터를 보고 <span className="text-cyan-300">패턴을 찾는 도구</span>입니다.
-          </p>
-          <p className="text-2xl text-gray-500">
-            그 원리를 아주 간단한 예시로 먼저 볼게요.
-          </p>
-        </div>
-      </Slide>
-
-      {/* 6. AI의 학습 — MNIST 인터랙티브 데모 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-4 text-5xl font-bold text-white">
-          AI는 어떻게 배울까?
-        </h2>
-        <p className="mb-3 text-2xl text-gray-400">
-          직접 숫자를 그려보세요 — AI가 실시간으로 인식합니다
-        </p>
-        <p className="mb-6 text-xl text-gray-500">
-          AI는 숫자의 뜻을 이해하는 게 아니라, 수많은 예시를 보고 비슷한 모양의 패턴을 찾아냅니다.
-        </p>
-        <MNISTDemo />
-      </Slide>
-
-      {/* 7. AI도 틀린다 */}
-      <Slide dataBackgroundColor="#1a0a0a">
-        <h2 className="mb-6 text-5xl font-bold text-white">
-          하지만, AI도 틀립니다
-        </h2>
-        <AILimitationsShowcase />
-        <p className="mt-6 text-3xl font-semibold text-yellow-300">
-          AI는 도구입니다. 맹신하지 마세요!
-        </p>
-      </Slide>
-
-      {/* 8. 연결 슬라이드 - 왜 요즘 AI가 화제일까? */}
-      <Slide dataBackgroundColor="#0f172a">
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-10 text-center">
-          <span className="text-7xl">🚀</span>
-          <h2 className="text-5xl font-bold text-white">그런데 왜 요즘 AI가 더 화제가 될까요?</h2>
-          <p className="text-3xl leading-relaxed text-gray-300">
-            예전 AI는 추천하고 분류하는 데 강했다면,
-            <br />
-            지금 AI는 <span className="text-cyan-300">글, 그림, 영상까지 직접 만들어냅니다.</span>
-          </p>
-        </div>
-      </Slide>
-
-      {/* 9. AI 역사 하이라이트 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-12 text-5xl font-bold text-white">
-          AI, 이런 일이 있었습니다
-        </h2>
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-          {[
-            {
-              year: '2016',
-              title: '알파고\nvs\n이세돌',
-              desc: 'AI가 바둑\n최강을 이기다',
-              highlight: true,
-            },
-            {
-              year: '2022',
-              title: 'ChatGPT\n등장',
-              desc: '2달 만에\n1억 명 돌파',
-              highlight: true,
-            },
-            {
-              year: '2023',
-              title: 'AI\n미술대회 우승',
-              desc: 'Midjourney\n작품 1등',
-              highlight: false,
-            },
-            {
-              year: '2025~',
-              title: 'AI\n에이전트 시대',
-              desc: 'AI가 직접\n컴퓨터 조작',
-              highlight: true,
-            },
-          ].map((item) => (
-            <div
-              key={item.year}
-              className={`flex h-[360px] flex-col items-center rounded-2xl px-6 py-8 ${
-                item.highlight ? 'bg-cyan-900/50' : 'bg-white/5'
-              }`}
-            >
-              <span className="text-xl font-bold text-cyan-400">{item.year}</span>
-              <div className="flex flex-1 items-center">
-                <h3 className="whitespace-pre-line text-center text-xl font-semibold leading-tight text-white">{item.title}</h3>
-              </div>
-              <p className="whitespace-pre-line text-center text-lg leading-tight text-gray-400">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </Slide>
-
-      {/* 10. 생성형 AI란 - 인터랙티브 쇼케이스 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-2 text-5xl font-bold text-white">생성형 AI의 시대</h2>
-        <p className="mb-6 text-xl text-gray-400">
-          AI는 이제 찾아주는 것을 넘어, 직접 만들어냅니다
-        </p>
-        <GenerativeAIShowcase />
-      </Slide>
-
-      {/* 11. ChatGPT가 바꾼 세상 - 인터랙티브 타임라인 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-8 text-5xl font-bold text-white">
-          ChatGPT가 바꾼 세상
-        </h2>
-        <ChatGPTTimeline />
-      </Slide>
-
-      {/* 12. AI vs 사람 인트로 */}
-      <Slide dataBackgroundColor="#0f172a">
-        <div className="flex flex-col items-center gap-8">
-          <h2 className="text-5xl font-bold text-white">AI가 만든 걸까?</h2>
-          <p className="text-3xl text-gray-400">
-            이제는 사람 눈으로도 구분이 어려워졌습니다. 한번 맞춰보세요.
-          </p>
-          <div className="mt-6 flex gap-4 text-7xl">
-            <span>📝</span>
-            <span>🖼️</span>
-            <span>🎬</span>
-            <span>🤔</span>
+            </h1>
           </div>
         </div>
       </Slide>
 
-      {/* 13. AI vs 사람 퀴즈 */}
-      <Slide dataBackgroundColor="#0f172a">
-        <AIvsHumanQuiz />
-      </Slide>
-
-      {/* 14. 프롬프트 = 대화법 — 인터랙티브 프롬프트 빌더 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-6 text-5xl font-bold text-white">
-          AI 잘 쓰는 법 = 잘 물어보는 법
-        </h2>
-        <PromptCraftingDemo />
-      </Slide>
-
-      {/* 15. 무료 AI 도구 - 카드 뒤집기 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-10 text-5xl font-bold text-white">
-          지금 바로 써보세요 (무료!)
-        </h2>
-        <p className="mb-8 text-2xl text-gray-500">카드를 클릭하면 설명이 나옵니다</p>
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
-          <FlipCard
-            className="h-72"
-            front={
-              <>
-                <span className="text-5xl">🔍</span>
-                <h3 className="mt-3 text-2xl font-bold text-white">Perplexity</h3>
-                <p className="text-xl text-gray-400">AI 검색</p>
-              </>
-            }
-            back={
-              <>
-                <h3 className="text-2xl font-bold text-white">Perplexity</h3>
-                <p className="mt-2 text-center text-xl text-gray-300">
-                  구글 대신 질문하면 AI가 답을 정리해줌. 출처도 함께 표시.
-                </p>
-                <p className="mt-3 text-xl text-cyan-300">perplexity.ai</p>
-              </>
-            }
+      <Slide dataBackgroundColor="#081425">
+        <div className="deck-shell flex h-full flex-col gap-8">
+          <SectionHeader
+            eyebrow="Warm-up Quiz"
+            title="당신의 AI 상식은 몇 점일까요?"
           />
-          <FlipCard
-            className="h-72"
-            front={
-              <>
-                <span className="text-5xl">📓</span>
-                <h3 className="mt-3 text-2xl font-bold text-white">NotebookLM</h3>
-                <p className="text-xl text-gray-400">AI 리서치</p>
-              </>
-            }
-            back={
-              <>
-                <h3 className="text-2xl font-bold text-white">NotebookLM</h3>
-                <p className="mt-2 text-center text-xl text-gray-300">
-                  PDF, 문서를 올리면 AI가 요약·분석. 구글 무료 제공.
-                </p>
-                <p className="mt-3 text-xl text-cyan-300">notebooklm.google.com</p>
-              </>
-            }
-          />
-          <FlipCard
-            className="h-72"
-            front={
-              <>
-                <span className="text-5xl">📊</span>
-                <h3 className="mt-3 text-2xl font-bold text-white">Gamma</h3>
-                <p className="text-xl text-gray-400">AI 발표자료</p>
-              </>
-            }
-            back={
-              <>
-                <h3 className="text-2xl font-bold text-white">Gamma</h3>
-                <p className="mt-2 text-center text-xl text-gray-300">
-                  주제만 입력하면 PPT 자동 생성. 디자인까지 알아서.
-                </p>
-                <p className="mt-3 text-xl text-cyan-300">gamma.app</p>
-              </>
-            }
-          />
-        </div>
-      </Slide>
-
-      {/* 16. AI가 만드는 세상 - 카드 뒤집기 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-10 text-5xl font-bold text-white">
-          AI가 만드는 세상
-        </h2>
-        <p className="mb-8 text-2xl text-gray-500">카드를 클릭해보세요</p>
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
-          <FlipCard
-            className="h-64"
-            front={
-              <>
-                <span className="text-5xl">🎨</span>
-                <h3 className="mt-3 text-2xl font-bold text-white">이미지</h3>
-              </>
-            }
-            back={
-              <>
-                <h3 className="text-xl font-bold text-white">ChatGPT / Midjourney</h3>
-                <p className="mt-2 text-center text-xl text-gray-300">
-                  &ldquo;이런 그림 그려줘&rdquo; 한 마디로 이미지 생성
-                </p>
-              </>
-            }
-          />
-          <FlipCard
-            className="h-64"
-            front={
-              <>
-                <span className="text-5xl">🎥</span>
-                <h3 className="mt-3 text-2xl font-bold text-white">영상</h3>
-              </>
-            }
-            back={
-              <>
-                <h3 className="text-xl font-bold text-white">Synthesia</h3>
-                <p className="mt-2 text-center text-xl text-gray-300">
-                  텍스트만 입력하면 AI 아바타가 말하는 영상 자동 생성
-                </p>
-              </>
-            }
-          />
-          <FlipCard
-            className="h-64"
-            front={
-              <>
-                <span className="text-5xl">🎵</span>
-                <h3 className="mt-3 text-2xl font-bold text-white">음성</h3>
-              </>
-            }
-            back={
-              <>
-                <h3 className="text-xl font-bold text-white">ElevenLabs</h3>
-                <p className="mt-2 text-center text-xl text-gray-300">
-                  내 목소리를 복제해서 다국어 더빙까지 가능
-                </p>
-              </>
-            }
-          />
-          <FlipCard
-            className="h-64"
-            front={
-              <>
-                <span className="text-5xl">📱</span>
-                <h3 className="mt-3 text-2xl font-bold text-white">앱</h3>
-              </>
-            }
-            back={
-              <>
-                <h3 className="text-xl font-bold text-white">Lovable</h3>
-                <p className="mt-2 text-center text-xl text-gray-300">
-                  코딩 없이 &ldquo;이런 앱 만들어줘&rdquo;로 앱 완성
-                </p>
-              </>
-            }
-          />
-        </div>
-      </Slide>
-
-      {/* 17. 1%가 쓰는 AI - 카드 뒤집기 */}
-      <Slide dataBackgroundColor="#0f172a">
-        <h2 className="mb-4 text-5xl font-bold text-white">
-          상위 1%가 쓰는 AI 도구
-        </h2>
-        <p className="mb-8 text-2xl text-gray-400">
-          챗봇을 넘어, AI가 직접 일을 합니다
-        </p>
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-          <FlipCard
-            className="h-80"
-            front={
-              <>
-                <span className="text-5xl">🦞</span>
-                <h3 className="mt-3 text-3xl font-bold text-white">OpenClaw</h3>
-                <p className="mt-2 text-xl text-gray-400">AI 개인 비서</p>
-              </>
-            }
-            back={
-              <>
-                <h3 className="text-2xl font-bold text-white">OpenClaw (오픈클로)</h3>
-                <p className="mt-2 text-center text-xl text-gray-300">
-                  이메일, 일정, 파일을 AI가 직접 관리. 메신저로 24시간 지시 가능.
-                  Notion, 캘린더 등과 연동.
-                </p>
-              </>
-            }
-          />
-          <FlipCard
-            className="h-80"
-            front={
-              <>
-                <span className="text-5xl">🤖</span>
-                <h3 className="mt-3 text-3xl font-bold text-white">Claude Cowork</h3>
-                <p className="mt-2 text-xl text-gray-400">AI 업무 자동화</p>
-              </>
-            }
-            back={
-              <>
-                <h3 className="text-2xl font-bold text-white">Claude Cowork (코워크)</h3>
-                <p className="mt-2 text-center text-xl text-gray-300">
-                  데스크톱에서 파일 관리, 데이터 분석, 리서치를 AI가 자동 수행.
-                  Fortune 500 기업에서 도입 중.
-                </p>
-              </>
-            }
-          />
-        </div>
-      </Slide>
-
-      {/* 18. 연결 슬라이드 - 써보기 전에 기억할 것 */}
-      <Slide dataBackgroundColor="#111827">
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-10 text-center">
-          <span className="text-7xl">⚠️</span>
-          <h2 className="text-5xl font-bold text-white">써보기 전에 이것만은 기억하세요</h2>
-          <p className="text-3xl leading-relaxed text-gray-300">
-            AI는 편리하지만,
-            <br />
-            <span className="text-cyan-300">개인정보</span>, <span className="text-cyan-300">틀린 정보</span>, <span className="text-cyan-300">저작권</span>은 꼭 주의해야 합니다.
-          </p>
-        </div>
-      </Slide>
-
-      {/* 19. AI 윤리 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-10 text-5xl font-bold text-white">알아둬야 할 것들</h2>
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
-          {[
-            {
-              icon: '⚖️',
-              title: '편향과 차별',
-              desc: 'AI가 학습한 데이터에 편향이 있으면 결과도 편향됩니다',
-            },
-            {
-              icon: '🔒',
-              title: '개인정보',
-              desc: 'AI에게 개인정보를 입력하면 학습 데이터로 쓰일 수 있습니다',
-            },
-            {
-              icon: '©️',
-              title: '저작권',
-              desc: 'AI가 만든 콘텐츠의 저작권은 아직 법적으로 불명확합니다',
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="flex flex-col items-center gap-4 rounded-2xl bg-white/5 p-8 text-center"
-            >
-              <span className="text-5xl">{item.icon}</span>
-              <h3 className="text-2xl font-semibold text-yellow-300">
-                {item.title}
-              </h3>
-              <p className="text-xl text-gray-400">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </Slide>
-
-      {/* 20. AI와 일자리 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-10 text-5xl font-bold text-white">AI가 내 일자리를 뺏을까?</h2>
-        <div className="mx-auto max-w-4xl">
-          <div className="mb-8 rounded-2xl bg-red-900/20 p-8">
-            <h3 className="text-3xl font-semibold text-red-400">흔한 걱정</h3>
-            <p className="mt-3 text-2xl text-gray-300">
-              &ldquo;AI가 발전하면 사람은 필요 없어지는 거 아닌가?&rdquo;
-            </p>
-          </div>
-          <div className="rounded-2xl bg-green-900/20 p-8">
-            <h3 className="text-3xl font-semibold text-green-400">현실</h3>
-            <p className="mt-3 text-2xl text-gray-300">
-              AI가 사람을 <span className="text-yellow-300">대체</span>하는 게 아니라,
-              <br />
-              AI를 쓰는 사람이 안 쓰는 사람을{' '}
-              <span className="text-cyan-300">대체</span>합니다.
-            </p>
-          </div>
-        </div>
-      </Slide>
-
-      {/* 21. AI 시대 생존법 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-10 text-5xl font-bold text-white">AI 시대, 어떻게 준비할까?</h2>
-        <div className="mx-auto max-w-4xl space-y-6">
-          {[
-            { num: '1', text: '일단 써보세요 — 무료 도구부터 시작', color: 'text-cyan-400' },
-            { num: '2', text: '질문하는 법을 배우세요 — 프롬프트가 곧 실력', color: 'text-green-400' },
-            { num: '3', text: '나의 전문성 + AI = 최강 조합', color: 'text-yellow-400' },
-            { num: '4', text: '변화를 두려워하지 마세요 — 도구일 뿐입니다', color: 'text-purple-400' },
-          ].map((item) => (
-            <div key={item.num} className="flex flex-col items-start gap-4 rounded-xl bg-white/5 p-6 md:flex-row md:items-center md:gap-6">
-              <span className={`text-4xl font-bold ${item.color}`}>{item.num}</span>
-              <p className="text-2xl text-gray-200">{item.text}</p>
-            </div>
-          ))}
-        </div>
-      </Slide>
-
-      {/* 22. 지금 시작하기 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-10 text-5xl font-bold text-white">
-          오늘 집에 가서 해보세요
-        </h2>
-        <div className="mx-auto max-w-4xl space-y-6">
-          {[
-            { tool: 'ChatGPT', url: 'chat.openai.com', action: '아무거나 물어보기' },
-            { tool: 'Perplexity', url: 'perplexity.ai', action: '궁금한 거 검색해보기' },
-            { tool: 'NotebookLM', url: 'notebooklm.google.com', action: 'PDF 올려서 요약시키기' },
-            { tool: 'Gamma', url: 'gamma.app', action: '발표자료 만들어보기' },
-          ].map((item) => (
-            <div
-              key={item.tool}
-              className="flex flex-col gap-3 rounded-xl bg-white/5 px-8 py-5 md:flex-row md:items-center md:justify-between"
-            >
+          <div className="grid flex-1 gap-6 xl:grid-cols-[0.38fr_0.62fr]">
+            <div className="deck-panel justify-between">
               <div>
-                <h3 className="text-2xl font-semibold text-white">{item.tool}</h3>
-                <p className="text-xl text-gray-500">{item.url}</p>
+                <Eyebrow>BEFORE WE START</Eyebrow>
+                <p className="mt-5 text-4xl font-semibold text-white">AI에 대한 흔한 착각</p>
+                <div className="mt-6 space-y-4 text-2xl text-slate-300">
+                  <p>AI는 스스로 생각한다</p>
+                  <p>AI는 항상 최신이고 정확하다</p>
+                  <p>AI는 특별한 사람만 쓴다</p>
+                </div>
               </div>
-              <span className="text-2xl text-cyan-300">{item.action}</span>
+              <div className="deck-callout mt-8">
+                정답보다 중요한 건 <span className="text-cyan-200">내가 무엇을 헷갈리고 있는지</span>를 아는 것입니다.
+              </div>
             </div>
-          ))}
-        </div>
-      </Slide>
-
-      {/* ========== 마무리 ========== */}
-
-      {/* 23. 핵심 요약 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <h2 className="mb-12 text-5xl font-bold text-white">오늘의 핵심</h2>
-        <div className="mx-auto max-w-4xl space-y-8">
-          <div className="rounded-xl bg-white/5 p-6 text-center text-3xl text-gray-200">
-            AI는 이미 우리 일상에 있습니다
-          </div>
-          <div className="rounded-xl bg-white/5 p-6 text-center text-3xl text-gray-200">
-            완벽하지 않지만, 강력한 도구입니다
-          </div>
-          <div className="rounded-xl bg-cyan-900/40 p-6 text-center text-3xl font-semibold text-cyan-300">
-            지금 시작하는 사람이 앞서갑니다
+            <div className="deck-panel items-center justify-center">
+              <KnowledgeTest />
+            </div>
           </div>
         </div>
       </Slide>
 
-      {/* 24. Q&A */}
-      <Slide dataBackgroundColor="#0f172a">
-        <div className="flex flex-col items-center gap-8">
-          <h2 className="text-6xl font-bold text-white">Q&A</h2>
-          <div className="text-8xl">💬</div>
-          <p className="text-3xl text-gray-400">궁금한 점이 있으신가요?</p>
+      <Slide dataBackgroundColor="#06101b">
+        <div className="deck-shell flex h-full flex-col gap-8">
+          <SectionHeader
+            eyebrow="Everyday AI"
+            title="사실, 이미 AI를 쓰고 있습니다"
+          />
+          <div className="grid gap-5 md:grid-cols-3">
+            {[
+              ['🎬', '넷플릭스', '취향을 읽고 다음 영화를 추천합니다', '추천'],
+              ['🗣️', '시리 / 빅스비', '음성을 듣고 의도를 분류합니다', '음성'],
+              ['🌐', '번역기', '문맥을 보고 자연스러운 문장을 만듭니다', '언어'],
+              ['📸', '카메라', '피사체와 배경을 실시간으로 구분합니다', '비전'],
+              ['🛒', '쇼핑몰', '클릭 패턴으로 다음 상품을 제안합니다', '예측'],
+              ['📧', '이메일', '스팸과 중요 메일을 먼저 걸러냅니다', '분류'],
+            ].map(([icon, title, desc, tag]) => (
+              <AccentCard key={title} className="min-h-[16rem] justify-between">
+                <div className="flex items-start justify-between gap-4">
+                  <span className="text-6xl leading-none">{icon}</span>
+                  <span className="deck-chip">{tag}</span>
+                </div>
+                <div className="space-y-3">
+                  <h3 className="text-4xl font-semibold text-white">{title}</h3>
+                  <p className="text-xl leading-relaxed text-slate-300">{desc}</p>
+                </div>
+              </AccentCard>
+            ))}
+          </div>
         </div>
       </Slide>
 
-      {/* 25. 감사합니다 */}
-      <Slide dataBackgroundColor="#0a0a0a">
-        <div className="flex flex-col items-center gap-8">
-          <h2 className="text-6xl font-bold text-white">감사합니다</h2>
-          <p className="text-3xl text-gray-400">
-            AI와 함께하는 미래, 지금 시작하세요
+      <Slide dataBackgroundColor="#06101b">
+        <div className="deck-shell deck-spotlight flex h-full items-center">
+          <div className="grid w-full gap-8 xl:grid-cols-[1.1fr_0.9fr]">
+            <div className="space-y-8">
+              <Eyebrow>Definition</Eyebrow>
+              <h2 className="deck-title max-w-4xl">그래서 AI가 뭔가요?</h2>
+              <div className="grid gap-4 md:grid-cols-3">
+                <AccentCard>
+                  <Eyebrow>INPUT</Eyebrow>
+                  <p className="mt-3 text-3xl font-semibold text-white">많은 예시</p>
+                </AccentCard>
+                <AccentCard>
+                  <Eyebrow>PROCESS</Eyebrow>
+                  <p className="mt-3 text-3xl font-semibold text-white">패턴 찾기</p>
+                </AccentCard>
+                <AccentCard>
+                  <Eyebrow>OUTPUT</Eyebrow>
+                  <p className="mt-3 text-3xl font-semibold text-white">그럴듯한 결과</p>
+                </AccentCard>
+              </div>
+            </div>
+            <div className="deck-panel justify-center">
+              <p className="text-[2.2rem] leading-[1.45] text-cyan-100">
+                <TypingEffect
+                  text="사람처럼 보이는 결과를 만들지만, 실제로는 데이터를 보고 규칙과 패턴을 찾아내는 컴퓨터 프로그램"
+                  speed={42}
+                />
+              </p>
+              <div className="deck-callout mt-8">
+                핵심은 <span className="text-white">이해</span>가 아니라 <span className="text-white">패턴 매칭</span>입니다.
+              </div>
+            </div>
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#0a1426">
+        <div className="deck-shell flex h-full flex-col justify-center gap-10">
+          <Eyebrow>Human vs Machine</Eyebrow>
+          <div className="grid gap-6 xl:grid-cols-[0.96fr_1.04fr]">
+            <div className="deck-panel min-h-[22rem] justify-between">
+              <span className="text-7xl">🤔</span>
+              <div>
+                <p className="text-2xl text-slate-400">겉으로 보이는 인상</p>
+                <p className="mt-4 text-[5rem] font-semibold leading-[1.04] text-white">
+                  AI는
+                  <br />
+                  사람처럼
+                  <br />
+                  생각하는 것 같다
+                </p>
+              </div>
+            </div>
+            <div className="deck-panel min-h-[22rem] justify-between border-cyan-400/20 bg-cyan-950/20">
+              <span className="text-7xl">🧠</span>
+              <div>
+                <p className="text-2xl text-cyan-200">실제로 벌어지는 일</p>
+                <p className="mt-4 text-[4.1rem] font-semibold leading-[1.08] text-white">
+                  많은 데이터를 보고
+                  <br />
+                  <span className="text-cyan-200">패턴을 찾는 도구</span>입니다
+                </p>
+              </div>
+            </div>
+          </div>
+          <p className="text-center text-2xl text-slate-400">그 원리를 아주 단순한 숫자 인식 예시로 먼저 보겠습니다.</p>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#06101b">
+        <div className="deck-shell flex h-full flex-col gap-8">
+          <SectionHeader
+            eyebrow="Pattern Learning"
+            title="AI는 어떻게 배울까요?"
+          />
+          <div className="grid flex-1 gap-6 xl:grid-cols-[0.28fr_0.72fr]">
+            <div className="deck-panel justify-between">
+              <div>
+                <Eyebrow>TRY IT</Eyebrow>
+                <p className="mt-4 text-4xl font-semibold text-white">직접 숫자를 그려보세요</p>
+              </div>
+              <div className="space-y-4 text-xl leading-relaxed text-slate-300">
+                <p>1. 왼쪽에 숫자를 그립니다</p>
+                <p>2. 가운데 네트워크가 특징을 읽습니다</p>
+                <p>3. 오른쪽에서 가장 높은 확률을 보여줍니다</p>
+              </div>
+              <div className="deck-callout">보는 순간 이해되는 슬라이드여야 하므로 설명보다 데모를 크게 배치했습니다.</div>
+            </div>
+            <div className="deck-panel items-center justify-center">
+              <MNISTDemo />
+            </div>
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#130b10">
+        <div className="deck-shell flex h-full flex-col gap-8">
+          <SectionHeader
+            eyebrow="Risk Signal"
+            title="하지만, AI도 틀립니다"
+          />
+          <div className="grid flex-1 gap-6 xl:grid-cols-[0.26fr_0.74fr]">
+            <div className="deck-panel border-red-500/20 bg-red-950/20">
+              <Eyebrow className="text-red-200/80">REMEMBER</Eyebrow>
+              <p className="mt-5 text-5xl font-semibold leading-tight text-white">AI는 자신감 있게 틀릴 수 있습니다</p>
+              <p className="mt-6 text-xl leading-relaxed text-slate-300">답이 매끄럽고 빨라도, 출처 확인과 최종 판단은 여전히 사람의 역할입니다.</p>
+              <div className="deck-callout mt-8 border-red-400/20 bg-red-950/40 text-red-100">
+                맹신 금지. 특히 법률, 의료, 금융, 뉴스처럼 사실 검증이 중요한 분야는 더 그렇습니다.
+              </div>
+            </div>
+            <div className="deck-panel">
+              <AILimitationsShowcase />
+            </div>
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#081425">
+        <div className="deck-shell flex h-full flex-col justify-center gap-10">
+          <div className="flex flex-col items-center text-center">
+            <Eyebrow>Why Now</Eyebrow>
+            <h2 className="mt-3 text-[4.55rem] font-semibold leading-[1.08] tracking-[-0.04em] text-white">
+              그런데 왜 요즘 AI가
+              <br />
+              더 화제가 될까요?
+            </h2>
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            <AccentCard>
+              <Eyebrow>BEFORE</Eyebrow>
+              <p className="mt-4 text-4xl font-semibold text-white">추천하고 분류하던 AI</p>
+            </AccentCard>
+            <AccentCard className="border-amber-400/20 bg-amber-950/18">
+              <Eyebrow className="text-amber-100/80">NOW</Eyebrow>
+              <p className="mt-4 text-4xl font-semibold text-white">직접 만들기 시작한 AI</p>
+            </AccentCard>
+            <AccentCard className="border-cyan-400/20 bg-cyan-950/20">
+              <Eyebrow>NEXT</Eyebrow>
+              <p className="mt-4 text-4xl font-semibold text-white">조사하고 실행하는 AI</p>
+            </AccentCard>
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#06101b">
+        <div className="deck-shell flex h-full flex-col gap-8">
+          <SectionHeader
+            eyebrow="Three Waves"
+            title="AI는 세 단계로 바뀌고 있습니다"
+          />
+          <div className="grid gap-5 xl:grid-cols-[0.8fr_0.95fr_1.15fr]">
+            {[
+              ['1단계', '예측 AI', '추천, 분류, 번역처럼 여러 선택지 중 가장 그럴듯한 답을 고릅니다.', '01', 'border-cyan-400/20 bg-cyan-950/18'],
+              ['2단계', '생성형 AI', '글, 이미지, 영상, 코드 초안을 직접 만들며 창작 과정에 들어왔습니다.', '02', 'border-amber-400/20 bg-amber-950/18'],
+              ['3단계', '행동하는 AI', '조사, 정리, 앱 조작까지 이어지며 결과물을 끝까지 밀어붙이기 시작했습니다.', '03', 'border-rose-400/25 bg-rose-950/18'],
+            ].map(([step, title, desc, num, tone]) => (
+              <div key={step} className={`deck-card min-h-[22rem] justify-between ${tone}`}>
+                <div className="flex items-center justify-between">
+                  <span className="deck-pill">{step}</span>
+                  <span className="text-5xl text-white/70">{num}</span>
+                </div>
+                <div>
+                  <h3 className="text-5xl font-semibold text-white">{title}</h3>
+                  <p className="mt-5 text-[1.45rem] leading-relaxed text-slate-300">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#06101b">
+        <div className="deck-shell flex h-full flex-col gap-8">
+          <SectionHeader
+            eyebrow="What AI Does Now"
+            title="요즘 AI는 이렇게 쓰입니다"
+          />
+          <div className="deck-panel flex-1">
+            <GenerativeAIShowcase />
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#06101b" className="flex h-full flex-col justify-start pt-5">
+        <div className="deck-shell flex h-full flex-col gap-3 !p-5">
+          <div className="flex flex-col gap-1.5">
+            <Eyebrow>Shift Timeline</Eyebrow>
+            <h2 className="text-[3rem] leading-none font-semibold tracking-[-0.04em] text-white">
+              2025~2026, AI는 이렇게 바뀌었습니다
+            </h2>
+          </div>
+          <div className="deck-panel min-h-0 flex-1 overflow-hidden px-3 py-3">
+            <AIShiftTimeline />
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#081425">
+        <div className="deck-shell flex h-full flex-col items-center justify-center gap-10 text-center">
+          <Eyebrow>Can You Tell?</Eyebrow>
+          <div className="flex flex-col items-center gap-8">
+            <div className="flex flex-col items-center">
+              <h2 className="deck-title max-w-4xl">AI가 만든 걸까?</h2>
+              <p className="deck-pretty mt-6 max-w-[34ch] text-[1.5rem] leading-[1.55] text-slate-300">
+                이제는 사람 눈으로도 글, 사진, 영상의 출처를 구분하기 어려워졌습니다. 감으로 맞히기보다 어떤 신호를 봐야 하는지가 중요합니다.
+              </p>
+            </div>
+            <div className="grid w-full max-w-4xl gap-4 sm:grid-cols-3">
+              <AccentCard className="min-h-[12rem] items-center justify-center text-center">
+                <span className="text-6xl">📝</span>
+                <p className="mt-4 text-3xl font-semibold text-white">문장</p>
+              </AccentCard>
+              <AccentCard className="min-h-[12rem] items-center justify-center text-center">
+                <span className="text-6xl">🖼️</span>
+                <p className="mt-4 text-3xl font-semibold text-white">이미지</p>
+              </AccentCard>
+              <AccentCard className="min-h-[12rem] items-center justify-center text-center">
+                <span className="text-6xl">🎬</span>
+                <p className="mt-4 text-3xl font-semibold text-white">영상</p>
+              </AccentCard>
+            </div>
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#081425">
+        <div className="deck-shell flex h-full flex-col justify-center">
+          <div className="deck-panel items-center justify-center">
+            <AIvsHumanQuiz />
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#06101b">
+        <div className="deck-shell flex h-full flex-col gap-8">
+          <SectionHeader
+            eyebrow="Prompt Craft"
+            title="AI 잘 쓰는 법 = 잘 물어보는 법"
+          />
+          <div className="grid flex-1 gap-6 xl:grid-cols-[0.3fr_0.7fr]">
+            <div className="deck-panel justify-between">
+              <div>
+                <Eyebrow>THREE ELEMENTS</Eyebrow>
+                <div className="mt-6 space-y-4 text-2xl text-slate-200">
+                  <p><span className="text-cyan-200">역할</span>: 누구처럼 답해야 하는지</p>
+                  <p><span className="text-cyan-200">맥락</span>: 어떤 상황인지</p>
+                  <p><span className="text-cyan-200">형식</span>: 어떤 모양으로 받을지</p>
+                </div>
+              </div>
+              <div className="deck-callout">AI는 생각을 읽지 못합니다. 조건을 구조로 줘야 품질이 올라갑니다.</div>
+            </div>
+            <div className="deck-panel">
+              <PromptCraftingDemo />
+            </div>
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#06101b">
+        <div className="deck-shell flex h-full flex-col gap-8">
+          <SectionHeader
+            eyebrow="Starter Toolkit"
+            title="초보자라면 여기서 시작하세요"
+          />
+          <div className="grid gap-5 xl:grid-cols-4">
+            {[
+              ['BEST START', '💬', 'ChatGPT', '질문, 요약, 이미지까지 한 번에', '막막할 때 가장 먼저 켜는 기본 도구', '한 문장 질문부터 문서 요약, 이미지 생성까지 폭이 넓어서 입문자가 감 잡기 좋습니다.', 'chatgpt.com'],
+              ['SEARCH', '🔍', 'Perplexity', '검색 결과를 AI가 정리', '빠르게 조사하고 출처까지 확인할 때', '궁금한 내용을 검색하듯 물으면 답과 함께 출처를 바로 보여줘 사실 확인 흐름이 좋습니다.', 'perplexity.ai'],
+              ['DOCUMENT', '📓', 'NotebookLM', '내 자료를 넣고 요약', 'PDF, 강의자료, 회의록을 붙여서 물을 때', '업로드한 자료 안에서 요약과 Q&A를 해줘서 일반 챗봇보다 훨씬 정확한 답을 기대할 수 있습니다.', 'notebooklm.google.com'],
+              ['PRESENT', '📊', 'Gamma', '발표 초안과 디자인 시안', '주제만 정해졌고 시작 화면이 없을 때', '핵심 문장만 넣어도 발표 흐름과 카드형 레이아웃을 빠르게 만들어 첫 초안을 줄여줍니다.', 'gamma.app'],
+            ].map(([badge, icon, title, subtitle, useCase, detail, url]) => (
+              <FlipCard
+                key={title}
+                className="h-[25rem]"
+                front={
+                  <>
+                    <div className="flex w-full items-start justify-between">
+                      <span className="text-6xl">{icon}</span>
+                      <span className="deck-chip">{badge}</span>
+                    </div>
+                    <div className="mt-8 w-full text-left">
+                      <p className="text-[2.2rem] font-semibold text-white">{title}</p>
+                      <p className="mt-2 text-lg text-slate-300">{subtitle}</p>
+                    </div>
+                    <div className="mt-auto w-full border-t border-white/10 pt-4 text-left">
+                      <p className="text-sm tracking-[0.18em] text-slate-500 uppercase">추천 상황</p>
+                      <p className="mt-2 text-xl text-slate-200">{useCase}</p>
+                    </div>
+                  </>
+                }
+                back={
+                  <>
+                    <Eyebrow>{url}</Eyebrow>
+                    <div className="mt-6 w-full text-left">
+                      <p className="text-[2rem] font-semibold text-white">{title}</p>
+                      <p className="mt-4 text-[1.25rem] leading-relaxed text-slate-100">{detail}</p>
+                    </div>
+                    <div className="mt-auto w-full rounded-[1.4rem] border border-white/12 bg-black/20 px-4 py-4 text-left">
+                      <p className="text-sm tracking-[0.18em] text-slate-400 uppercase">Use First For</p>
+                      <p className="mt-2 text-xl text-white">{useCase}</p>
+                    </div>
+                  </>
+                }
+              />
+            ))}
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#06101b">
+        <div className="deck-shell flex h-full flex-col gap-8">
+          <SectionHeader
+            eyebrow="Creative Surface"
+            title="AI가 만드는 세상"
+          />
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              ['🎨', '이미지', 'Visual', '브랜드 키비주얼, 포스터, 썸네일 초안을 몇 분 안에 만들 수 있습니다.', 'ChatGPT / Midjourney', '아이디어 스케치가 아니라 실제 시안 제작 단계까지 바로 들어갑니다.'],
+              ['🎥', '영상', 'Motion', '짧은 설명만으로 무드 영상, 광고 콘티, 장면 테스트를 생성합니다.', 'Veo / Sora', '문장으로 카메라 무빙과 장면 분위기를 지정하는 시대가 됐습니다.'],
+              ['🎵', '음성', 'Voice', '나레이션, 더빙, 음성 샘플을 빠르게 만들어 실험 속도를 높입니다.', 'ElevenLabs', '톤과 감정, 억양까지 다루면서 다국어 제작의 비용을 크게 줄입니다.'],
+              ['📱', '앱', 'Build', '요구사항을 문장으로 주고 인터페이스 시안과 프로토타입을 바로 봅니다.', 'Lovable', '개발을 대체한다기보다 기획과 시안 작업을 전진시키는 역할로 강합니다.'],
+            ].map(([icon, title, chip, detail, backTitle, backDesc]) => (
+              <FlipCard
+                key={title}
+                className="h-[22rem]"
+                front={
+                  <>
+                    <div className="flex w-full items-start justify-between">
+                      <span className="text-6xl">{icon}</span>
+                      <span className="deck-chip">{chip}</span>
+                    </div>
+                    <div className="mt-8 w-full text-left">
+                      <p className="text-[2rem] font-semibold text-white">{title}</p>
+                      <p className="mt-4 text-[1.18rem] leading-relaxed text-slate-300">{detail}</p>
+                    </div>
+                  </>
+                }
+                back={
+                  <>
+                    <Eyebrow>{chip}</Eyebrow>
+                    <div className="mt-6 w-full text-left">
+                      <p className="text-[1.8rem] font-semibold text-white">{backTitle}</p>
+                      <p className="mt-4 text-[1.18rem] leading-relaxed text-slate-100">{backDesc}</p>
+                    </div>
+                  </>
+                }
+              />
+            ))}
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#081425">
+        <div className="deck-shell flex h-full flex-col gap-8">
+          <SectionHeader
+            eyebrow="Agent Examples"
+            title="최신 AI 비서 / 에이전트 사례"
+          />
+          <div className="grid gap-5 xl:grid-cols-3">
+            {[
+              ['🦞', 'OpenClaw', '오픈형 개인 비서', '브라우저, 메신저, 스킬 연결을 로컬에서 다루는 실험형 접근.', '강력하지만 권한 관리와 검토가 핵심입니다.'],
+              ['🤖', 'Claude Cowork', '업무 동료형 AI', '데스크톱 맥락 안에서 파일을 읽고 정리하며 다음 작업까지 이어갑니다.', '채팅창 안이 아니라 실제 업무 화면 안에서 같이 일하는 개념이 포인트입니다.'],
+              ['🧭', 'ChatGPT agent', '조사 + 실행 결합형', '웹 탐색, 폼 입력, 정리, 앱 연동으로 결과물까지 이어지는 대표 흐름.', '답변형 AI에서 실행형 AI로 이동하는 상징적인 사례입니다.'],
+            ].map(([icon, title, subtitle, summary, caution]) => (
+              <AccentCard key={title} className="min-h-[24rem]">
+                <div className="flex items-start justify-between gap-4">
+                  <span className="text-6xl">{icon}</span>
+                  <span className="deck-chip">CASE</span>
+                </div>
+                <div className="mt-7">
+                  <p className="text-[2.1rem] font-semibold text-white">{title}</p>
+                  <p className="mt-2 text-xl text-cyan-100">{subtitle}</p>
+                </div>
+                <p className="mt-6 text-[1.22rem] leading-relaxed text-slate-300">{summary}</p>
+                <div className="deck-callout mt-auto">{caution}</div>
+              </AccentCard>
+            ))}
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#0a1426">
+        <div className="deck-shell flex h-full flex-col items-center justify-center gap-10 text-center">
+          <Eyebrow>Before You Use It</Eyebrow>
+          <h2 className="deck-title max-w-5xl">써보기 전에 이것만은 기억하세요</h2>
+          <div className="flex flex-wrap justify-center gap-4">
+            {['개인정보', '틀린 정보', '권한 남용', '저작권'].map((item) => (
+              <span key={item} className="deck-pill deck-pill-lg">
+                {item}
+              </span>
+            ))}
+          </div>
+          <p className="deck-pretty max-w-[34ch] text-[1.55rem] leading-[1.55] text-slate-300">
+            AI는 편리한 도구지만, 민감한 정보와 사실 검증, 권한 범위, 콘텐츠 출처 문제는 사용자가 직접 책임지고 관리해야 합니다.
           </p>
-          <div className="mt-8 rounded-2xl bg-white/5 p-8 text-center">
-            <p className="text-2xl text-gray-500">
-              {/* TODO: 발표자 연락처 */}
-              발표자 이름 | email@example.com
-            </p>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#06101b">
+        <div className="deck-shell flex h-full flex-col gap-8">
+          <SectionHeader
+            eyebrow="Safety Board"
+            title="알아둬야 할 것들"
+          />
+          <div className="grid gap-5 md:grid-cols-2">
+            {[
+              ['⚖️', '편향과 차별', '학습 데이터가 치우치면 결과도 치우칩니다.', 'AI의 판단처럼 보여도 기준은 결국 데이터입니다.'],
+              ['🔒', '개인정보', '민감한 정보는 입력 순간부터 리스크가 생깁니다.', '이름, 번호, 계약서, 내부 자료는 기본적으로 빼고 넣는 쪽이 안전합니다.'],
+              ['🧷', '권한 관리', '에이전트에게 준 권한은 행동 범위가 됩니다.', '메일, 캘린더, 드라이브 권한은 최소 범위부터 시작해야 합니다.'],
+              ['🎭', '딥페이크', '진짜처럼 보이는 가짜가 더 쉬워졌습니다.', '강한 감정 유도형 영상과 음성은 항상 출처를 먼저 확인해야 합니다.'],
+            ].map(([icon, title, short, tip]) => (
+              <AccentCard key={title} className="min-h-[18rem]">
+                <div className="flex items-center gap-4">
+                  <span className="text-5xl">{icon}</span>
+                  <div>
+                    <p className="text-[2rem] font-semibold text-white">{title}</p>
+                    <p className="mt-2 text-[1.12rem] text-slate-300">{short}</p>
+                  </div>
+                </div>
+                <div className="deck-callout mt-auto">{tip}</div>
+              </AccentCard>
+            ))}
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#06101b">
+        <div className="deck-shell flex h-full flex-col gap-8">
+          <SectionHeader
+            eyebrow="Work Anxiety"
+            title="AI가 내 일자리를 뺏을까?"
+          />
+          <div className="grid flex-1 gap-6 xl:grid-cols-[0.9fr_1.1fr]">
+            <div className="deck-panel items-center justify-center border-rose-400/20 bg-rose-950/18 text-center">
+              <Eyebrow className="text-rose-100/80">흔한 걱정</Eyebrow>
+              <p className="mt-6 text-[3.45rem] font-semibold leading-[1.1] text-white">
+                “AI가 발전하면
+                <br />
+                <span className="whitespace-nowrap">사람은 필요 없어지는</span>
+                <br />
+                거 아닌가?”
+              </p>
+            </div>
+            <div className="deck-panel items-center border-emerald-400/20 bg-emerald-950/18 text-center">
+              <Eyebrow className="text-emerald-100/80">현실</Eyebrow>
+              <p className="deck-balance mt-6 max-w-[32ch] text-[1.82rem] leading-[1.45] text-white">
+                반복적인 정리와 초안 작업은 자동화되지만, <span className="text-emerald-200">문제 정의, 최종 판단, 책임</span>을 지는 사람의 역할은 더 중요해집니다.
+              </p>
+              <div className="mt-8 grid w-full gap-4 md:grid-cols-3">
+                <AccentCard className="min-h-[10rem] bg-black/20">
+                  <Eyebrow>LESS</Eyebrow>
+                  <p className="mt-3 text-2xl text-white">반복 입력</p>
+                </AccentCard>
+                <AccentCard className="min-h-[10rem] bg-black/20">
+                  <Eyebrow>MORE</Eyebrow>
+                  <p className="mt-3 text-2xl text-white">검토와 판단</p>
+                </AccentCard>
+                <AccentCard className="min-h-[10rem] bg-black/20">
+                  <Eyebrow>KEY</Eyebrow>
+                  <p className="mt-3 text-2xl text-white">도구를 쓰는 전문성</p>
+                </AccentCard>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#06101b">
+        <div className="deck-shell flex h-full flex-col gap-8">
+          <SectionHeader
+            eyebrow="How To Prepare"
+            title="AI 시대, 어떻게 준비할까?"
+          />
+          <div className="grid gap-5 xl:grid-cols-2">
+            {[
+              ['Start', '무료 도구부터 시작', '써보기 전에는 감이 안 옵니다. 일단 작은 문제 하나를 맡겨보세요.'],
+              ['Context', '내 자료를 붙여서 물어보기', '문서형 AI는 일반 질문보다 훨씬 정확한 답을 줍니다.'],
+              ['Review', '자동 실행 전에는 검토', '빠른 것과 책임지는 것은 별개입니다. 마지막 확인은 사람 몫입니다.'],
+              ['Edge', '전문성 + AI 조합 만들기', '결국 강한 사람은 AI를 쓰는 전문가이지 AI만 잘 아는 사람이 아닙니다.'],
+            ].map(([tag, label, desc], index) => (
+              <AccentCard key={label} className="min-h-[15rem]">
+                <div className="flex items-center justify-between gap-4">
+                  <span className="text-6xl font-semibold text-white/75">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="deck-chip">{tag}</span>
+                </div>
+                <div className="mt-5">
+                  <p className="text-[2rem] font-semibold text-white">{label}</p>
+                  <p className="mt-4 text-[1.16rem] leading-relaxed text-slate-300">{desc}</p>
+                </div>
+              </AccentCard>
+            ))}
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#06101b">
+        <div className="deck-shell flex h-full flex-col gap-8">
+          <SectionHeader
+            eyebrow="Take Action Tonight"
+            title="오늘 집에 가서 해보세요"
+          />
+          <div className="grid flex-1 gap-5 md:grid-cols-2">
+            {[
+              ['ChatGPT', '5 min', '아무 주제로 3문장 요약해보기', '생각보다 얼마나 자연스럽게 답하는지 감을 잡는 첫 연습'],
+              ['Perplexity', '7 min', '궁금한 주제 하나 조사해보기', '답만 보지 말고 출처까지 같이 보는 습관 만들기'],
+              ['NotebookLM', '10 min', 'PDF 한 개 올리고 질문해보기', '내 자료를 붙였을 때 정확도가 달라지는 경험 만들기'],
+              ['Gamma', '8 min', '발표 주제로 초안 한 번 만들어보기', '빈 화면에서 시작하는 시간을 줄이는 감각 익히기'],
+            ].map(([tool, time, action, note], index) => (
+              <AccentCard
+                key={tool}
+                className="min-h-[15.5rem] justify-between border-cyan-400/14 bg-linear-to-br from-slate-900/88 via-[#07111d] to-cyan-950/18"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-center gap-4">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-400/18 bg-cyan-950/26 text-lg font-semibold text-cyan-100">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <div>
+                      <p className="text-[1.75rem] font-semibold text-white">{tool}</p>
+                      <p className="mt-1 text-sm font-semibold tracking-[0.16em] text-slate-500 uppercase">
+                        Tonight Action
+                      </p>
+                    </div>
+                  </div>
+                  <span className="rounded-full border border-cyan-400/18 bg-cyan-950/30 px-3 py-1 text-sm font-semibold text-cyan-100">
+                    {time}
+                  </span>
+                </div>
+
+                <p className="deck-balance max-w-[16ch] text-[2.1rem] font-semibold leading-[1.15] text-cyan-50">
+                  {action}
+                </p>
+
+                <div className="rounded-[1.25rem] border border-white/8 bg-black/18 px-4 py-3">
+                  <p className="deck-pretty text-[1.02rem] leading-[1.5] text-slate-300">
+                    {note}
+                  </p>
+                </div>
+              </AccentCard>
+            ))}
+          </div>
+        </div>
+      </Slide>
+
+      <section>
+        <Slide dataBackgroundColor="#06101b" dataTransition="fade">
+          <div className="deck-shell deck-spotlight flex h-full items-center justify-center">
+            <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 text-center">
+              <Eyebrow>Summary</Eyebrow>
+              <h2 className="deck-title">오늘의 핵심</h2>
+              <div className="flex flex-col items-center gap-3">
+                <p className="text-[1.55rem] text-slate-300">AI는 이미 우리 일상 안에서 작동하고 있습니다</p>
+                <div className="h-px w-28 bg-linear-to-r from-transparent via-cyan-300/60 to-transparent" />
+                <p className="text-[1.55rem] text-slate-300">완벽하지 않지만, 매우 강력한 생산성 도구입니다</p>
+              </div>
+            </div>
+          </div>
+        </Slide>
+        <Slide dataBackgroundColor="#06101b" dataTransition="fade">
+          <div className="deck-shell deck-spotlight flex h-full items-center justify-center">
+            <div className="deck-panel mx-auto w-full max-w-5xl items-center border-cyan-400/25 bg-cyan-950/25 px-10 py-14 text-center shadow-[0_24px_80px_rgba(8,145,178,0.16)]">
+              <Eyebrow>ONE LINE TO REMEMBER</Eyebrow>
+              <p className="mt-6 text-[4.35rem] font-semibold leading-[1.08] tracking-[-0.05em] text-white">
+                <span className="whitespace-nowrap">먼저 써본 사람이</span>
+                <br />
+                <span className="whitespace-nowrap">더 빨리 이해합니다</span>
+              </p>
+            </div>
+          </div>
+        </Slide>
+      </section>
+
+      <Slide dataBackgroundColor="#081425">
+        <div className="deck-shell flex h-full flex-col justify-center gap-10">
+          <Eyebrow>Open Floor</Eyebrow>
+          <div className="grid items-center gap-8 xl:grid-cols-[1.2fr_0.8fr]">
+            <div className="flex flex-col items-center text-center">
+              <h2 className="deck-title">Q&A</h2>
+              <p className="deck-pretty mt-6 max-w-[48ch] text-[1.32rem] leading-[1.52] text-slate-300">
+                가장 궁금한 것부터 질문해 주세요. 도구 추천, 실무 활용, 프롬프트 작성, 위험성까지 무엇이든 괜찮습니다.
+              </p>
+            </div>
+            <div className="deck-panel items-center justify-center text-center">
+              <div className="text-8xl">💬</div>
+              <p className="mt-6 text-3xl text-slate-200">궁금한 점이 있으신가요?</p>
+            </div>
+          </div>
+        </div>
+      </Slide>
+
+      <Slide dataBackgroundColor="#06101b">
+        <div className="deck-shell deck-spotlight flex h-full flex-col justify-center gap-10">
+          <Eyebrow>Thank You</Eyebrow>
+          <div className="grid items-end gap-8 xl:grid-cols-[1.24fr_0.76fr]">
+            <div className="flex flex-col items-center text-center">
+              <h2 className="deck-title">감사합니다</h2>
+              <p className="deck-pretty mt-6 max-w-[46ch] text-[1.34rem] leading-[1.55] text-slate-300">
+                AI와 함께 일하는 시대는 이미 시작됐습니다. 오늘의 목표는 어렵게 배우는 것이 아니라, 직접 써보고 검토하는 감각을 만드는 것이었습니다.
+              </p>
+            </div>
+            <div className="deck-panel gap-5">
+              <Eyebrow>Presenter</Eyebrow>
+              <p className="text-4xl font-semibold text-white">발표자 이름</p>
+              <p className="text-xl text-slate-400">AI for Beginners Session</p>
+              <div className="deck-callout">email@example.com</div>
+            </div>
           </div>
         </div>
       </Slide>

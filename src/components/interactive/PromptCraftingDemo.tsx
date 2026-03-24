@@ -23,53 +23,33 @@ const ELEMENTS: {
     key: "role",
     label: "역할",
     icon: "🎭",
-    bgOn: "bg-yellow-900/40",
-    borderOn: "border-yellow-500/50",
-    textOn: "text-yellow-300",
+    bgOn: "bg-amber-950/28",
+    borderOn: "border-amber-400/30",
+    textOn: "text-amber-200",
   },
   {
     key: "context",
     label: "구체적 맥락",
     icon: "📋",
-    bgOn: "bg-green-900/40",
-    borderOn: "border-green-500/50",
-    textOn: "text-green-300",
+    bgOn: "bg-emerald-950/28",
+    borderOn: "border-emerald-400/30",
+    textOn: "text-emerald-200",
   },
   {
     key: "format",
     label: "원하는 형식",
     icon: "📐",
-    bgOn: "bg-purple-900/40",
-    borderOn: "border-purple-500/50",
-    textOn: "text-purple-300",
+    bgOn: "bg-cyan-950/28",
+    borderOn: "border-cyan-400/30",
+    textOn: "text-cyan-200",
   },
 ];
 
 const QUALITY_LEVELS = [
-  {
-    pct: 10,
-    color: "bg-red-500",
-    textColor: "text-red-400",
-    label: "아직 부족해요",
-  },
-  {
-    pct: 40,
-    color: "bg-orange-500",
-    textColor: "text-orange-300",
-    label: "조금 나아졌어요!",
-  },
-  {
-    pct: 70,
-    color: "bg-yellow-500",
-    textColor: "text-yellow-300",
-    label: "거의 다 왔어요!",
-  },
-  {
-    pct: 100,
-    color: "bg-cyan-400",
-    textColor: "text-cyan-300",
-    label: "완벽한 프롬프트!",
-  },
+  { pct: 10, color: "bg-rose-400", textColor: "text-rose-300", label: "아직 부족해요" },
+  { pct: 40, color: "bg-amber-400", textColor: "text-amber-200", label: "조금 나아졌어요" },
+  { pct: 70, color: "bg-cyan-300", textColor: "text-cyan-200", label: "핵심이 보입니다" },
+  { pct: 100, color: "bg-emerald-300", textColor: "text-emerald-200", label: "완성된 프롬프트" },
 ];
 
 const AI_RESPONSE = `1. 릴스 챌린지 캠페인
@@ -77,10 +57,10 @@ const AI_RESPONSE = `1. 릴스 챌린지 캠페인
 설명: 20대 여성 인플루언서 5명과 협업하여 모닝 스킨케어 루틴 릴스를 제작합니다.
 예상 효과: 월 50만 도달, 팔로워 2,000명 증가
 
-2. UGC(사용자 생성 콘텐츠) 이벤트
+2. UGC 이벤트
 제목: "내 피부에 딱!" 후기 이벤트
 설명: 제품 사용 후기를 인스타 스토리로 공유하면 추첨을 통해 신제품을 증정합니다.
-예상 효과: 진정성 있는 후기 200건 확보, 전환율 15% 향상
+예상 효과: 후기 200건 확보, 전환율 15% 향상
 
 3. 타겟 광고 + 카드뉴스
 제목: 피부 타입별 추천 가이드
@@ -105,8 +85,8 @@ export default function PromptCraftingDemo() {
 
     const timer = setTimeout(() => {
       setShowResponse(true);
-      setTypingKey((k) => k + 1);
-    }, 500);
+      setTypingKey((value) => value + 1);
+    }, 450);
 
     return () => clearTimeout(timer);
   }, [allOn]);
@@ -116,9 +96,7 @@ export default function PromptCraftingDemo() {
     setActive((prev) => ({ ...prev, [key]: !prev[key] }));
   }, []);
 
-  const rolePart = active.role
-    ? "너는 10년 경력의 디지털 마케팅 전문가야. "
-    : "";
+  const rolePart = active.role ? "너는 10년 경력의 디지털 마케팅 전문가야. " : "";
   const mainPart = active.context
     ? "20대 여성을 타겟으로 한 화장품 브랜드의 인스타그램 마케팅 전략을 알려줘. 예산은 월 100만원이야."
     : "마케팅 전략 알려줘";
@@ -127,56 +105,51 @@ export default function PromptCraftingDemo() {
     : "";
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 lg:scale-[0.9] lg:origin-top">
-      {/* Prompt bubble */}
-      <div className="rounded-2xl bg-white/5 p-6">
-        <div className="mb-2 flex items-center gap-2 text-lg text-gray-500">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-5">
+      <div className="rounded-[1.8rem] border border-white/10 bg-white/4 p-6">
+        <div className="mb-3 flex items-center gap-2 text-lg text-slate-500">
           <span>💬</span> 프롬프트 미리보기
         </div>
-        <p className="text-xl leading-relaxed text-gray-200">
-          {active.role && <span className="text-yellow-300">{rolePart}</span>}
+        <p className="text-[1.35rem] leading-relaxed text-slate-200">
+          {active.role ? <span className="text-amber-200">{rolePart}</span> : null}
           {active.context ? (
-            <span className="text-green-300">{mainPart}</span>
+            <span className="text-emerald-200">{mainPart}</span>
           ) : (
-            <span className="text-gray-400">{mainPart}</span>
+            <span className="text-slate-400">{mainPart}</span>
           )}
-          {active.format && (
-            <span className="text-purple-300">{formatPart}</span>
-          )}
+          {active.format ? <span className="text-cyan-200">{formatPart}</span> : null}
         </p>
       </div>
 
-      {/* Toggle buttons */}
       <div className="flex flex-wrap justify-center gap-4">
-        {ELEMENTS.map((el) => {
-          const isOn = active[el.key];
+        {ELEMENTS.map((element) => {
+          const isOn = active[element.key];
           return (
             <button
-              key={el.key}
+              key={element.key}
               type="button"
-              onClick={() => toggle(el.key)}
-              className={`flex items-center gap-2 rounded-xl border-2 px-5 py-3 text-lg font-semibold transition-all duration-300 ${
+              onClick={() => toggle(element.key)}
+              className={`flex items-center gap-2 rounded-full border px-5 py-3 text-lg font-semibold transition-all duration-300 ${
                 isOn
-                  ? `${el.bgOn} ${el.borderOn} ${el.textOn}`
-                  : "border-white/20 bg-white/10 text-gray-300"
+                  ? `${element.bgOn} ${element.borderOn} ${element.textOn}`
+                  : "border-white/12 bg-white/6 text-slate-300"
               }`}
             >
-              <span>{el.icon}</span>
-              {el.label}
+              <span>{element.icon}</span>
+              {element.label}
             </button>
           );
         })}
       </div>
 
-      {/* Quality meter */}
-      <div className="rounded-2xl bg-white/5 px-6 py-4">
+      <div className="rounded-[1.8rem] border border-white/10 bg-white/4 px-6 py-5">
         <div className="flex flex-wrap items-center justify-between gap-2 text-lg">
-          <span className="text-gray-300">프롬프트 품질</span>
+          <span className="text-slate-300">프롬프트 품질</span>
           <span className={`font-semibold ${quality.textColor}`}>
-            {quality.pct}% — {quality.label}
+            {quality.pct}% - {quality.label}
           </span>
         </div>
-        <div className="mt-3 h-4 overflow-hidden rounded-full bg-white/10">
+        <div className="mt-3 h-4 overflow-hidden rounded-full bg-white/8">
           <div
             className={`h-full rounded-full transition-all duration-700 ${quality.color}`}
             style={{ width: `${quality.pct}%` }}
@@ -184,17 +157,16 @@ export default function PromptCraftingDemo() {
         </div>
       </div>
 
-      {/* AI response */}
-      {showResponse && (
-        <div className="animate-fade-slide-up rounded-2xl bg-cyan-900/20 p-6">
-          <div className="mb-3 flex items-center gap-2 text-lg text-cyan-400">
+      {showResponse ? (
+        <div className="animate-fade-slide-up rounded-[1.8rem] border border-cyan-400/14 bg-cyan-950/20 p-6">
+          <div className="mb-3 flex items-center gap-2 text-lg text-cyan-300">
             <span>🤖</span> AI 응답
           </div>
-          <div className="overflow-x-auto whitespace-pre-line text-lg leading-relaxed text-gray-300">
+          <div className="overflow-x-auto whitespace-pre-line text-lg leading-relaxed text-slate-200">
             <TypingEffect key={typingKey} text={AI_RESPONSE} speed={10} />
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

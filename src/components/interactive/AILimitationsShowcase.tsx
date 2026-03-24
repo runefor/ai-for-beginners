@@ -38,282 +38,206 @@ export default function AILimitationsShowcase() {
   return (
     <Tabs
       value={activeTab}
-      onValueChange={(v) => setActiveTab(v as TabId)}
-      className="mx-auto w-full max-w-4xl"
+      onValueChange={(value) => setActiveTab(value as TabId)}
+      className="mx-auto flex w-full max-w-5xl flex-col gap-4"
     >
-      <TabsList className="mx-auto w-fit bg-white/10">
-        <TabsTrigger
-          value="hallucination"
-          className="text-gray-400 data-[state=active]:bg-white/15 data-[state=active]:text-white"
-        >
-          <span className="mr-1.5">&#x1F925;</span> 환각
+      <TabsList className="mx-auto w-fit rounded-full border border-white/10 bg-white/6 p-2">
+        <TabsTrigger value="hallucination" className="rounded-full px-4 py-2 text-slate-400 data-[state=active]:bg-white/10 data-[state=active]:text-white">
+          🤥 환각
         </TabsTrigger>
-        <TabsTrigger
-          value="bias"
-          className="text-gray-400 data-[state=active]:bg-white/15 data-[state=active]:text-white"
-        >
-          <span className="mr-1.5">&#x2696;&#xFE0F;</span> 편향
+        <TabsTrigger value="bias" className="rounded-full px-4 py-2 text-slate-400 data-[state=active]:bg-white/10 data-[state=active]:text-white">
+          ⚖️ 편향
         </TabsTrigger>
-        <TabsTrigger
-          value="outdated"
-          className="text-gray-400 data-[state=active]:bg-white/15 data-[state=active]:text-white"
-        >
-          <span className="mr-1.5">&#x1F4C5;</span> 최신정보
+        <TabsTrigger value="outdated" className="rounded-full px-4 py-2 text-slate-400 data-[state=active]:bg-white/10 data-[state=active]:text-white">
+          📅 최신정보
         </TabsTrigger>
       </TabsList>
 
-      {/* Tab 1: Hallucination - Mock Chatbot UI */}
-      <TabsContent value="hallucination" className="mt-4">
-        <div className="relative min-h-[420px] rounded-xl bg-white/5 p-6">
-          <h3 className="mb-1 text-xl font-semibold text-red-400">
-            환각 (Hallucination)
-          </h3>
-          <p className="mb-4 text-sm text-gray-500">
-            실제 사례: 2023년 미국 변호사 Steven Schwartz, ChatGPT가 만든 가짜 판례 6건을 법원에 제출
+      <TabsContent value="hallucination" className="mt-0">
+        <div className="relative min-h-[430px] rounded-[1.8rem] border border-white/10 bg-white/4 p-6">
+          <h3 className="mb-1 text-2xl font-semibold text-rose-300">환각 (Hallucination)</h3>
+          <p className="mb-5 text-base text-slate-500">
+            2023년 미국 변호사가 ChatGPT가 만든 가짜 판례를 법원에 제출한 사례가 대표적입니다.
           </p>
-
-          {/* Chat bubbles */}
           <div className="space-y-4">
-            {/* User bubble */}
             <div className="flex justify-end">
-              <div className="max-w-[70%] rounded-2xl rounded-br-sm bg-blue-600 px-5 py-3 text-lg text-white">
+              <div className="max-w-[70%] rounded-[1.6rem] rounded-br-sm bg-cyan-600/90 px-5 py-3 text-lg text-white">
                 이 법적 판례에 대해 알려줘
               </div>
             </div>
 
-            {/* AI bubble - appears at step >= 1 */}
-            {steps.hallucination >= 1 && (
+            {steps.hallucination >= 1 ? (
               <div className="flex justify-start">
-                <div className="max-w-[80%] rounded-2xl rounded-bl-sm bg-white/10 px-5 py-3 text-lg text-gray-200">
+                <div className="max-w-[82%] rounded-[1.6rem] rounded-bl-sm bg-white/8 px-5 py-3 text-lg text-slate-200">
                   {typingDone ? (
                     <span>{aiResponse}</span>
                   ) : (
-                    <TypingEffect
-                      text={aiResponse}
-                      speed={25}
-                      onComplete={handleTypingComplete}
-                    />
+                    <TypingEffect text={aiResponse} speed={25} onComplete={handleTypingComplete} />
                   )}
-
-                  {/* Confidence bar */}
-                  <div className="mt-3 flex items-center gap-2">
-                    <span className="text-xs text-gray-500">자신감</span>
+                  <div className="mt-4 flex items-center gap-2">
+                    <span className="text-xs text-slate-500">자신감</span>
                     <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
-                      <div
-                        className="h-full rounded-full bg-green-500 transition-all duration-1000"
-                        style={{ width: '95%' }}
-                      />
+                      <div className="h-full rounded-full bg-emerald-400 transition-all duration-1000" style={{ width: '95%' }} />
                     </div>
-                    <span className="text-xs font-bold text-green-400">95%</span>
+                    <span className="text-xs font-bold text-emerald-300">95%</span>
                   </div>
                 </div>
               </div>
-            )}
+            ) : null}
           </div>
 
-          {/* Fake stamp overlay - appears at step 2 */}
-          {steps.hallucination >= 2 && (
+          {steps.hallucination >= 2 ? (
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="animate-stamp -rotate-12 rounded-xl border-4 border-red-500 bg-red-950/90 px-8 py-4 text-center">
-                <p className="text-3xl font-black text-red-500">
-                  FAKE
-                </p>
-                <p className="mt-1 text-lg font-bold text-red-400">
-                  가짜 판례 6건 전부 허구!
-                </p>
-                <p className="mt-2 text-sm text-gray-400">
-                  변호사는 법원으로부터 $5,000 벌금 부과
-                </p>
+              <div className="animate-stamp -rotate-12 rounded-[1.5rem] border-4 border-rose-500 bg-rose-950/92 px-8 py-5 text-center">
+                <p className="text-4xl font-black text-rose-400">FAKE</p>
+                <p className="mt-1 text-xl font-bold text-rose-200">가짜 판례 6건 전부 허구</p>
+                <p className="mt-2 text-sm text-slate-300">답이 유창하다고 사실인 것은 아닙니다.</p>
               </div>
             </div>
-          )}
+          ) : null}
 
-          {/* Next button */}
-          {currentStep < maxSteps.hallucination && activeTab === 'hallucination' && (
+          {currentStep < maxSteps.hallucination && activeTab === 'hallucination' ? (
             <button
+              type="button"
               onClick={advance}
-              className="absolute bottom-4 right-4 rounded-lg bg-white/10 px-4 py-2 text-sm text-gray-300 transition-colors hover:bg-white/20"
+              className="absolute right-5 bottom-5 rounded-full border border-white/12 bg-white/8 px-5 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/14"
             >
-              다음 &rarr;
+              다음
             </button>
-          )}
+          ) : null}
         </div>
       </TabsContent>
 
-      {/* Tab 2: Bias - Horizontal Bar Chart */}
-      <TabsContent value="bias" className="mt-4">
-        <div className="relative min-h-[420px] rounded-xl bg-white/5 p-6">
-          <h3 className="mb-1 text-xl font-semibold text-red-400">
-            편향 (Bias)
-          </h3>
-          <p className="mb-6 text-sm text-gray-500">
-            실제 사례: Amazon AI 채용 도구가 여성 지원자를 체계적으로 낮게 평가 (2018, Reuters 보도)
+      <TabsContent value="bias" className="mt-0">
+        <div className="relative min-h-[430px] rounded-[1.8rem] border border-white/10 bg-white/4 p-6">
+          <h3 className="mb-1 text-2xl font-semibold text-rose-300">편향 (Bias)</h3>
+          <p className="mb-6 text-base text-slate-500">
+            Amazon의 AI 채용 도구가 여성 지원자를 체계적으로 낮게 평가한 사례가 유명합니다.
           </p>
 
-          <div className="mx-auto max-w-xl space-y-8">
-            <h4 className="text-center text-lg font-medium text-gray-300">
-              AI 채용 점수 비교
-            </h4>
+          <div className="mx-auto max-w-2xl space-y-8">
+            <h4 className="text-center text-xl font-medium text-slate-300">AI 채용 점수 비교</h4>
 
-            {/* Male bar */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-lg text-blue-400">남성 지원자</span>
-                {steps.bias >= 1 && (
-                  <span className="text-lg font-bold text-blue-400">85점</span>
-                )}
+                <span className="text-lg text-cyan-200">남성 지원자</span>
+                {steps.bias >= 1 ? <span className="text-lg font-bold text-cyan-200">85점</span> : null}
               </div>
-              <div className="h-10 overflow-hidden rounded-lg bg-white/10">
+              <div className="h-11 overflow-hidden rounded-full bg-white/8">
                 <div
-                  className="flex h-full items-center rounded-lg bg-blue-500/80 px-3 transition-all duration-1000"
+                  className="flex h-full items-center rounded-full bg-cyan-500/85 px-4 transition-all duration-1000"
                   style={{ width: steps.bias >= 1 ? '85%' : '0%' }}
                 >
-                  {steps.bias >= 1 && (
-                    <span className="text-sm font-bold text-white">85/100</span>
-                  )}
+                  {steps.bias >= 1 ? <span className="text-sm font-bold text-white">85 / 100</span> : null}
                 </div>
               </div>
             </div>
 
-            {/* Female bar */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-lg text-pink-400">여성 지원자</span>
-                {steps.bias >= 1 && (
-                  <span className="text-lg font-bold text-pink-400">50점</span>
-                )}
+                <span className="text-lg text-amber-200">여성 지원자</span>
+                {steps.bias >= 1 ? <span className="text-lg font-bold text-amber-200">50점</span> : null}
               </div>
-              <div className="h-10 overflow-hidden rounded-lg bg-white/10">
+              <div className="h-11 overflow-hidden rounded-full bg-white/8">
                 <div
-                  className="flex h-full items-center rounded-lg bg-pink-500/80 px-3 transition-all duration-1000"
+                  className="flex h-full items-center rounded-full bg-amber-500/85 px-4 transition-all duration-1000"
                   style={{ width: steps.bias >= 1 ? '50%' : '0%' }}
                 >
-                  {steps.bias >= 1 && (
-                    <span className="text-sm font-bold text-white">50/100</span>
-                  )}
+                  {steps.bias >= 1 ? <span className="text-sm font-bold text-white">50 / 100</span> : null}
                 </div>
               </div>
             </div>
 
-            {/* Gap indicator - step 2 */}
-            {steps.bias >= 2 && (
-              <div className="flex flex-col items-center gap-2 rounded-xl bg-red-900/30 p-4">
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl font-black text-red-400">35점 차이!</span>
-                </div>
-                <p className="text-center text-base text-gray-300">
-                  동일 능력의 지원자인데도 성별에 따라 점수가 달랐습니다
-                </p>
-                <p className="text-sm text-gray-500">
-                  Amazon은 이 시스템을 폐기했습니다 (2018)
-                </p>
+            {steps.bias >= 2 ? (
+              <div className="flex flex-col items-center gap-2 rounded-[1.4rem] border border-rose-400/18 bg-rose-950/20 p-5">
+                <div className="text-3xl font-black text-rose-300">35점 차이</div>
+                <p className="text-center text-lg text-slate-200">동일 능력의 지원자인데도 성별에 따라 점수가 달랐습니다.</p>
+                <p className="text-sm text-slate-500">Amazon은 이 시스템을 폐기했습니다.</p>
               </div>
-            )}
+            ) : null}
           </div>
 
-          {/* Next button */}
-          {currentStep < maxSteps.bias && activeTab === 'bias' && (
+          {currentStep < maxSteps.bias && activeTab === 'bias' ? (
             <button
+              type="button"
               onClick={advance}
-              className="absolute bottom-4 right-4 rounded-lg bg-white/10 px-4 py-2 text-sm text-gray-300 transition-colors hover:bg-white/20"
+              className="absolute right-5 bottom-5 rounded-full border border-white/12 bg-white/8 px-5 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/14"
             >
-              다음 &rarr;
+              다음
             </button>
-          )}
+          ) : null}
         </div>
       </TabsContent>
 
-      {/* Tab 3: Outdated - Timeline */}
-      <TabsContent value="outdated" className="mt-4">
-        <div className="relative min-h-[420px] rounded-xl bg-white/5 p-6">
-          <h3 className="mb-1 text-xl font-semibold text-red-400">
-            최신 정보 부족
-          </h3>
-          <p className="mb-6 text-sm text-gray-500">
-            AI는 학습 마감일 이후의 정보를 알 수 없습니다
-          </p>
+      <TabsContent value="outdated" className="mt-0">
+        <div className="relative min-h-[430px] rounded-[1.8rem] border border-white/10 bg-white/4 p-6">
+          <h3 className="mb-1 text-2xl font-semibold text-rose-300">최신 정보 부족</h3>
+          <p className="mb-6 text-base text-slate-500">AI는 학습이 끝난 시점 이후의 정보를 기본적으로 모릅니다.</p>
 
-          {/* Timeline */}
-          <div className="mx-auto max-w-2xl">
+          <div className="mx-auto max-w-3xl">
             <div className="relative flex items-center justify-between">
-              {/* Timeline line */}
-              <div className="absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 bg-gray-700" />
+              <div className="absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 bg-slate-700" />
 
-              {/* Learned period */}
               <div className="relative z-10 flex flex-col items-center gap-2">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-cyan-900 text-2xl ring-2 ring-cyan-500">
-                  &#x1F4DA;
-                </div>
-                <span className="text-sm font-medium text-cyan-400">학습 시작</span>
-                <span className="text-xs text-gray-500">수십억 개 데이터</span>
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-cyan-950 text-2xl ring-2 ring-cyan-400">📚</div>
+                <span className="text-sm font-medium text-cyan-200">학습 시작</span>
+                <span className="text-xs text-slate-500">데이터 수집</span>
               </div>
 
               <div className="relative z-10 flex flex-col items-center gap-2">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-cyan-900 text-2xl ring-2 ring-cyan-500">
-                  &#x1F9E0;
-                </div>
-                <span className="text-sm font-medium text-cyan-400">학습 완료</span>
-                <span className="text-xs text-gray-500">패턴 습득</span>
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-cyan-950 text-2xl ring-2 ring-cyan-400">🧠</div>
+                <span className="text-sm font-medium text-cyan-200">학습 완료</span>
+                <span className="text-xs text-slate-500">패턴 습득</span>
               </div>
 
-              {/* Cutoff wall - appears at step >= 1 */}
-              {steps.outdated >= 1 && (
+              {steps.outdated >= 1 ? (
                 <div className="relative z-20 flex flex-col items-center gap-2">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-red-900 text-2xl ring-4 ring-red-500">
-                    &#x1F6D1;
-                  </div>
-                  <span className="text-sm font-bold text-red-400">학습 마감!</span>
-                  <span className="text-xs text-red-300">여기까지만 앎</span>
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-rose-950 text-2xl ring-4 ring-rose-400">🛑</div>
+                  <span className="text-sm font-bold text-rose-200">학습 마감</span>
+                  <span className="text-xs text-rose-300">여기까지만 앎</span>
                 </div>
-              )}
+              ) : null}
 
-              {/* Unknown area */}
-              {steps.outdated >= 1 && (
+              {steps.outdated >= 1 ? (
                 <div className="relative z-10 flex flex-col items-center gap-2">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-dashed border-red-800 bg-red-900/20 text-2xl">
-                    &#x2753;
-                  </div>
-                  <span className="text-sm font-medium text-red-400">모르는 영역</span>
-                  <span className="text-xs text-gray-500">최신 정보 부재</span>
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-dashed border-rose-700 bg-rose-950/15 text-2xl">?</div>
+                  <span className="text-sm font-medium text-rose-200">모르는 영역</span>
+                  <span className="text-xs text-slate-500">최신 정보 부재</span>
                 </div>
-              )}
+              ) : null}
             </div>
 
-            {/* Cutoff wall vertical indicator */}
-            {steps.outdated >= 1 && (
-              <div className="mx-auto mt-4 w-px border-l-2 border-dashed border-red-500/50" style={{ height: 40 }} />
-            )}
+            {steps.outdated >= 1 ? (
+              <div className="mx-auto mt-4 h-10 w-px border-l-2 border-dashed border-rose-400/50" />
+            ) : null}
 
-            {/* Example Q&A - step 2 */}
-            {steps.outdated >= 2 && (
+            {steps.outdated >= 2 ? (
               <div className="mt-4 space-y-3">
                 <div className="flex justify-end">
-                  <div className="max-w-[70%] rounded-2xl rounded-br-sm bg-blue-600 px-4 py-2 text-base text-white">
+                  <div className="max-w-[70%] rounded-[1.4rem] rounded-br-sm bg-cyan-600/90 px-4 py-2 text-base text-white">
                     2024 올림픽 금메달 수 1위 국가는?
                   </div>
                 </div>
                 <div className="flex justify-start">
-                  <div className="max-w-[70%] rounded-2xl rounded-bl-sm bg-red-900/40 px-4 py-2 text-base text-gray-300">
-                    <span className="text-red-400">&#x26A0; </span>
-                    죄송합니다. 제 학습 데이터에는 2024 올림픽 결과가 포함되어 있지 않습니다.
+                  <div className="max-w-[70%] rounded-[1.4rem] rounded-bl-sm bg-rose-950/30 px-4 py-2 text-base text-slate-200">
+                    <span className="text-rose-300">주의 </span>
+                    제 학습 데이터에는 2024 올림픽 결과가 포함되어 있지 않습니다.
                   </div>
                 </div>
-                <p className="text-center text-sm text-gray-500">
-                  AI는 학습 마감일(knowledge cutoff) 이후의 사건을 모릅니다
-                </p>
+                <p className="text-center text-sm text-slate-500">그래서 최신 정보가 중요하면 검색, 출처, 실시간 연결이 필요합니다.</p>
               </div>
-            )}
+            ) : null}
           </div>
 
-          {/* Next button */}
-          {currentStep < maxSteps.outdated && activeTab === 'outdated' && (
+          {currentStep < maxSteps.outdated && activeTab === 'outdated' ? (
             <button
+              type="button"
               onClick={advance}
-              className="absolute bottom-4 right-4 rounded-lg bg-white/10 px-4 py-2 text-sm text-gray-300 transition-colors hover:bg-white/20"
+              className="absolute right-5 bottom-5 rounded-full border border-white/12 bg-white/8 px-5 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/14"
             >
-              다음 &rarr;
+              다음
             </button>
-          )}
+          ) : null}
         </div>
       </TabsContent>
     </Tabs>

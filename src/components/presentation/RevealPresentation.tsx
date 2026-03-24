@@ -26,6 +26,7 @@ export default function RevealPresentation({ children }: RevealPresentationProps
       controls: true,
       progress: true,
       center: true,
+      navigationMode: 'linear',
       transition: 'slide',
       width: 1920,
       height: 1080,

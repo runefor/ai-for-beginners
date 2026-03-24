@@ -10,13 +10,13 @@ interface NetworkVisualizationProps {
 }
 
 const LAYERS = [
-  { label: "Input", nodes: 4, y: [30, 55, 80, 105] },
-  { label: "Conv", nodes: 5, y: [20, 42, 64, 86, 108] },
-  { label: "Dense", nodes: 4, y: [30, 55, 80, 105] },
-  { label: "Output", nodes: 5, y: [15, 40, 65, 90, 115] },
+  { label: "Input", y: [32, 58, 84, 110] },
+  { label: "Conv", y: [20, 42, 64, 86, 108, 130] },
+  { label: "Dense", y: [32, 58, 84, 110] },
+  { label: "Output", y: [16, 44, 72, 100, 128] },
 ];
 
-const LAYER_X = [30, 90, 150, 210];
+const LAYER_X = [36, 112, 188, 264];
 const OUTPUT_LABELS = ["0", "2", "5", "7", "9"];
 
 export default function NetworkVisualization({
@@ -31,13 +31,12 @@ export default function NetworkVisualization({
       if (state === "processing") {
         setAnimProgress(0);
         interval = setInterval(() => {
-          setAnimProgress((p) => {
-            if (p >= 1) {
+          setAnimProgress((value) => {
+            if (value >= 1) {
               if (interval) clearInterval(interval);
               return 1;
             }
-
-            return p + 0.05;
+            return value + 0.05;
           });
         }, 30);
         return;
@@ -53,15 +52,14 @@ export default function NetworkVisualization({
   }, [state]);
 
   const getNodeColor = (layerIdx: number, nodeIdx: number) => {
-    if (state === "idle") return "#374151";
+    if (state === "idle") return "#334155";
     if (state === "processing") {
       const layerProgress = animProgress * 3 - layerIdx;
-      if (layerProgress > 0) return "#22d3ee";
-      return "#374151";
+      if (layerProgress > 0) return "#67e8f9";
+      return "#334155";
     }
-    // result state
+
     if (layerIdx === 3) {
-      // Highlight the predicted digit's approximate position
       const digitMap: Record<number, number> = {
         0: 0,
         1: 0,
@@ -75,105 +73,86 @@ export default function NetworkVisualization({
         9: 4,
       };
       if (predictedDigit !== null && digitMap[predictedDigit] === nodeIdx) {
-        return "#22d3ee";
+        return "#67e8f9";
       }
-      return "#374151";
+      return "#334155";
     }
+
     return "#0e7490";
   };
 
   const getEdgeColor = (fromLayer: number) => {
-    if (state === "idle") return "#1f2937";
+    if (state === "idle") return "#1e293b";
     if (state === "processing") {
       const layerProgress = animProgress * 3 - fromLayer;
-      if (layerProgress > 0) return "rgba(34, 211, 238, 0.3)";
-      return "#1f2937";
+      if (layerProgress > 0) return "rgba(103, 232, 249, 0.35)";
+      return "#1e293b";
     }
     return "rgba(14, 116, 144, 0.4)";
   };
 
   return (
-    <div className="flex flex-col items-center gap-1">
-      <svg
-        width="240"
-        height="140"
-        viewBox="0 0 240 140"
-        className="drop-shadow-lg"
-      >
+    <div className="flex flex-col items-center gap-3">
+      <svg width="300" height="160" viewBox="0 0 300 160" className="drop-shadow-lg">
         <title>Digit recognition network visualization</title>
-        {/* Edges */}
         {LAYERS.slice(0, -1).map((layer, li) => {
           const nextLayer = LAYERS[li + 1];
           return layer.y.map((fromY) =>
             nextLayer.y.map((toY) => (
               <line
                 key={`e-${layer.label}-${fromY}-${nextLayer.label}-${toY}`}
-                x1={LAYER_X[li] + 10}
+                x1={LAYER_X[li] + 12}
                 y1={fromY}
-                x2={LAYER_X[li + 1] - 10}
+                x2={LAYER_X[li + 1] - 12}
                 y2={toY}
                 stroke={getEdgeColor(li)}
-                strokeWidth={0.8}
+                strokeWidth={1}
                 className="transition-all duration-300"
               />
             )),
           );
         })}
 
-        {/* Nodes */}
         {LAYERS.map((layer, li) =>
           layer.y.map((y, ni) => (
             <g key={`n-${layer.label}-${y}`}>
               <circle
                 cx={LAYER_X[li]}
                 cy={y}
-                r={7}
+                r={8}
                 fill={getNodeColor(li, ni)}
                 className="transition-all duration-300"
               />
-              {li === 3 && (
+              {li === 3 ? (
                 <text
-                  x={LAYER_X[li] + 14}
-                  y={y + 3.5}
-                  fontSize="9"
-                  fill={
-                    getNodeColor(li, ni) === "#22d3ee" ? "#22d3ee" : "#6b7280"
-                  }
-                  fontWeight={
-                    getNodeColor(li, ni) === "#22d3ee" ? "bold" : "normal"
-                  }
-                  className="transition-all duration-300"
+                  x={LAYER_X[li] + 16}
+                  y={y + 4}
+                  fontSize="11"
+                  fill={getNodeColor(li, ni) === "#67e8f9" ? "#67e8f9" : "#64748b"}
+                  fontWeight={getNodeColor(li, ni) === "#67e8f9" ? "bold" : "normal"}
                 >
                   {OUTPUT_LABELS[ni]}
                 </text>
-              )}
+              ) : null}
             </g>
           )),
         )}
 
-        {/* Layer labels */}
         {LAYERS.map((layer, li) => (
           <text
             key={`l-${layer.label}`}
             x={LAYER_X[li]}
-            y={130}
+            y={152}
             textAnchor="middle"
-            fontSize="8"
-            fill="#6b7280"
+            fontSize="10"
+            fill="#64748b"
           >
             {layer.label}
           </text>
         ))}
 
-        {/* Processing animation dot */}
-        {state === "processing" && animProgress < 1 && (
-          <circle
-            cx={30 + animProgress * 180}
-            cy={65}
-            r={4}
-            fill="#22d3ee"
-            opacity={0.8}
-          >
+        {state === "processing" && animProgress < 1 ? (
+          <circle cx={36 + animProgress * 228} cy={80} r={5} fill="#67e8f9" opacity={0.8}>
             <animate
               attributeName="opacity"
               values="0.4;1;0.4"
@@ -181,9 +160,9 @@ export default function NetworkVisualization({
               repeatCount="indefinite"
             />
           </circle>
-        )}
+        ) : null}
       </svg>
-      <span className="text-xs text-gray-600">Neural Network</span>
+      <p className="text-sm tracking-[0.18em] text-slate-500 uppercase">Neural Network</p>
     </div>
   );
 }

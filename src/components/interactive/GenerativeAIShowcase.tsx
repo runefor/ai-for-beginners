@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { useState, useCallback } from "react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import TypingEffect from "@/components/interactive/TypingEffect";
+import { useCallback, useState } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import TypingEffect from '@/components/interactive/TypingEffect';
 
-type TabId = "text" | "image" | "video" | "code" | "music";
+type TabId = 'chat' | 'document' | 'image' | 'video' | 'agent';
 
 const tabConfig: { id: TabId; icon: string; label: string }[] = [
-  { id: "text", icon: "\u270D\uFE0F", label: "글" },
-  { id: "image", icon: "\uD83C\uDFA8", label: "그림" },
-  { id: "video", icon: "\uD83C\uDFAC", label: "영상" },
-  { id: "code", icon: "\uD83D\uDCBB", label: "코드" },
-  { id: "music", icon: "\uD83C\uDFB5", label: "음악" },
+  { id: 'chat', icon: '💬', label: '질문' },
+  { id: 'document', icon: '📄', label: '문서' },
+  { id: 'image', icon: '🎨', label: '이미지' },
+  { id: 'video', icon: '🎬', label: '영상' },
+  { id: 'agent', icon: '🛠️', label: '작업' },
 ];
 
 const tabData: Record<
@@ -24,53 +24,51 @@ const tabData: Record<
     time: string;
   }
 > = {
-  text: {
-    description: "AI가 글을 써줍니다",
-    prompt: "서울의 가을을 주제로 감성적인 시 한 편 써줘",
-    tool: "ChatGPT",
-    toolColor: "bg-green-600",
-    time: "~5초",
+  chat: {
+    description: 'AI에게 바로 질문하고 초안을 받을 수 있습니다',
+    prompt: '이번 주말 서울에서 비 와도 괜찮은 실내 데이트 코스 3개 추천해줘',
+    tool: 'ChatGPT / Gemini / Claude',
+    toolColor: 'bg-emerald-500/90',
+    time: '~5초',
+  },
+  document: {
+    description: 'PDF나 회의록을 넣고 요약과 액션 아이템을 뽑을 수 있습니다',
+    prompt: '이 회의록을 3줄로 요약하고, 담당자별 할 일을 정리해줘',
+    tool: 'NotebookLM',
+    toolColor: 'bg-cyan-500/90',
+    time: '~10초',
   },
   image: {
-    description: "AI가 그림을 그려줍니다",
-    prompt: "우주를 떠다니는 고양이 우주비행사, 디지털 아트",
-    tool: "DALL-E",
-    toolColor: "bg-purple-600",
-    time: "~15초",
+    description: '문장 한 줄로 포스터나 썸네일 이미지를 만들 수 있습니다',
+    prompt: '우리 동네 분식집 홍보용 레트로 포스터 만들어줘',
+    tool: 'ChatGPT 이미지 / Midjourney',
+    toolColor: 'bg-fuchsia-500/90',
+    time: '~15초',
   },
   video: {
-    description: "AI가 영상을 만들어줍니다",
-    prompt: "석양 속 도쿄 거리를 걷는 여성",
-    tool: "Sora",
-    toolColor: "bg-rose-600",
-    time: "~1분",
+    description: '짧은 설명만으로 장면과 움직임이 있는 영상을 만들 수 있습니다',
+    prompt: '석양 속 도쿄 거리를 천천히 걷는 장면, 영화 예고편 분위기',
+    tool: 'Veo / Sora',
+    toolColor: 'bg-rose-500/90',
+    time: '~1분',
   },
-  code: {
-    description: "AI가 코드를 작성합니다",
-    prompt: "소수 판별 Python 함수 만들어줘",
-    tool: "Copilot",
-    toolColor: "bg-blue-600",
-    time: "~3초",
-  },
-  music: {
-    description: "AI가 음악을 만들어줍니다",
-    prompt: "공부할 때 듣기 좋은 lo-fi 비트 만들어줘",
-    tool: "Suno",
-    toolColor: "bg-amber-600",
-    time: "~30초",
+  agent: {
+    description: 'AI에게 자료 조사와 정리, 앱 조작까지 맡기는 흐름이 시작됐습니다',
+    prompt: '이번 주 고객 미팅 후보 시간을 찾아서 표로 정리하고 초안 메일까지 써줘',
+    tool: 'ChatGPT agent / Cowork / OpenClaw',
+    toolColor: 'bg-amber-500/90',
+    time: '~1~3분',
   },
 };
 
-const WAVE_DELAYS = Array.from({ length: 24 }, (_, index) => index * 0.08);
-
 export default function GenerativeAIShowcase() {
-  const [activeTab, setActiveTab] = useState<TabId>("text");
+  const [activeTab, setActiveTab] = useState<TabId>('chat');
   const [steps, setSteps] = useState<Record<TabId, number>>({
-    text: 0,
+    chat: 0,
+    document: 0,
     image: 0,
     video: 0,
-    code: 0,
-    music: 0,
+    agent: 0,
   });
   const [typingDone, setTypingDone] = useState(false);
 
@@ -85,8 +83,8 @@ export default function GenerativeAIShowcase() {
     }
   };
 
-  const handleTabChange = (v: string) => {
-    setActiveTab(v as TabId);
+  const handleTabChange = (value: string) => {
+    setActiveTab(value as TabId);
     setTypingDone(false);
   };
 
@@ -96,65 +94,58 @@ export default function GenerativeAIShowcase() {
 
   const renderResult = (tabId: TabId) => {
     switch (tabId) {
-      case "text":
+      case 'chat':
         return (
-          <div className="animate-fade-slide-up rounded-xl bg-white/5 p-5 text-left">
-            <p className="text-lg leading-relaxed text-gray-200 italic">
-              서울의 가을은 말없이 찾아와
-              <br />
-              은행잎 사이로 햇살이 부서지고
-              <br />
-              차가운 바람 한 줄기에
-              <br />
-              커피 한 잔의 온기가 번진다
-              <br />
-              <br />
-              광화문 돌담길을 걸으며
-              <br />
-              가을이 건네는 인사를 받는다
-            </p>
-          </div>
-        );
-
-      case "image":
-        return (
-          <div className="animate-fade-slide-up flex flex-col items-center gap-3">
-            {/* CSS art: space cat astronaut */}
-            <div
-              className="flex h-48 w-72 items-center justify-center overflow-hidden rounded-xl"
-              style={{
-                background:
-                  "linear-gradient(135deg, #0c0033 0%, #1a0a4a 30%, #2d1b69 50%, #1a0a4a 70%, #0c0033 100%)",
-              }}
-            >
-              <div className="relative flex flex-col items-center">
-                {/* Stars */}
-                <div className="absolute -top-4 -left-16 text-xs text-white/60">
-                  &#x2728;
-                </div>
-                <div className="absolute -top-2 left-20 text-xs text-white/40">
-                  &#x2B50;
-                </div>
-                <div className="absolute top-8 -left-20 text-xs text-white/50">
-                  &#x2728;
-                </div>
-                <div className="absolute top-12 left-24 text-xs text-white/30">
-                  &#x2B50;
-                </div>
-                {/* Cat astronaut */}
-                <div className="text-7xl">&#x1F431;&#x200D;&#x1F680;</div>
-                <div className="mt-1 text-xs text-purple-300/80">
-                  AI Generated Art
-                </div>
-              </div>
+          <div className="animate-fade-slide-up rounded-[1.5rem] border border-white/10 bg-white/5 p-5 text-left">
+            <p className="text-lg font-semibold text-cyan-200">추천 코스</p>
+            <div className="mt-4 space-y-3 text-lg text-slate-200">
+              <div className="rounded-xl bg-black/20 p-3">1. 코엑스 별마당도서관 + 아쿠아리움 + 실내 카페</div>
+              <div className="rounded-xl bg-black/20 p-3">2. 국립중앙박물관 + 용산 실내 전시 + 브런치</div>
+              <div className="rounded-xl bg-black/20 p-3">3. 성수 팝업스토어 + 편집숍 + 디저트 카페</div>
             </div>
           </div>
         );
-
-      case "video":
+      case 'document':
+        return (
+          <div className="animate-fade-slide-up rounded-[1.5rem] border border-white/10 bg-white/5 p-5 text-left">
+            <p className="text-lg font-semibold text-cyan-200">3줄 요약</p>
+            <p className="mt-3 text-lg leading-relaxed text-slate-200">
+              신규 서비스 일정은 2주 미뤄졌고, 디자인 시안은 금요일까지 확정합니다.
+              마케팅 팀은 다음 주까지 소개 페이지 초안을 제출합니다. 개발팀은 결제 오류를 우선 수정합니다.
+            </p>
+            <div className="mt-5 rounded-[1.2rem] bg-black/20 p-4">
+              <p className="text-sm font-semibold tracking-[0.2em] text-slate-400 uppercase">액션 아이템</p>
+              <ul className="mt-3 space-y-2 text-base text-slate-200">
+                <li>- 디자인: 금요일 오후 3시까지 최종 시안 공유</li>
+                <li>- 마케팅: 소개 페이지 초안 작성</li>
+                <li>- 개발: 결제 오류 수정 일정 보고</li>
+              </ul>
+            </div>
+          </div>
+        );
+      case 'image':
+        return (
+          <div className="animate-fade-slide-up flex flex-col items-center gap-3">
+            <div
+              className="flex h-52 w-80 items-center justify-center overflow-hidden rounded-[1.5rem]"
+              style={{
+                background:
+                  'linear-gradient(135deg, #431407 0%, #9a3412 35%, #f97316 70%, #fed7aa 100%)',
+              }}
+            >
+              <div className="rounded-[1.5rem] border border-orange-200/50 bg-white/10 px-6 py-4 text-center backdrop-blur-sm">
+                <p className="text-sm font-semibold tracking-[0.3em] text-orange-100 uppercase">Seoul Tteokbokki</p>
+                <p className="mt-3 text-4xl">🍢</p>
+                <p className="mt-3 text-lg font-bold text-white">복고풍 포스터 생성</p>
+              </div>
+            </div>
+            <p className="text-sm text-slate-400">문장 한 줄로 썸네일과 홍보물 초안을 만들 수 있습니다.</p>
+          </div>
+        );
+      case 'video':
         return (
           <div className="animate-fade-slide-up">
-            <div className="mx-auto max-w-4xl overflow-hidden rounded-xl bg-black/20 p-2">
+            <div className="mx-auto max-w-4xl overflow-hidden rounded-[1.5rem] bg-black/20 p-2">
               <video
                 width="560"
                 height="215"
@@ -163,117 +154,52 @@ export default function GenerativeAIShowcase() {
                 autoPlay
                 loop
                 playsInline
-                className="w-full rounded-xl bg-black object-contain"
+                className="w-full rounded-[1.3rem] bg-black object-contain"
               >
-                <source
-                  src="/images/showcase/sora-tokyo-walk.mp4"
-                  type="video/mp4"
-                />
+                <source src="/images/showcase/sora-tokyo-walk.mp4" type="video/mp4" />
               </video>
             </div>
+            <p className="mt-3 text-center text-sm text-slate-400">짧은 장면 설명만으로 무드 영상 초안을 빠르게 만드는 흐름입니다.</p>
           </div>
         );
-
-      case "code":
+      case 'agent':
         return (
-          <pre className="animate-fade-slide-up overflow-x-auto rounded-xl bg-[#1e1e2e] p-5 text-left text-sm leading-relaxed">
-            <code>
-              <span style={{ color: "#c678dd" }}>def </span>
-              <span style={{ color: "#61afef" }}>is_prime</span>
-              <span style={{ color: "#abb2bf" }}>(</span>
-              <span style={{ color: "#e06c75" }}>n</span>
-              <span style={{ color: "#abb2bf" }}>):</span>
-              {"\n"}
-              <span style={{ color: "#abb2bf" }}>{"    "}</span>
-              <span style={{ color: "#c678dd" }}>if </span>
-              <span style={{ color: "#e06c75" }}>n</span>
-              <span style={{ color: "#abb2bf" }}> &lt; </span>
-              <span style={{ color: "#d19a66" }}>2</span>
-              <span style={{ color: "#abb2bf" }}>:</span>
-              {"\n"}
-              <span style={{ color: "#abb2bf" }}>{"        "}</span>
-              <span style={{ color: "#c678dd" }}>return </span>
-              <span style={{ color: "#d19a66" }}>False</span>
-              {"\n"}
-              <span style={{ color: "#abb2bf" }}>{"    "}</span>
-              <span style={{ color: "#c678dd" }}>for </span>
-              <span style={{ color: "#e06c75" }}>i</span>
-              <span style={{ color: "#c678dd" }}> in </span>
-              <span style={{ color: "#61afef" }}>range</span>
-              <span style={{ color: "#abb2bf" }}>(</span>
-              <span style={{ color: "#d19a66" }}>2</span>
-              <span style={{ color: "#abb2bf" }}>, </span>
-              <span style={{ color: "#61afef" }}>int</span>
-              <span style={{ color: "#abb2bf" }}>(</span>
-              <span style={{ color: "#e06c75" }}>n</span>
-              <span style={{ color: "#abb2bf" }}>**</span>
-              <span style={{ color: "#d19a66" }}>0.5</span>
-              <span style={{ color: "#abb2bf" }}>) + </span>
-              <span style={{ color: "#d19a66" }}>1</span>
-              <span style={{ color: "#abb2bf" }}>):</span>
-              {"\n"}
-              <span style={{ color: "#abb2bf" }}>{"        "}</span>
-              <span style={{ color: "#c678dd" }}>if </span>
-              <span style={{ color: "#e06c75" }}>n</span>
-              <span style={{ color: "#abb2bf" }}> % </span>
-              <span style={{ color: "#e06c75" }}>i</span>
-              <span style={{ color: "#abb2bf" }}> == </span>
-              <span style={{ color: "#d19a66" }}>0</span>
-              <span style={{ color: "#abb2bf" }}>:</span>
-              {"\n"}
-              <span style={{ color: "#abb2bf" }}>{"            "}</span>
-              <span style={{ color: "#c678dd" }}>return </span>
-              <span style={{ color: "#d19a66" }}>False</span>
-              {"\n"}
-              <span style={{ color: "#abb2bf" }}>{"    "}</span>
-              <span style={{ color: "#c678dd" }}>return </span>
-              <span style={{ color: "#d19a66" }}>True</span>
-            </code>
-          </pre>
-        );
-
-      case "music":
-        return (
-          <div className="animate-fade-slide-up flex flex-col items-center gap-4 rounded-xl bg-white/5 p-5">
-            {/* Waveform visualization */}
-            <div className="flex h-20 items-end gap-1">
-              {WAVE_DELAYS.map((delay) => (
+          <div className="animate-fade-slide-up rounded-[1.5rem] border border-white/10 bg-white/5 p-5 text-left">
+            <p className="text-lg font-semibold text-cyan-200">AI가 대신 처리하는 순서</p>
+            <div className="mt-4 space-y-3">
+              {[
+                '캘린더에서 가능한 시간 확인',
+                '회의 후보 시간을 표로 정리',
+                '메일 초안 작성',
+                '사람이 검토 후 전송',
+              ].map((step, index) => (
                 <div
-                  key={`wave-${delay}`}
-                  className="w-2 rounded-full bg-amber-400/80 animate-waveform"
-                  style={{
-                    animationDelay: `${delay}s`,
-                    height: "30%",
-                  }}
-                />
+                  key={step}
+                  className="flex items-center gap-3 rounded-xl bg-black/20 px-4 py-3 text-base text-slate-200"
+                >
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500/20 text-sm font-semibold text-amber-200">
+                    {index + 1}
+                  </span>
+                  <span>{step}</span>
+                </div>
               ))}
             </div>
-            <p className="text-base text-gray-300">
-              Lo-fi 비트 생성 중... &#x1F3B6;
-            </p>
-            <p className="text-sm text-gray-500">
-              BPM: 85 | Key: C minor | 분위기: 잔잔한 카페
-            </p>
+            <p className="mt-4 text-sm text-slate-400">중요한 점은 자동 실행 전에 사람이 최종 검토해야 한다는 것입니다.</p>
           </div>
         );
-
       default:
         return null;
     }
   };
 
   return (
-    <Tabs
-      value={activeTab}
-      onValueChange={handleTabChange}
-      className="mx-auto w-full max-w-4xl"
-    >
-      <TabsList className="mx-auto h-auto max-w-full flex-wrap justify-center bg-white/10">
+    <Tabs value={activeTab} onValueChange={handleTabChange} className="mx-auto flex w-full max-w-5xl flex-col gap-4">
+      <TabsList className="mx-auto h-auto max-w-full flex-wrap justify-center rounded-full border border-white/10 bg-white/6 p-2">
         {tabConfig.map((tab) => (
           <TabsTrigger
             key={tab.id}
             value={tab.id}
-            className="text-gray-400 data-[state=active]:bg-white/15 data-[state=active]:text-white"
+            className="rounded-full px-4 py-2 text-base text-slate-400 data-[state=active]:bg-white/10 data-[state=active]:text-white"
           >
             <span className="mr-1.5">{tab.icon}</span> {tab.label}
           </TabsTrigger>
@@ -285,79 +211,52 @@ export default function GenerativeAIShowcase() {
         const step = steps[tab.id];
 
         return (
-          <TabsContent key={tab.id} value={tab.id} className="mt-4">
-            <div className="relative min-h-[380px] rounded-xl bg-white/5 p-6">
-              {/* Step 0: Category intro */}
-              {step === 0 && (
-                <div className="flex h-[320px] flex-col items-center justify-center gap-4">
-                  <span className="text-6xl">{tab.icon}</span>
-                  <h3 className="text-2xl font-semibold text-white">
-                    {data.description}
-                  </h3>
-                  <p className="text-base text-gray-500">
-                    &ldquo;다음&rdquo;을 눌러 프롬프트를 입력해보세요
-                  </p>
+          <TabsContent key={tab.id} value={tab.id} className="mt-0">
+            <div className="relative min-h-[420px] rounded-[1.8rem] border border-white/10 bg-white/4 p-6">
+              {step === 0 ? (
+                <div className="flex h-[340px] flex-col items-center justify-center gap-5">
+                  <span className="text-7xl">{tab.icon}</span>
+                  <h3 className="max-w-2xl text-center text-3xl font-semibold text-white">{data.description}</h3>
                 </div>
-              )}
-
-              {/* Step 1+: Prompt bubble */}
-              {step >= 1 && (
+              ) : (
                 <div className="space-y-4">
-                  {/* User prompt bubble */}
                   <div className="flex justify-end">
-                    <div className="max-w-[75%] rounded-2xl rounded-br-sm bg-blue-600 px-5 py-3 text-lg text-white">
+                    <div className="max-w-[78%] rounded-[1.6rem] rounded-br-sm bg-cyan-600/90 px-5 py-3 text-lg text-white">
                       {step === 1 && !typingDone ? (
-                        <TypingEffect
-                          text={data.prompt}
-                          speed={30}
-                          onComplete={handleTypingComplete}
-                        />
+                        <TypingEffect text={data.prompt} speed={30} onComplete={handleTypingComplete} />
                       ) : (
                         data.prompt
                       )}
                     </div>
                   </div>
 
-                  {/* Step 2: AI result */}
-                  {step >= 2 && (
+                  {step >= 2 ? (
                     <div className="space-y-3">
-                      {/* AI label */}
                       <div className="flex items-center gap-2">
-                        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-sm">
-                          &#x1F916;
-                        </div>
-                        <span className="text-sm text-gray-400">AI</span>
+                        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-sm">🤖</div>
+                        <span className="text-sm text-slate-400">AI</span>
                       </div>
-
-                      {/* Result content */}
                       {renderResult(tab.id)}
-
-                      {/* Tool & time banner */}
                       <div className="flex items-center justify-center gap-3">
-                        <span
-                          className={`rounded-full ${data.toolColor} px-3 py-1 text-xs font-medium text-white`}
-                        >
+                        <span className={`rounded-full ${data.toolColor} px-3 py-1 text-xs font-medium text-white`}>
                           {data.tool}
                         </span>
-                        <span className="text-xs text-gray-300">
-                          &#x23F1; {data.time}
-                        </span>
+                        <span className="text-xs text-slate-300">⏱ {data.time}</span>
                       </div>
                     </div>
-                  )}
+                  ) : null}
                 </div>
               )}
 
-              {/* Next button */}
-              {step < 2 && activeTab === tab.id && (
+              {step < 2 ? (
                 <button
                   type="button"
                   onClick={advance}
-                  className="absolute right-4 bottom-4 rounded-lg bg-white/10 px-4 py-2 text-sm text-gray-200 transition-colors hover:bg-white/20"
+                  className="absolute right-5 bottom-5 rounded-full border border-white/12 bg-white/8 px-5 py-2 text-sm font-semibold text-slate-100 transition-colors hover:bg-white/14"
                 >
-                  다음 &rarr;
+                  다음
                 </button>
-              )}
+              ) : null}
             </div>
           </TabsContent>
         );

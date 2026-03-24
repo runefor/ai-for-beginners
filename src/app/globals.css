@@ -50,8 +50,8 @@
 :root {
   --radius: 0.625rem;
   --font-geist-sans:
-    "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
-    system-ui, sans-serif;
+    "Aptos", "Bahnschrift", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", sans-serif;
   --font-geist-mono:
     "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --background: oklch(1 0 0);
@@ -125,15 +125,55 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  html {
+    background:
+      radial-gradient(circle at top, rgba(8, 145, 178, 0.18), transparent 32%),
+      radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.14), transparent 24%),
+      linear-gradient(180deg, #06101b 0%, #050d18 50%, #040913 100%);
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    position: relative;
+    min-height: 100vh;
+    color: #eef4ff;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
+    opacity: 0.26;
+  }
+
+  ::selection {
+    background: rgba(34, 211, 238, 0.28);
+    color: #f8fbff;
   }
 }
 
-/* Reveal.js full-screen presentation */
 .reveal {
   height: 100vh;
   width: 100vw;
+  font-family: var(--font-geist-sans) !important;
+  color: #eef4ff;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  box-sizing: border-box;
+  padding: 44px 54px;
 }
 
 .reveal button:focus-visible,
@@ -143,7 +183,6 @@
   outline-offset: 4px;
 }
 
-/* Override Reveal.js default image styles (theme adds white bg + border) */
 .reveal section img {
   background: none !important;
   border: none !important;
@@ -151,7 +190,155 @@
   margin: 0 auto !important;
 }
 
-/* Stamp animation for AI Limitations slide */
+.deck-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 34px;
+  padding: 32px;
+  height: 100%;
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(2, 10, 20, 0.88)),
+    linear-gradient(135deg, rgba(34, 211, 238, 0.08), transparent 38%),
+    linear-gradient(315deg, rgba(59, 130, 246, 0.08), transparent 36%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 28px 80px rgba(0, 0, 0, 0.35);
+}
+
+.deck-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top left, rgba(34, 211, 238, 0.14), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.12), transparent 28%);
+}
+
+.deck-shell > * {
+  position: relative;
+  z-index: 1;
+}
+
+.deck-spotlight::after {
+  content: "";
+  position: absolute;
+  inset: auto -12% -20% auto;
+  width: 42rem;
+  height: 42rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 66%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.deck-eyebrow {
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(207, 250, 254, 0.92);
+}
+
+.deck-title {
+  font-size: clamp(2.8rem, 4.3vw, 5.25rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: #f8fbff;
+  text-wrap: balance;
+}
+
+.deck-title-hero {
+  font-size: clamp(4.8rem, 7.1vw, 8rem);
+}
+
+.deck-copy {
+  font-size: 1.35rem;
+  line-height: 1.6;
+  color: rgba(203, 213, 225, 0.96);
+  text-wrap: pretty;
+}
+
+.deck-balance {
+  text-wrap: balance;
+}
+
+.deck-pretty {
+  text-wrap: pretty;
+}
+
+.deck-panel {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 28px;
+  padding: 26px;
+  background: rgba(8, 15, 26, 0.72);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+}
+
+.deck-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 28px;
+  padding: 24px;
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.7), rgba(3, 9, 18, 0.82)),
+    rgba(8, 15, 26, 0.78);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.deck-callout {
+  border: 1px solid rgba(34, 211, 238, 0.16);
+  border-radius: 20px;
+  background: rgba(8, 44, 58, 0.32);
+  padding: 16px 18px;
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: rgba(226, 247, 255, 0.96);
+}
+
+.deck-chip,
+.deck-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(165, 243, 252, 0.18);
+  border-radius: 999px;
+  background: rgba(14, 116, 144, 0.18);
+  padding: 0.44rem 0.9rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(224, 247, 255, 0.94);
+}
+
+.deck-pill-lg {
+  padding: 0.8rem 1.25rem;
+  font-size: 1rem;
+}
+
+.deck-list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 24px;
+  padding: 18px 22px;
+  background: rgba(8, 15, 26, 0.68);
+  color: #ecf4ff;
+}
+
+.deck-list-row-lg {
+  min-height: 7rem;
+}
+
 @keyframes stamp {
   0% {
     transform: scale(0) rotate(-12deg);
@@ -171,7 +358,6 @@
   animation: stamp 0.4s ease-out forwards;
 }
 
-/* Result reveal animation */
 @keyframes fadeSlideUp {
   0% {
     opacity: 0;
@@ -187,7 +373,6 @@
   animation: fadeSlideUp 0.6s ease-out forwards;
 }
 
-/* Timeline node staggered entrance */
 @keyframes timelineNodeIn {
   0% {
     opacity: 0;
@@ -204,7 +389,6 @@
   animation: timelineNodeIn 0.4s ease-out forwards;
 }
 
-/* Music waveform animation */
 @keyframes waveform {
   0%,
   100% {
@@ -217,6 +401,16 @@
 
 .animate-waveform {
   animation: waveform 1.2s ease-in-out infinite;
+}
+
+@media (max-width: 1200px) {
+  .deck-shell {
+    padding: 26px;
+  }
+
+  .reveal .slides section {
+    padding: 28px 34px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

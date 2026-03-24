@@ -45,7 +45,7 @@ const items: QuizItem[] = [
     mediaUrl: '/images/quiz/pope-puffer.jpg',
     answer: 'ai',
     explanation:
-      'Midjourney로 생성된 AI 이미지입니다. 2023년 전 세계를 속인 대표적인 AI 딥페이크 사례입니다.',
+      'Midjourney로 생성된 AI 이미지입니다. 2023년 전 세계를 속인 대표적인 딥페이크 사례입니다.',
   },
   {
     label: '사진',
@@ -54,7 +54,7 @@ const items: QuizItem[] = [
     mediaUrl: '/images/quiz/real-photo.jpg',
     answer: 'human',
     explanation:
-      '실제 사진입니다! 사진작가 Miles Astray가 촬영한 "FLAMINGONE"으로, AI 사진 대회에서 수상했지만 실제 사진이었습니다.',
+      '실제 사진입니다. 사진작가 Miles Astray의 작품으로, AI 사진 대회에서 수상했지만 실제 사진이었습니다.',
   },
   {
     label: '영상',
@@ -102,7 +102,7 @@ export default function AIvsHumanQuiz() {
     if (current + 1 >= items.length) {
       goToNextSlide();
     } else {
-      setCurrent((c) => c + 1);
+      setCurrent((value) => value + 1);
       setSelected(null);
     }
   }
@@ -110,81 +110,77 @@ export default function AIvsHumanQuiz() {
   const isMedia = item.type === 'image' || item.type === 'video';
 
   return (
-    <div className="flex flex-col items-center gap-3">
-      {/* 상단: 진행 + 라벨 */}
-      <div className="flex items-center gap-4">
-        <span className="text-xl text-gray-400">
-          {current + 1} / {items.length}
-        </span>
-        <span className="rounded-full bg-white/10 px-5 py-1 text-lg text-cyan-300">
-          {item.label}
-        </span>
+    <div className="flex w-full max-w-6xl flex-col items-center gap-5">
+      <div className="flex w-full items-center justify-between">
+        <div className="flex items-center gap-3">
+          <span className="deck-pill">{current + 1} / {items.length}</span>
+          <span className="deck-chip">{item.label}</span>
+        </div>
+        <p className="text-lg text-slate-400">직감보다 근거를 먼저 생각해보세요</p>
       </div>
 
-      {/* 콘텐츠 영역 */}
-      {item.type === 'text' && (
-        <div className="max-w-4xl whitespace-pre-line rounded-2xl bg-white/5 p-8 text-center text-2xl leading-relaxed text-gray-200">
+      {item.type === 'text' ? (
+        <div className="w-full rounded-[1.8rem] border border-white/10 bg-white/4 p-10 text-center text-[2rem] leading-relaxed text-white">
           {item.description}
         </div>
-      )}
+      ) : null}
 
-      {item.type === 'image' && (
-        <div className="flex w-full max-w-5xl flex-col items-center gap-3">
-          <div className="flex w-full justify-center rounded-2xl bg-black/20 p-2">
+      {item.type === 'image' ? (
+        <div className="flex w-full flex-col items-center gap-4">
+          <div className="w-full rounded-[1.8rem] bg-black/25 p-3">
             <Image
               src={item.mediaUrl as string}
               alt={`${item.label}: ${item.description}`}
               width={1200}
               height={900}
               priority
-              className="block h-auto max-w-full rounded-2xl object-contain"
-              sizes="(max-width: 768px) 92vw, 880px"
+              className="mx-auto block h-auto max-w-full rounded-[1.3rem] object-contain"
+              sizes="(max-width: 768px) 92vw, 960px"
               style={{
-                maxHeight: selected ? '380px' : '520px',
-                maxWidth: 'min(78vw, 880px)',
+                maxHeight: selected ? '420px' : '560px',
+                maxWidth: 'min(82vw, 940px)',
                 transition: 'max-height 0.3s ease, max-width 0.3s ease',
               }}
             />
           </div>
-          <p className="text-lg text-gray-400">{item.description}</p>
+          <p className="text-xl text-slate-400">{item.description}</p>
         </div>
-      )}
+      ) : null}
 
-      {item.type === 'video' && (
-        <div className="flex w-full max-w-6xl flex-col items-center gap-3">
-          <div className="w-full rounded-2xl bg-black/20 p-2">
+      {item.type === 'video' ? (
+        <div className="flex w-full flex-col items-center gap-4">
+          <div className="w-full rounded-[1.8rem] bg-black/25 p-3">
             <iframe
               src={`https://www.youtube.com/embed/${item.mediaUrl}`}
               title={item.label}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               loading="lazy"
-              className={`mx-auto aspect-video w-full ${selected ? 'max-w-[760px]' : 'max-w-[1040px]'}`}
+              className={`mx-auto aspect-video w-full ${selected ? 'max-w-[780px]' : 'max-w-[1100px]'}`}
               style={{
-                borderRadius: '1rem',
+                borderRadius: '1.3rem',
                 border: 'none',
                 transition: 'max-width 0.3s ease',
               }}
             />
           </div>
-          <p className="text-lg text-gray-400">{item.description}</p>
+          <p className="text-xl text-slate-400">{item.description}</p>
         </div>
-      )}
+      ) : null}
 
-      {/* 버튼 */}
-      <div className={`flex flex-wrap justify-center gap-4 ${isMedia ? 'mt-1' : 'mt-4'}`}>
+      <div className={`grid w-full max-w-3xl gap-4 ${isMedia ? 'mt-1 md:grid-cols-2' : 'mt-4 md:grid-cols-2'}`}>
         <button
           type="button"
           onClick={() => handleAnswer('ai')}
           disabled={selected !== null}
-          className={`rounded-2xl px-8 py-3 text-xl font-bold transition ${
+          className={`rounded-[1.4rem] border px-8 py-5 text-2xl font-semibold transition ${
             selected === null
-              ? 'bg-purple-600 text-white hover:bg-purple-500'
+              ? 'border-cyan-400/25 bg-cyan-950/24 text-white hover:bg-cyan-950/34'
               : selected === 'ai'
                 ? item.answer === 'ai'
-                  ? 'bg-green-600 text-white'
-                  : 'bg-red-600 text-white'
-                : 'bg-white/10 text-gray-500'
+                  ? 'border-emerald-400/30 bg-emerald-950/40 text-white'
+                  : 'border-rose-400/30 bg-rose-950/40 text-white'
+                : 'border-white/10 bg-white/5 text-slate-500'
           }`}
         >
           🤖 AI가 만듦
@@ -193,40 +189,37 @@ export default function AIvsHumanQuiz() {
           type="button"
           onClick={() => handleAnswer('human')}
           disabled={selected !== null}
-          className={`rounded-2xl px-8 py-3 text-xl font-bold transition ${
+          className={`rounded-[1.4rem] border px-8 py-5 text-2xl font-semibold transition ${
             selected === null
-              ? 'bg-amber-600 text-white hover:bg-amber-500'
+              ? 'border-amber-400/25 bg-amber-950/24 text-white hover:bg-amber-950/34'
               : selected === 'human'
                 ? item.answer === 'human'
-                  ? 'bg-green-600 text-white'
-                  : 'bg-red-600 text-white'
-                : 'bg-white/10 text-gray-500'
+                  ? 'border-emerald-400/30 bg-emerald-950/40 text-white'
+                  : 'border-rose-400/30 bg-rose-950/40 text-white'
+                : 'border-white/10 bg-white/5 text-slate-500'
           }`}
         >
           🧑 사람이 만듦
         </button>
       </div>
 
-      {/* 피드백 */}
-      {selected !== null && (
-        <div className="flex flex-col items-center gap-2">
-          <div
-            className={`text-xl font-bold ${selected === item.answer ? 'text-green-400' : 'text-red-400'}`}
-          >
-            {selected === item.answer ? '✅ 정답!' : '❌ 오답!'}
+      {selected !== null ? (
+        <div className="mt-2 flex flex-col items-center gap-3">
+          <div className={`text-2xl font-semibold ${selected === item.answer ? 'text-emerald-300' : 'text-rose-300'}`}>
+            {selected === item.answer ? '정답입니다' : '생각보다 더 어려워졌습니다'}
           </div>
-          <p className="max-w-3xl text-center text-lg text-gray-300">
+          <p className="max-w-4xl text-center text-xl leading-relaxed text-slate-300">
             {item.explanation}
           </p>
           <button
             type="button"
             onClick={handleNext}
-            className="rounded-xl bg-cyan-600 px-6 py-2 text-xl text-white transition hover:bg-cyan-500"
+            className="rounded-full border border-cyan-400/20 bg-cyan-950/35 px-7 py-3 text-xl font-semibold text-white transition hover:bg-cyan-950/55"
           >
-            {current + 1 < items.length ? '다음 →' : '다음 페이지'}
+            {current + 1 < items.length ? '다음 문제' : '다음 슬라이드'}
           </button>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
