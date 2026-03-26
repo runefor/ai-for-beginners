@@ -35,6 +35,10 @@ const AIShiftTimeline = dynamic(
   () => import('@/components/interactive/AIShiftTimeline'),
   { ssr: false }
 );
+const StarterToolkitShowcase = dynamic(
+  () => import('@/components/interactive/StarterToolkitShowcase'),
+  { ssr: false }
+);
 const PromptCraftingDemo = dynamic(
   () => import('@/components/interactive/PromptCraftingDemo'),
   { ssr: false }
@@ -426,53 +430,12 @@ export default function Home() {
       </Slide>
 
       <Slide dataBackgroundColor="#06101b">
-        <div className="deck-shell flex h-full flex-col gap-8">
+        <div className="deck-shell flex h-full flex-col gap-6">
           <SectionHeader
             eyebrow="Starter Toolkit"
             title="초보자라면 여기서 시작하세요"
           />
-          <div className="grid grid-cols-4 gap-5">
-            {[
-              ['BEST START', '💬', 'ChatGPT', '질문, 요약, 이미지까지 한 번에', '막막할 때 가장 먼저 켜는 기본 도구', '한 문장 질문부터 문서 요약, 이미지 생성까지 폭이 넓어서 입문자가 감 잡기 좋습니다.', 'chatgpt.com'],
-              ['SEARCH', '🔍', 'Perplexity', '검색 결과를 AI가 정리', '빠르게 조사하고 출처까지 확인할 때', '궁금한 내용을 검색하듯 물으면 답과 함께 출처를 바로 보여줘 사실 확인 흐름이 좋습니다.', 'perplexity.ai'],
-              ['DOCUMENT', '📓', 'NotebookLM', '내 자료를 넣고 요약', 'PDF, 강의자료, 회의록을 붙여서 물을 때', '업로드한 자료 안에서 요약과 Q&A를 해줘서 일반 챗봇보다 훨씬 정확한 답을 기대할 수 있습니다.', 'notebooklm.google.com'],
-              ['PRESENT', '📊', 'Gamma', '발표 초안과 디자인 시안', '주제만 정해졌고 시작 화면이 없을 때', '핵심 문장만 넣어도 발표 흐름과 카드형 레이아웃을 빠르게 만들어 첫 초안을 줄여줍니다.', 'gamma.app'],
-            ].map(([badge, icon, title, subtitle, useCase, detail, url]) => (
-              <FlipCard
-                key={title}
-                className="h-[25rem]"
-                front={
-                  <>
-                    <div className="flex w-full items-start justify-between">
-                      <span className="text-6xl">{icon}</span>
-                      <span className="deck-chip">{badge}</span>
-                    </div>
-                    <div className="mt-8 w-full text-left">
-                      <p className="text-[2.2rem] font-semibold text-white">{title}</p>
-                      <p className="mt-2 text-lg text-slate-300">{subtitle}</p>
-                    </div>
-                    <div className="mt-auto w-full border-t border-white/10 pt-4 text-left">
-                      <p className="text-sm tracking-[0.18em] text-slate-500 uppercase">추천 상황</p>
-                      <p className="mt-2 text-xl text-slate-200">{useCase}</p>
-                    </div>
-                  </>
-                }
-                back={
-                  <>
-                    <Eyebrow>{url}</Eyebrow>
-                    <div className="mt-6 w-full text-left">
-                      <p className="text-[2rem] font-semibold text-white">{title}</p>
-                      <p className="mt-4 text-[1.25rem] leading-relaxed text-slate-100">{detail}</p>
-                    </div>
-                    <div className="mt-auto w-full rounded-[1.4rem] border border-white/12 bg-black/20 px-4 py-4 text-left">
-                      <p className="text-sm tracking-[0.18em] text-slate-400 uppercase">Use First For</p>
-                      <p className="mt-2 text-xl text-white">{useCase}</p>
-                    </div>
-                  </>
-                }
-              />
-            ))}
-          </div>
+          <StarterToolkitShowcase />
         </div>
       </Slide>
 
@@ -672,7 +635,7 @@ export default function Home() {
           />
           <div className="grid flex-1 grid-cols-2 gap-5">
             {[
-              ['ChatGPT', '5 min', '아무 주제로 3문장 요약해보기', '생각보다 얼마나 자연스럽게 답하는지 감을 잡는 첫 연습'],
+              ['Claude', '5 min', '아무 주제로 3문장 요약해보기', '생각보다 얼마나 자연스럽게 답하는지 감을 잡는 첫 연습'],
               ['Perplexity', '7 min', '궁금한 주제 하나 조사해보기', '답만 보지 말고 출처까지 같이 보는 습관 만들기'],
               ['NotebookLM', '10 min', 'PDF 한 개 올리고 질문해보기', '내 자료를 붙였을 때 정확도가 달라지는 경험 만들기'],
               ['Gamma', '8 min', '발표 주제로 초안 한 번 만들어보기', '빈 화면에서 시작하는 시간을 줄이는 감각 익히기'],
