@@ -302,6 +302,29 @@
   color: rgba(226, 247, 255, 0.96);
 }
 
+.prompt-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(103, 232, 249, 0.38) rgba(255, 255, 255, 0.05);
+}
+
+.prompt-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.prompt-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+}
+
+.prompt-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(125, 211, 252, 0.72), rgba(45, 212, 191, 0.52));
+  border-radius: 999px;
+}
+
+.prompt-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(165, 243, 252, 0.82), rgba(45, 212, 191, 0.68));
+}
+
 .deck-chip,
 .deck-pill {
   display: inline-flex;

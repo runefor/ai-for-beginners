@@ -405,24 +405,29 @@ export default function Home() {
       </Slide>
 
       <Slide dataBackgroundColor="#06101b">
-        <div className="deck-shell flex h-full flex-col gap-8">
+        <div className="deck-shell flex h-full flex-col gap-4">
           <SectionHeader
             eyebrow="Prompt Craft"
             title="AI 잘 쓰는 법 = 잘 물어보는 법"
           />
-          <div className="grid min-h-0 flex-1 grid-cols-[0.3fr_0.7fr] gap-6">
-            <div className="deck-panel min-h-0 justify-between">
+          <div className="-mt-2 grid min-h-0 flex-1 grid-cols-[0.22fr_0.78fr] gap-5">
+            <div className="deck-panel min-h-0 justify-between px-5 py-5">
               <div>
-                <Eyebrow>THREE ELEMENTS</Eyebrow>
-                <div className="mt-6 space-y-4 text-2xl text-slate-200">
-                  <p><span className="text-cyan-200">역할</span>: 누구처럼 답해야 하는지</p>
-                  <p><span className="text-cyan-200">맥락</span>: 어떤 상황인지</p>
-                  <p><span className="text-cyan-200">형식</span>: 어떤 모양으로 받을지</p>
+                <Eyebrow>CORE PROMPTING</Eyebrow>
+                <div className="mt-5 space-y-3 text-[1.65rem] leading-snug text-slate-200">
+                  <p><span className="text-cyan-200">목표</span>: 무엇을 얻고 싶은지</p>
+                  <p><span className="text-cyan-200">맥락</span>: 어떤 상황과 조건인지</p>
+                  <p><span className="text-cyan-200">형식·제약</span>: 어떤 모양과 기준으로 받을지</p>
                 </div>
+                <p className="mt-5 text-base leading-relaxed text-slate-400">
+                  역할은 필요할 때만 추가합니다.
+                  <br />
+                  톤, 관점, 캐릭터 일관성이 중요할 때만 쓰면 됩니다.
+                </p>
               </div>
-              <div className="deck-callout">AI는 생각을 읽지 못합니다. 조건을 구조로 줘야 품질이 올라갑니다.</div>
+              <div className="deck-callout px-4 py-3 text-[0.98rem]">좋은 프롬프트는 역할놀이보다 목표, 맥락, 형식과 제약을 먼저 분명히 합니다.</div>
             </div>
-            <div className="deck-panel min-h-0 overflow-hidden">
+            <div className="deck-panel min-h-0 overflow-hidden px-4 py-4">
               <PromptCraftingDemo />
             </div>
           </div>
