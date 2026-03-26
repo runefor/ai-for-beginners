@@ -56,7 +56,7 @@ export default function ClaudeCoworkSpotlight() {
               </div>
               <div className="rounded-[1.25rem] border border-cyan-400/16 bg-cyan-950/25 px-4 py-2.5 text-right">
                 <p className="text-[11px] font-semibold tracking-[0.16em] text-slate-400 uppercase">Core Message</p>
-                <p className="mt-1.5 text-[1rem] font-semibold leading-[1.35] text-cyan-50">AI 동료는 채팅창 안이 아니라 업무 화면 안으로 들어옵니다</p>
+                <p className="mt-1.5 text-[1rem] font-semibold leading-[1.35] text-cyan-50">AI 동료는 채팅창보다 업무 화면에 가깝습니다</p>
               </div>
             </div>
 
@@ -92,7 +92,7 @@ export default function ClaudeCoworkSpotlight() {
                   <div>
                     <p className="text-[12px] font-semibold tracking-[0.16em] text-slate-400 uppercase">한 문장 정리</p>
                     <p className="mt-1.5 text-[0.98rem] font-semibold leading-[1.45] text-white">
-                      Claude Cowork는 답하는 AI가 아니라, 실제 업무 환경에서 다음 행동까지 이어가는 AI를 보여주는 대표 사례입니다.
+                      답변형 AI에서 작업형 AI로 넘어가는 대표 장면입니다.
                     </p>
                   </div>
                   <button
@@ -246,7 +246,7 @@ export default function ClaudeCoworkSpotlight() {
               <div className="mt-5 rounded-[1.3rem] border border-white/8 bg-black/18 px-4 py-4">
                 <p className="text-[12px] font-semibold tracking-[0.14em] text-slate-400 uppercase">이 영상을 보면 이해되는 점</p>
                 <p className="mt-2 break-keep text-[1.04rem] leading-[1.62] text-cyan-50">
-                  채팅 답변을 잘하는지보다, 파일과 브라우저를 오가며 실제 작업을 어떻게 이어가는지가 핵심입니다.
+                  채팅보다 실제 작업 흐름을 보세요.
                 </p>
               </div>
 

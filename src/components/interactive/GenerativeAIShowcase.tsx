@@ -25,35 +25,35 @@ const tabData: Record<
   }
 > = {
   chat: {
-    description: 'AI에게 바로 질문하고 초안을 받을 수 있습니다',
+    description: '질문하면 바로 초안이 나옵니다',
     prompt: '이번 주말 서울에서 비 와도 괜찮은 실내 데이트 코스 3개 추천해줘',
     tool: 'ChatGPT / Gemini / Claude',
     toolColor: 'bg-emerald-500/90',
     time: '~5초',
   },
   document: {
-    description: 'PDF나 회의록을 넣고 요약과 액션 아이템을 뽑을 수 있습니다',
+    description: '문서를 넣으면 요약과 할 일이 나옵니다',
     prompt: '이 회의록을 3줄로 요약하고, 담당자별 할 일을 정리해줘',
     tool: 'NotebookLM',
     toolColor: 'bg-cyan-500/90',
     time: '~10초',
   },
   image: {
-    description: '문장 한 줄로 포스터나 썸네일 이미지를 만들 수 있습니다',
+    description: '문장 한 줄이 이미지 초안이 됩니다',
     prompt: '우리 동네 분식집 홍보용 레트로 포스터 만들어줘',
     tool: 'ChatGPT 이미지 / Midjourney',
     toolColor: 'bg-fuchsia-500/90',
     time: '~15초',
   },
   video: {
-    description: '짧은 설명만으로 장면과 움직임이 있는 영상을 만들 수 있습니다',
+    description: '짧은 설명이 바로 영상이 됩니다',
     prompt: '석양 속 도쿄 거리를 천천히 걷는 장면, 영화 예고편 분위기',
     tool: 'Veo / Sora',
     toolColor: 'bg-rose-500/90',
     time: '~1분',
   },
   agent: {
-    description: 'AI에게 자료 조사와 정리, 앱 조작까지 맡기는 흐름이 시작됐습니다',
+    description: '조사부터 실행까지 이어집니다',
     prompt: '이번 주 고객 미팅 후보 시간을 찾아서 표로 정리하고 초안 메일까지 써줘',
     tool: 'ChatGPT agent / Cowork / OpenClaw',
     toolColor: 'bg-amber-500/90',
@@ -139,7 +139,7 @@ export default function GenerativeAIShowcase() {
                 <p className="mt-3 text-lg font-bold text-white">복고풍 포스터 생성</p>
               </div>
             </div>
-            <p className="text-sm text-slate-400">문장 한 줄로 썸네일과 홍보물 초안을 만들 수 있습니다.</p>
+            <p className="text-sm text-slate-400">한 줄이면 홍보 초안이 뜹니다.</p>
           </div>
         );
       case 'video':
@@ -159,7 +159,7 @@ export default function GenerativeAIShowcase() {
                 <source src="/images/showcase/sora-tokyo-walk.mp4" type="video/mp4" />
               </video>
             </div>
-            <p className="mt-3 text-center text-sm text-slate-400">짧은 장면 설명만으로 무드 영상 초안을 빠르게 만드는 흐름입니다.</p>
+            <p className="mt-3 text-center text-sm text-slate-400">장면 설명만으로 영상 초안이 뜹니다.</p>
           </div>
         );
       case 'agent':
@@ -184,7 +184,7 @@ export default function GenerativeAIShowcase() {
                 </div>
               ))}
             </div>
-            <p className="mt-4 text-sm text-slate-400">중요한 점은 자동 실행 전에 사람이 최종 검토해야 한다는 것입니다.</p>
+            <p className="mt-4 text-sm text-slate-400">자동 실행 전 최종 확인은 사람 몫입니다.</p>
           </div>
         );
       default:

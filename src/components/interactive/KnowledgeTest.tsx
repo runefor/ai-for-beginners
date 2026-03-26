@@ -12,27 +12,27 @@ const questions: Question[] = [
   {
     question: 'ChatGPT는 2022년에 처음 공개되었다',
     answer: true,
-    explanation: '2022년 11월 30일, OpenAI가 ChatGPT를 공개했습니다.',
+    explanation: '2022년 11월 30일, 대중적 AI 사용이 본격적으로 열렸습니다.',
   },
   {
     question: 'AI는 스스로 생각하고 판단할 수 있다',
     answer: false,
-    explanation: 'AI는 데이터의 패턴을 학습할 뿐, 진짜 생각을 하지는 않습니다.',
+    explanation: 'AI는 생각보다 패턴에 더 가깝습니다.',
   },
   {
     question: '넷플릭스의 영화 추천은 AI 기술이다',
     answer: true,
-    explanation: '넷플릭스는 추천 알고리즘에 머신러닝을 사용합니다.',
+    explanation: '추천 시스템도 이미 대표적인 AI 활용입니다.',
   },
   {
     question: 'AI가 만든 그림으로 미술 대회에서 1등을 한 적이 있다',
     answer: true,
-    explanation: '2022년 Midjourney로 만든 그림이 콜로라도 주 미술대회에서 1등을 했습니다.',
+    explanation: 'AI 작품도 이미 현실 무대에서 경쟁하고 있습니다.',
   },
   {
     question: 'AI는 항상 정확한 정보를 제공한다',
     answer: false,
-    explanation: '환각 현상 때문에 그럴듯하지만 틀린 답을 만들기도 합니다.',
+    explanation: '유창해도 틀릴 수 있습니다.',
   },
 ];
 
@@ -69,7 +69,7 @@ export default function KnowledgeTest() {
         <div className="deck-pill deck-pill-lg">{score} / {questions.length}</div>
         <p className="text-5xl font-semibold text-white">기본 감각은 이미 충분합니다</p>
         <p className="max-w-3xl text-2xl leading-relaxed text-slate-300">
-          틀린 문항이 있었다면 오히려 좋습니다. 그 지점이 오늘 발표에서 가장 먼저 정리해야 할 오해였다는 뜻입니다.
+          틀린 문항이 바로 오늘 가장 먼저 풀어야 할 오해입니다.
         </p>
       </div>
     );

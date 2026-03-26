@@ -94,7 +94,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="deck-callout mt-8">
-                정답보다 중요한 건 <span className="text-cyan-200">내가 무엇을 헷갈리고 있는지</span>를 아는 것입니다.
+                정답보다 먼저, <span className="text-cyan-200">내가 헷갈리는 지점</span>을 찾습니다.
               </div>
             </div>
             <div className="deck-panel items-center justify-center">
@@ -112,12 +112,12 @@ export default function Home() {
           />
           <div className="grid grid-cols-3 gap-5">
             {[
-              ['🎬', '넷플릭스', '취향을 읽고 다음 영화를 추천합니다', '추천'],
-              ['🗣️', '시리 / 빅스비', '음성을 듣고 의도를 분류합니다', '음성'],
-              ['🌐', '번역기', '문맥을 보고 자연스러운 문장을 만듭니다', '언어'],
-              ['📸', '카메라', '피사체와 배경을 실시간으로 구분합니다', '비전'],
-              ['🛒', '쇼핑몰', '클릭 패턴으로 다음 상품을 제안합니다', '예측'],
-              ['📧', '이메일', '스팸과 중요 메일을 먼저 걸러냅니다', '분류'],
+              ['🎬', '넷플릭스', '다음 작품을 먼저 고릅니다', '추천'],
+              ['🗣️', '시리 / 빅스비', '말을 듣고 의도를 읽습니다', '음성'],
+              ['🌐', '번역기', '문맥을 읽어 자연스럽게 바꿉니다', '언어'],
+              ['📸', '카메라', '사람과 배경을 바로 나눕니다', '비전'],
+              ['🛒', '쇼핑몰', '클릭 흐름으로 다음 상품을 띄웁니다', '예측'],
+              ['📧', '이메일', '중요 메일과 스팸을 먼저 가릅니다', '분류'],
             ].map(([icon, title, desc, tag]) => (
               <AccentCard key={title} className="min-h-[16rem] justify-between">
                 <div className="flex items-start justify-between gap-4">
@@ -158,12 +158,12 @@ export default function Home() {
             <div className="deck-panel justify-center">
               <p className="text-[2.2rem] leading-[1.45] text-cyan-100">
                 <TypingEffect
-                  text="사람처럼 보이는 결과를 만들지만, 실제로는 데이터를 보고 규칙과 패턴을 찾아내는 컴퓨터 프로그램"
+                  text="사람처럼 보여도, 결국은 패턴을 찾는 프로그램"
                   speed={42}
                 />
               </p>
               <div className="deck-callout mt-8">
-                핵심은 <span className="text-white">이해</span>가 아니라 <span className="text-white">패턴 매칭</span>입니다.
+                핵심은 <span className="text-white">이해</span>보다 <span className="text-white">패턴</span>입니다.
               </div>
             </div>
           </div>
@@ -199,7 +199,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <p className="text-center text-2xl text-slate-400">그 원리를 아주 단순한 숫자 인식 예시로 먼저 보겠습니다.</p>
+          <p className="text-center text-2xl text-slate-400">숫자 예시 하나로 바로 보겠습니다.</p>
         </div>
       </Slide>
 
@@ -213,14 +213,14 @@ export default function Home() {
             <div className="deck-panel justify-between">
               <div>
                 <Eyebrow>TRY IT</Eyebrow>
-                <p className="mt-4 text-4xl font-semibold text-white">직접 숫자를 그려보세요</p>
+                <p className="mt-4 text-4xl font-semibold text-white">직접 그려보세요</p>
               </div>
               <div className="space-y-4 text-xl leading-relaxed text-slate-300">
-                <p>1. 왼쪽에 숫자를 그립니다</p>
-                <p>2. 가운데 네트워크가 특징을 읽습니다</p>
-                <p>3. 오른쪽에서 가장 높은 확률을 보여줍니다</p>
+                <p>1. 왼쪽에 그립니다</p>
+                <p>2. 가운데가 특징을 읽습니다</p>
+                <p>3. 오른쪽에 확률이 뜹니다</p>
               </div>
-              <div className="deck-callout">보는 순간 이해되는 슬라이드여야 하므로 설명보다 데모를 크게 배치했습니다.</div>
+              <div className="deck-callout">설명보다 데모가 먼저 보이게 했습니다.</div>
             </div>
             <div className="deck-panel items-center justify-center">
               <MNISTDemo />
@@ -239,9 +239,9 @@ export default function Home() {
             <div className="deck-panel border-red-500/20 bg-red-950/20">
               <Eyebrow className="text-red-200/80">REMEMBER</Eyebrow>
               <p className="mt-5 text-5xl font-semibold leading-tight text-white">AI는 자신감 있게 틀릴 수 있습니다</p>
-              <p className="mt-6 text-xl leading-relaxed text-slate-300">답이 매끄럽고 빨라도, 출처 확인과 최종 판단은 여전히 사람의 역할입니다.</p>
+              <p className="mt-6 text-xl leading-relaxed text-slate-300">유창해도, 마지막 검토는 여전히 사람 몫입니다.</p>
               <div className="deck-callout mt-8 border-red-400/20 bg-red-950/40 text-red-100">
-                맹신 금지. 특히 법률, 의료, 금융, 뉴스처럼 사실 검증이 중요한 분야는 더 그렇습니다.
+                법률, 의료, 금융, 뉴스는 특히 더 검증해야 합니다.
               </div>
             </div>
             <div className="deck-panel">
@@ -338,7 +338,7 @@ export default function Home() {
             <div className="flex flex-col items-center">
               <h2 className="deck-title max-w-4xl">AI가 만든 걸까?</h2>
               <p className="deck-pretty mt-6 max-w-[34ch] text-[1.5rem] leading-[1.55] text-slate-300">
-                이제는 사람 눈으로도 글, 사진, 영상의 출처를 구분하기 어려워졌습니다. 감으로 맞히기보다 어떤 신호를 봐야 하는지가 중요합니다.
+                이제는 감보다 신호를 봐야 합니다.
               </p>
             </div>
             <div className="grid w-full max-w-4xl grid-cols-3 gap-4">
@@ -360,20 +360,20 @@ export default function Home() {
       </Slide>
 
       <Slide dataBackgroundColor="#081425">
-        <div className="deck-shell flex h-full flex-col justify-center">
-          <div className="deck-panel items-center justify-center">
+        <div className="deck-shell flex h-full min-h-0 flex-col">
+          <div className="deck-panel min-h-0 flex-1 items-center justify-center overflow-hidden">
             <AIvsHumanQuiz />
           </div>
         </div>
       </Slide>
 
       <Slide dataBackgroundColor="#06101b">
-        <div className="deck-shell flex h-full flex-col gap-4">
+        <div className="deck-shell flex h-full flex-col gap-3 !pt-5">
           <SectionHeader
             eyebrow="Prompt Craft"
             title="AI 잘 쓰는 법 = 잘 물어보는 법"
           />
-          <div className="-mt-2 grid min-h-0 flex-1 grid-cols-[0.22fr_0.78fr] gap-5">
+          <div className="-mt-5 grid min-h-0 flex-1 grid-cols-[0.22fr_0.78fr] gap-5">
             <div className="deck-panel min-h-0 justify-between px-5 py-5">
               <div>
                 <Eyebrow>CORE PROMPTING</Eyebrow>
@@ -383,12 +383,10 @@ export default function Home() {
                   <p><span className="text-cyan-200">형식·제약</span>: 어떤 모양과 기준으로 받을지</p>
                 </div>
                 <p className="mt-5 text-base leading-relaxed text-slate-400">
-                  역할은 필요할 때만 추가합니다.
-                  <br />
-                  톤, 관점, 캐릭터 일관성이 중요할 때만 쓰면 됩니다.
+                  역할은 톤이 필요할 때만 붙입니다.
                 </p>
               </div>
-              <div className="deck-callout px-4 py-3 text-[0.98rem]">좋은 프롬프트는 역할놀이보다 목표, 맥락, 형식과 제약을 먼저 분명히 합니다.</div>
+              <div className="deck-callout px-4 py-3 text-[0.98rem]">좋은 프롬프트는 역할보다 목표가 먼저입니다.</div>
             </div>
             <div className="deck-panel min-h-0 overflow-hidden px-4 py-4">
               <PromptCraftingDemo />
@@ -442,7 +440,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="deck-callout mt-6">
-                중요한 건 완성본 자체보다, <span className="text-white">시작 속도와 비교 가능한 초안</span>을 빠르게 확보하는 점입니다.
+                중요한 건 완성본보다, <span className="text-white">빠른 초안</span>을 먼저 확보하는 일입니다.
               </div>
             </div>
 
@@ -484,7 +482,7 @@ export default function Home() {
                 </div>
 
                 <p className="mt-6 text-center text-[1rem] leading-relaxed text-slate-300">
-                  핵심은 한 번에 잘 만드는 것이 아니라, <span className="text-cyan-200">여러 초안을 빠르게 비교</span>하면서 방향을 잡는 것입니다.
+                  핵심은 잘 만들기보다, <span className="text-cyan-200">빨리 비교</span>하는 것입니다.
                 </p>
               </div>
             </div>
@@ -518,7 +516,7 @@ export default function Home() {
             ))}
           </div>
           <p className="deck-pretty max-w-[34ch] text-[1.55rem] leading-[1.55] text-slate-300">
-            AI는 편리한 도구지만, 민감한 정보와 사실 검증, 권한 범위, 콘텐츠 출처 문제는 사용자가 직접 책임지고 관리해야 합니다.
+            편리해도, 책임은 여전히 사용자에게 있습니다.
           </p>
         </div>
       </Slide>
@@ -531,10 +529,10 @@ export default function Home() {
           />
           <div className="grid grid-cols-2 gap-5">
             {[
-              ['⚖️', '편향과 차별', '학습 데이터가 치우치면 결과도 치우칩니다.', 'AI의 판단처럼 보여도 기준은 결국 데이터입니다.'],
-              ['🔒', '개인정보', '민감한 정보는 입력 순간부터 리스크가 생깁니다.', '이름, 번호, 계약서, 내부 자료는 기본적으로 빼고 넣는 쪽이 안전합니다.'],
-              ['🧷', '권한 관리', '에이전트에게 준 권한은 행동 범위가 됩니다.', '메일, 캘린더, 드라이브 권한은 최소 범위부터 시작해야 합니다.'],
-              ['🎭', '딥페이크', '진짜처럼 보이는 가짜가 더 쉬워졌습니다.', '강한 감정 유도형 영상과 음성은 항상 출처를 먼저 확인해야 합니다.'],
+              ['⚖️', '편향과 차별', '데이터가 치우치면 결과도 치웁니다.', '결국 기준은 데이터입니다.'],
+              ['🔒', '개인정보', '민감한 정보는 넣는 순간 위험해집니다.', '민감한 정보는 빼고 넣습니다.'],
+              ['🧷', '권한 관리', '권한이 곧 행동 범위가 됩니다.', '권한은 항상 최소부터 줍니다.'],
+              ['🎭', '딥페이크', '가짜는 더 진짜처럼 보입니다.', '강한 감정일수록 먼저 출처를 봅니다.'],
             ].map(([icon, title, short, tip]) => (
               <AccentCard key={title} className="min-h-[18rem]">
                 <div className="flex items-center gap-4">
@@ -600,10 +598,10 @@ export default function Home() {
           />
           <div className="grid grid-cols-2 gap-5">
             {[
-              ['Start', '무료 도구부터 시작', '써보기 전에는 감이 안 옵니다. 일단 작은 문제 하나를 맡겨보세요.'],
-              ['Context', '내 자료를 붙여서 물어보기', '문서형 AI는 일반 질문보다 훨씬 정확한 답을 줍니다.'],
-              ['Review', '자동 실행 전에는 검토', '빠른 것과 책임지는 것은 별개입니다. 마지막 확인은 사람 몫입니다.'],
-              ['Edge', '전문성 + AI 조합 만들기', '결국 강한 사람은 AI를 쓰는 전문가이지 AI만 잘 아는 사람이 아닙니다.'],
+              ['Start', '무료 도구부터 시작', '감은 써봐야 생깁니다. 작은 일부터 맡겨보세요.'],
+              ['Context', '내 자료를 붙여서 물어보기', '내 자료를 붙이면 답이 더 선명해집니다.'],
+              ['Review', '자동 실행 전에는 검토', '속도와 책임은 다릅니다. 마지막 확인은 사람 몫입니다.'],
+              ['Edge', '전문성 + AI 조합 만들기', '강한 사람은 AI를 쓰는 전문가입니다.'],
             ].map(([tag, label, desc], index) => (
               <AccentCard key={label} className="min-h-[15rem]">
                 <div className="flex items-center justify-between gap-4">
@@ -630,15 +628,15 @@ export default function Home() {
               오늘 집에 가서 해보세요
             </h2>
             <p className="text-[1.04rem] leading-[1.4] text-slate-300">
-              가장 쉬운 것 하나만 해봐도 AI를 보는 감각이 달라집니다.
+              하나만 해봐도 보는 눈이 달라집니다.
             </p>
           </div>
           <div className="-mt-7 grid flex-1 grid-cols-2 gap-3.5">
             {[
-              ['Claude', '5 min', '아무 주제로 3문장 요약해보기', '가장 쉬운 시작', '예: 기사, 유튜브 영상, 발표 메모', '생각보다 얼마나 자연스럽게 답하는지 감을 잡는 첫 연습'],
-              ['Perplexity', '7 min', '궁금한 주제 하나 조사해보기', '출처 같이 보기', '예: AI 에이전트, 금리, 전기차', '답만 보지 말고 출처까지 함께 확인하는 습관 만들기'],
-              ['NotebookLM', '10 min', 'PDF 한 개 올리고 질문해보기', '내 자료 붙이기', '예: 수업자료, 기사 PDF, 회의 문서', '내 자료를 붙였을 때 정확도가 달라지는 경험 만들기'],
-              ['Gamma', '8 min', '발표 주제로 초안 한 번 만들어보기', '빈 화면 깨기', '예: 자기소개, 기획안, 수업 발표', '처음 시작하는 시간을 줄이는 감각 익히기'],
+              ['Claude', '5 min', '아무 주제로 3문장 요약해보기', '가장 쉬운 시작', '예: 기사, 유튜브 영상, 발표 메모', '자연스럽게 답하는 감각부터 잡아봅니다'],
+              ['Perplexity', '7 min', '궁금한 주제 하나 조사해보기', '출처 같이 보기', '예: AI 에이전트, 금리, 전기차', '답보다 출처를 같이 보는 습관을 만듭니다'],
+              ['NotebookLM', '10 min', 'PDF 한 개 올리고 질문해보기', '내 자료 붙이기', '예: 수업자료, 기사 PDF, 회의 문서', '내 자료를 붙이면 답이 달라집니다'],
+              ['Gamma', '8 min', '발표 주제로 초안 한 번 만들어보기', '빈 화면 깨기', '예: 자기소개, 기획안, 수업 발표', '빈 화면을 깨는 속도를 먼저 느껴봅니다'],
             ].map(([tool, time, action, tag, example, note], index) => (
               <AccentCard
                 key={tool}
@@ -689,7 +687,7 @@ export default function Home() {
                   >
                     <div>
                       <p className="text-[0.76rem] font-semibold tracking-[0.04em] text-slate-400">
-                        이렇게 시작
+                        바로 이렇게
                       </p>
                       <p className="mt-2 text-[0.9rem] leading-[1.35] text-slate-200">
                         {example}
@@ -698,7 +696,7 @@ export default function Home() {
 
                     <div className="mt-3 border-t border-white/8 pt-3">
                       <p className="text-[0.76rem] font-semibold tracking-[0.04em] text-slate-400">
-                        이걸 느껴보세요
+                        포인트
                       </p>
                       <p className="mt-2 text-[0.9rem] leading-[1.35] text-slate-100">
                         {note}
@@ -721,7 +719,7 @@ export default function Home() {
               <div className="flex flex-col items-center gap-3">
                 <p className="text-[1.55rem] text-slate-300">AI는 이미 우리 일상 안에서 작동하고 있습니다</p>
                 <div className="h-px w-28 bg-linear-to-r from-transparent via-cyan-300/60 to-transparent" />
-                <p className="text-[1.55rem] text-slate-300">완벽하지 않지만, 매우 강력한 생산성 도구입니다</p>
+                <p className="text-[1.55rem] text-slate-300">완벽하진 않아도, 충분히 강력합니다</p>
               </div>
             </div>
           </div>
@@ -747,7 +745,7 @@ export default function Home() {
             <div className="flex flex-col items-center text-center">
               <h2 className="deck-title">Q&A</h2>
               <p className="deck-pretty mt-6 max-w-[48ch] text-[1.32rem] leading-[1.52] text-slate-300">
-                가장 궁금한 것부터 질문해 주세요. 도구 추천, 실무 활용, 프롬프트 작성, 위험성까지 무엇이든 괜찮습니다.
+                궁금한 것부터 바로 물어보세요. 도구, 활용, 프롬프트, 위험성까지 다 괜찮습니다.
               </p>
             </div>
             <div className="deck-panel items-center justify-center text-center">
@@ -765,7 +763,7 @@ export default function Home() {
             <div className="flex flex-col items-center text-center">
               <h2 className="deck-title">감사합니다</h2>
               <p className="deck-pretty mt-6 max-w-[46ch] text-[1.34rem] leading-[1.55] text-slate-300">
-                AI와 함께 일하는 시대는 이미 시작됐습니다. 오늘의 목표는 어렵게 배우는 것이 아니라, 직접 써보고 검토하는 감각을 만드는 것이었습니다.
+                목표는 잘 아는 것이 아니라, 먼저 써보고 검토하는 감각이었습니다.
               </p>
             </div>
             <div className="deck-panel gap-5">

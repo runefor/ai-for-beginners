@@ -55,11 +55,11 @@ const ELEMENTS: {
 ];
 
 const QUALITY_LEVELS = [
-  { pct: 8, color: "bg-rose-400", textColor: "text-rose-300", label: "아직 모호해요" },
-  { pct: 34, color: "bg-amber-400", textColor: "text-amber-200", label: "목표가 보이기 시작합니다" },
-  { pct: 67, color: "bg-cyan-300", textColor: "text-cyan-200", label: "실행 조건이 잡히고 있어요" },
-  { pct: 100, color: "bg-emerald-300", textColor: "text-emerald-200", label: "실행 가능한 프롬프트입니다" },
-  { pct: 100, color: "bg-amber-300", textColor: "text-amber-200", label: "역할까지 더해져 톤이 선명해졌어요" },
+  { pct: 8, color: "bg-rose-400", textColor: "text-rose-300", label: "아직 흐립니다" },
+  { pct: 34, color: "bg-amber-400", textColor: "text-amber-200", label: "목표가 보입니다" },
+  { pct: 67, color: "bg-cyan-300", textColor: "text-cyan-200", label: "조건이 잡혔습니다" },
+  { pct: 100, color: "bg-emerald-300", textColor: "text-emerald-200", label: "바로 쓸 수 있습니다" },
+  { pct: 100, color: "bg-amber-300", textColor: "text-amber-200", label: "톤까지 선명합니다" },
 ];
 
 const BASE_RESPONSE = `1. 전략명: 출근 전 15초 루틴 릴스
@@ -132,7 +132,7 @@ export default function PromptCraftingDemo() {
       className: "text-fuchsia-200",
       text: active.goal
         ? "신제품 세럼 런칭을 위한 인스타그램 마케팅 아이디어 3개를 제안해줘."
-        : "무엇을 얻고 싶은지 먼저 적습니다.",
+        : "먼저 목표를 씁니다.",
     },
     {
       key: "context",
@@ -141,7 +141,7 @@ export default function PromptCraftingDemo() {
       className: "text-emerald-200",
       text: active.context
         ? "브랜드는 비건 스킨케어이고, 타깃은 20대 직장인 여성이다. 목표는 첫 달 인지도 확보와 프로필 방문 증가이며, 월 예산은 100만원이다."
-        : "대상, 상황, 예산, 목적 같은 조건을 더합니다.",
+        : "상황과 조건을 붙입니다.",
     },
     {
       key: "format",
@@ -150,7 +150,7 @@ export default function PromptCraftingDemo() {
       className: "text-cyan-200",
       text: active.format
         ? "결과는 3개 전략으로 정리하고, 각 전략마다 전략명, 핵심 아이디어, 예상 효과, 실행 포인트를 포함해줘. 각 항목은 두 문장 이내로 쓰고 모호한 표현은 피해줘."
-        : "받고 싶은 출력 형식과 제약을 지정합니다.",
+        : "출력 모양을 정합니다.",
     },
   ];
 
@@ -160,14 +160,14 @@ export default function PromptCraftingDemo() {
     className: "text-amber-200",
     text: active.role
       ? "너는 D2C 뷰티 브랜드를 담당하는 그로스 마케터야."
-      : "톤이나 관점이 중요할 때만 추가합니다.",
+      : "역할은 필요할 때만 붙입니다.",
   };
 
   return (
     <div className="mx-auto flex h-full min-h-0 w-full max-w-5xl flex-col gap-2.5">
       <div className="rounded-[1.6rem] border border-white/10 bg-white/4 p-4">
         <div className="mb-2 flex items-center gap-2 text-sm text-slate-500">
-          <span>💬</span> 프롬프트 미리보기
+          <span>💬</span> 프롬프트 한 줄 설계
         </div>
         <div className="space-y-2 text-[0.92rem] leading-relaxed">
           {promptLines.map((line) => (
@@ -233,7 +233,7 @@ export default function PromptCraftingDemo() {
         <div className="animate-fade-slide-up flex max-h-[15.5rem] min-h-0 flex-1 flex-col overflow-hidden rounded-[1.6rem] border border-cyan-400/16 bg-[linear-gradient(180deg,rgba(7,30,43,0.96),rgba(4,19,31,0.9))] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
           <div className="flex items-center justify-between border-b border-cyan-400/10 px-4 py-3">
             <div className="flex items-center gap-2 text-sm text-cyan-300">
-              <span>🤖</span> AI 응답
+              <span>🤖</span> 응답 초안
             </div>
             <div className="rounded-full border border-cyan-400/14 bg-cyan-950/40 px-2.5 py-1 text-[0.7rem] font-semibold tracking-[0.18em] text-cyan-100/75">
               RESULT VIEW
@@ -242,7 +242,7 @@ export default function PromptCraftingDemo() {
           <div className="relative min-h-0 flex-1">
             <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-6 bg-linear-to-b from-[#071e2b] to-transparent" />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex h-10 items-end bg-linear-to-t from-[#04131f] via-[#04131f]/85 to-transparent px-4 pb-2">
-              <span className="text-[0.72rem] tracking-[0.12em] text-cyan-100/45">긴 응답은 아래로 이어집니다</span>
+              <span className="text-[0.72rem] tracking-[0.12em] text-cyan-100/45">아래로 더 이어집니다</span>
             </div>
             <div className="prompt-scrollbar h-full min-h-0 overflow-y-auto overflow-x-hidden whitespace-pre-line px-4 pb-8 pt-3 text-[0.92rem] leading-relaxed text-slate-200">
               <TypingEffect key={typingKey} text={aiResponse} speed={10} />

@@ -57,7 +57,7 @@ export default function AILimitationsShowcase() {
         <div className="relative min-h-[430px] rounded-[1.8rem] border border-white/10 bg-white/4 p-6">
           <h3 className="mb-1 text-2xl font-semibold text-rose-300">환각 (Hallucination)</h3>
           <p className="mb-5 text-base text-slate-500">
-            2023년 미국 변호사가 ChatGPT가 만든 가짜 판례를 법원에 제출한 사례가 대표적입니다.
+            가짜 판례 제출 사건이 대표 사례입니다.
           </p>
           <div className="space-y-4">
             <div className="flex justify-end">
@@ -91,7 +91,7 @@ export default function AILimitationsShowcase() {
               <div className="animate-stamp -rotate-12 rounded-[1.5rem] border-4 border-rose-500 bg-rose-950/92 px-8 py-5 text-center">
                 <p className="text-4xl font-black text-rose-400">FAKE</p>
                 <p className="mt-1 text-xl font-bold text-rose-200">가짜 판례 6건 전부 허구</p>
-                <p className="mt-2 text-sm text-slate-300">답이 유창하다고 사실인 것은 아닙니다.</p>
+                <p className="mt-2 text-sm text-slate-300">유창해도 허구일 수 있습니다.</p>
               </div>
             </div>
           ) : null}
@@ -112,7 +112,7 @@ export default function AILimitationsShowcase() {
         <div className="relative min-h-[430px] rounded-[1.8rem] border border-white/10 bg-white/4 p-6">
           <h3 className="mb-1 text-2xl font-semibold text-rose-300">편향 (Bias)</h3>
           <p className="mb-6 text-base text-slate-500">
-            Amazon의 AI 채용 도구가 여성 지원자를 체계적으로 낮게 평가한 사례가 유명합니다.
+            Amazon 채용 도구 사례가 가장 유명합니다.
           </p>
 
           <div className="mx-auto max-w-2xl space-y-8">
@@ -151,7 +151,7 @@ export default function AILimitationsShowcase() {
             {steps.bias >= 2 ? (
               <div className="flex flex-col items-center gap-2 rounded-[1.4rem] border border-rose-400/18 bg-rose-950/20 p-5">
                 <div className="text-3xl font-black text-rose-300">35점 차이</div>
-                <p className="text-center text-lg text-slate-200">동일 능력의 지원자인데도 성별에 따라 점수가 달랐습니다.</p>
+                <p className="text-center text-lg text-slate-200">같은 실력이어도 기준이 흔들렸습니다.</p>
                 <p className="text-sm text-slate-500">Amazon은 이 시스템을 폐기했습니다.</p>
               </div>
             ) : null}
@@ -224,7 +224,7 @@ export default function AILimitationsShowcase() {
                     제 학습 데이터에는 2024 올림픽 결과가 포함되어 있지 않습니다.
                   </div>
                 </div>
-                <p className="text-center text-sm text-slate-500">그래서 최신 정보가 중요하면 검색, 출처, 실시간 연결이 필요합니다.</p>
+                <p className="text-center text-sm text-slate-500">최신 정보는 검색과 연결이 있어야 잡힙니다.</p>
               </div>
             ) : null}
           </div>

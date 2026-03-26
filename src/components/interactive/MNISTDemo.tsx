@@ -76,7 +76,7 @@ export default function MNISTDemo() {
     return (
       <div ref={rootRef} className="flex flex-col items-center gap-4 py-12">
         <div className="h-10 w-10 rounded-full border-2 border-white/12 border-t-cyan-300/70" />
-        <p className="text-xl text-slate-300">이 슬라이드가 열리면 모델을 준비합니다.</p>
+        <p className="text-xl text-slate-300">슬라이드가 열리면 바로 준비합니다.</p>
       </div>
     );
   }
