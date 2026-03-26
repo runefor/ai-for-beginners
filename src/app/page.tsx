@@ -35,6 +35,10 @@ const StarterToolkitShowcase = dynamic(
   () => import('@/components/interactive/StarterToolkitShowcase'),
   { ssr: false }
 );
+const ClaudeCoworkSpotlight = dynamic(
+  () => import('@/components/interactive/ClaudeCoworkSpotlight'),
+  { ssr: false }
+);
 const PromptCraftingDemo = dynamic(
   () => import('@/components/interactive/PromptCraftingDemo'),
   { ssr: false }
@@ -525,31 +529,16 @@ export default function Home() {
         </div>
       </Slide>
 
-      <Slide dataBackgroundColor="#081425">
-        <div className="deck-shell flex h-full flex-col gap-8">
-          <SectionHeader
-            eyebrow="Agent Examples"
-            title="최신 AI 비서 / 에이전트 사례"
-          />
-          <div className="grid grid-cols-3 gap-5">
-            {[
-              ['🦞', 'OpenClaw', '오픈형 개인 비서', '브라우저, 메신저, 스킬 연결을 로컬에서 다루는 실험형 접근.', '강력하지만 권한 관리와 검토가 핵심입니다.'],
-              ['🤖', 'Claude Cowork', '업무 동료형 AI', '데스크톱 맥락 안에서 파일을 읽고 정리하며 다음 작업까지 이어갑니다.', '채팅창 안이 아니라 실제 업무 화면 안에서 같이 일하는 개념이 포인트입니다.'],
-              ['🧭', 'ChatGPT agent', '조사 + 실행 결합형', '웹 탐색, 폼 입력, 정리, 앱 연동으로 결과물까지 이어지는 대표 흐름.', '답변형 AI에서 실행형 AI로 이동하는 상징적인 사례입니다.'],
-            ].map(([icon, title, subtitle, summary, caution]) => (
-              <AccentCard key={title} className="min-h-[24rem]">
-                <div className="flex items-start justify-between gap-4">
-                  <span className="text-6xl">{icon}</span>
-                  <span className="deck-chip">CASE</span>
-                </div>
-                <div className="mt-7">
-                  <p className="text-[2.1rem] font-semibold text-white">{title}</p>
-                  <p className="mt-2 text-xl text-cyan-100">{subtitle}</p>
-                </div>
-                <p className="mt-6 text-[1.22rem] leading-relaxed text-slate-300">{summary}</p>
-                <div className="deck-callout mt-auto">{caution}</div>
-              </AccentCard>
-            ))}
+      <Slide dataBackgroundColor="#081425" className="flex h-full flex-col justify-start pt-4">
+        <div className="deck-shell flex h-full flex-col gap-3 !p-5">
+          <div className="flex flex-col gap-1.5">
+            <Eyebrow>This Year's Direction</Eyebrow>
+            <h2 className="text-[2.8rem] leading-none font-semibold tracking-[-0.04em] text-white">
+              올해는 이런 서비스가 더 강화될 것 같습니다
+            </h2>
+          </div>
+          <div className="min-h-0 flex-1">
+            <ClaudeCoworkSpotlight />
           </div>
         </div>
       </Slide>
