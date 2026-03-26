@@ -11,10 +11,6 @@ const TypingEffect = dynamic(
   () => import('@/components/interactive/TypingEffect'),
   { ssr: false }
 );
-const FlipCard = dynamic(
-  () => import('@/components/interactive/FlipCard'),
-  { ssr: false }
-);
 const KnowledgeTest = dynamic(
   () => import('@/components/interactive/KnowledgeTest'),
   { ssr: false }
@@ -445,44 +441,86 @@ export default function Home() {
       </Slide>
 
       <Slide dataBackgroundColor="#06101b">
-        <div className="deck-shell flex h-full flex-col gap-8">
+        <div className="deck-shell flex h-full flex-col gap-6">
           <SectionHeader
             eyebrow="Creative Surface"
             title="AI가 만드는 세상"
           />
-          <div className="grid grid-cols-4 gap-5">
-            {[
-              ['🎨', '이미지', 'Visual', '브랜드 키비주얼, 포스터, 썸네일 초안을 몇 분 안에 만들 수 있습니다.', 'ChatGPT / Midjourney', '아이디어 스케치가 아니라 실제 시안 제작 단계까지 바로 들어갑니다.'],
-              ['🎥', '영상', 'Motion', '짧은 설명만으로 무드 영상, 광고 콘티, 장면 테스트를 생성합니다.', 'Veo / Sora', '문장으로 카메라 무빙과 장면 분위기를 지정하는 시대가 됐습니다.'],
-              ['🎵', '음성', 'Voice', '나레이션, 더빙, 음성 샘플을 빠르게 만들어 실험 속도를 높입니다.', 'ElevenLabs', '톤과 감정, 억양까지 다루면서 다국어 제작의 비용을 크게 줄입니다.'],
-              ['📱', '앱', 'Build', '요구사항을 문장으로 주고 인터페이스 시안과 프로토타입을 바로 봅니다.', 'Lovable', '개발을 대체한다기보다 기획과 시안 작업을 전진시키는 역할로 강합니다.'],
-            ].map(([icon, title, chip, detail, backTitle, backDesc]) => (
-              <FlipCard
-                key={title}
-                className="h-[22rem]"
-                front={
-                  <>
-                    <div className="flex w-full items-start justify-between">
-                      <span className="text-6xl">{icon}</span>
-                      <span className="deck-chip">{chip}</span>
+          <div className="grid min-h-0 flex-1 grid-cols-[0.42fr_0.58fr] gap-6">
+            <div className="deck-panel justify-between border-white/10 bg-linear-to-b from-slate-900/92 to-[#08111b] px-7 py-7">
+              <div>
+                <Eyebrow>ONE PROMPT, MANY FORMATS</Eyebrow>
+                <p className="mt-5 text-[3rem] font-semibold leading-[1.08] tracking-[-0.04em] text-white">
+                  이제 AI는
+                  <br />
+                  한 가지 답이 아니라
+                  <br />
+                  <span className="text-cyan-200">여러 형태의 초안</span>을 만듭니다
+                </p>
+                <div className="mt-8 space-y-3">
+                  {[
+                    ['이미지', '포스터, 썸네일, 키비주얼'],
+                    ['영상', '짧은 콘티, 샷 아이디어'],
+                    ['음성', '나레이션, 더빙 샘플'],
+                    ['앱', '화면 시안, 프로토타입'],
+                  ].map(([label, desc]) => (
+                    <div
+                      key={label}
+                      className="flex items-center justify-between rounded-[1.15rem] border border-white/8 bg-black/16 px-4 py-3"
+                    >
+                      <span className="text-[1.02rem] font-semibold tracking-[0.16em] text-slate-400 uppercase">{label}</span>
+                      <span className="text-[1.02rem] text-slate-200">{desc}</span>
                     </div>
-                    <div className="mt-8 w-full text-left">
-                      <p className="text-[2rem] font-semibold text-white">{title}</p>
-                      <p className="mt-4 text-[1.18rem] leading-relaxed text-slate-300">{detail}</p>
+                  ))}
+                </div>
+              </div>
+              <div className="deck-callout mt-6">
+                중요한 건 완성본 자체보다, <span className="text-white">시작 속도와 비교 가능한 초안</span>을 빠르게 확보하는 점입니다.
+              </div>
+            </div>
+
+            <div className="deck-panel min-h-0 overflow-hidden border-cyan-400/14 bg-linear-to-br from-[#101827] via-[#09111c] to-[#050913] p-5">
+              <div className="flex h-full flex-col justify-center rounded-[1.8rem] border border-white/8 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.08),transparent_34%),linear-gradient(180deg,rgba(2,6,23,0.76),rgba(2,6,23,0.96))] px-7 py-7">
+                <div className="mx-auto w-full max-w-[34rem] rounded-[1.5rem] border border-cyan-300/16 bg-cyan-950/18 px-5 py-5 shadow-[0_18px_60px_rgba(8,145,178,0.08)]">
+                  <p className="text-[0.76rem] font-semibold tracking-[0.24em] text-cyan-100/78 uppercase">Starting Point</p>
+                  <p className="mt-3 text-[1.45rem] leading-[1.45] text-white">
+                    &quot;신제품 런칭 아이디어를 빠르게 시안으로 보고 싶다&quot;
+                  </p>
+                </div>
+
+                <div className="mx-auto h-10 w-px bg-linear-to-b from-cyan-300/55 to-transparent" />
+
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    ['이미지', '포스터 / 썸네일'],
+                    ['영상', '짧은 콘티 / 샷'],
+                    ['음성', '나레이션 / 더빙'],
+                    ['앱', '화면 시안 / 프로토타입'],
+                  ].map(([title, desc], index) => (
+                    <div
+                      key={title}
+                      className={`rounded-[1.35rem] border px-5 py-5 ${
+                        index === 0
+                          ? 'border-amber-300/18 bg-amber-950/14'
+                          : index === 1
+                            ? 'border-cyan-300/18 bg-cyan-950/14'
+                            : index === 2
+                              ? 'border-slate-300/12 bg-slate-900/42'
+                              : 'border-rose-300/18 bg-rose-950/12'
+                      }`}
+                    >
+                      <p className="text-[0.76rem] font-semibold tracking-[0.2em] text-slate-400 uppercase">Output</p>
+                      <p className="mt-3 text-[1.7rem] font-semibold text-white">{title}</p>
+                      <p className="mt-2 text-[1.02rem] leading-relaxed text-slate-300">{desc}</p>
                     </div>
-                  </>
-                }
-                back={
-                  <>
-                    <Eyebrow>{chip}</Eyebrow>
-                    <div className="mt-6 w-full text-left">
-                      <p className="text-[1.8rem] font-semibold text-white">{backTitle}</p>
-                      <p className="mt-4 text-[1.18rem] leading-relaxed text-slate-100">{backDesc}</p>
-                    </div>
-                  </>
-                }
-              />
-            ))}
+                  ))}
+                </div>
+
+                <p className="mt-6 text-center text-[1rem] leading-relaxed text-slate-300">
+                  핵심은 한 번에 잘 만드는 것이 아니라, <span className="text-cyan-200">여러 초안을 빠르게 비교</span>하면서 방향을 잡는 것입니다.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </Slide>
