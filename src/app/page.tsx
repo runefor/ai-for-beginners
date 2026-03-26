@@ -623,47 +623,88 @@ export default function Home() {
       </Slide>
 
       <Slide dataBackgroundColor="#06101b">
-        <div className="deck-shell flex h-full flex-col gap-8">
-          <SectionHeader
-            eyebrow="Take Action Tonight"
-            title="오늘 집에 가서 해보세요"
-          />
-          <div className="grid flex-1 grid-cols-2 gap-5">
+        <div className="deck-shell flex h-full flex-col gap-2 !px-8 !pt-5 !pb-6">
+          <div className="-mt-1 flex flex-col gap-1">
+            <Eyebrow>Take Action Tonight</Eyebrow>
+            <h2 className="text-[4.15rem] font-semibold leading-[1.02] tracking-[-0.05em] text-white">
+              오늘 집에 가서 해보세요
+            </h2>
+            <p className="text-[1.14rem] leading-[1.45] text-slate-300">
+              가장 쉬운 것 하나만 해봐도 AI를 보는 감각이 달라집니다.
+            </p>
+          </div>
+          <div className="-mt-6 grid flex-1 grid-cols-2 gap-4">
             {[
-              ['Claude', '5 min', '아무 주제로 3문장 요약해보기', '생각보다 얼마나 자연스럽게 답하는지 감을 잡는 첫 연습'],
-              ['Perplexity', '7 min', '궁금한 주제 하나 조사해보기', '답만 보지 말고 출처까지 같이 보는 습관 만들기'],
-              ['NotebookLM', '10 min', 'PDF 한 개 올리고 질문해보기', '내 자료를 붙였을 때 정확도가 달라지는 경험 만들기'],
-              ['Gamma', '8 min', '발표 주제로 초안 한 번 만들어보기', '빈 화면에서 시작하는 시간을 줄이는 감각 익히기'],
-            ].map(([tool, time, action, note], index) => (
+              ['Claude', '5 min', '아무 주제로 3문장 요약해보기', '가장 쉬운 시작', '예: 기사, 유튜브 영상, 발표 메모', '생각보다 얼마나 자연스럽게 답하는지 감을 잡는 첫 연습'],
+              ['Perplexity', '7 min', '궁금한 주제 하나 조사해보기', '출처 같이 보기', '예: AI 에이전트, 금리, 전기차', '답만 보지 말고 출처까지 함께 확인하는 습관 만들기'],
+              ['NotebookLM', '10 min', 'PDF 한 개 올리고 질문해보기', '내 자료 붙이기', '예: 수업자료, 기사 PDF, 회의 문서', '내 자료를 붙였을 때 정확도가 달라지는 경험 만들기'],
+              ['Gamma', '8 min', '발표 주제로 초안 한 번 만들어보기', '빈 화면 깨기', '예: 자기소개, 기획안, 수업 발표', '처음 시작하는 시간을 줄이는 감각 익히기'],
+            ].map(([tool, time, action, tag, example, note], index) => (
               <AccentCard
                 key={tool}
-                className="min-h-[15.5rem] justify-between border-cyan-400/14 bg-linear-to-br from-slate-900/88 via-[#07111d] to-cyan-950/18"
+                className={`min-h-[14.6rem] gap-4 bg-linear-to-br from-slate-900/88 via-[#07111d] to-cyan-950/18 ${
+                  index === 0
+                    ? 'border-amber-300/24 bg-linear-to-br from-[#16110a] via-[#0b1520] to-cyan-950/16 shadow-[0_18px_54px_rgba(245,158,11,0.08)]'
+                    : 'border-cyan-400/14'
+                }`}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-center gap-4">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-400/18 bg-cyan-950/26 text-lg font-semibold text-cyan-100">
+                    <span className={`flex h-12 w-12 items-center justify-center rounded-2xl border text-lg font-semibold ${
+                      index === 0
+                        ? 'border-amber-300/28 bg-amber-950/30 text-amber-100'
+                        : 'border-cyan-400/18 bg-cyan-950/26 text-cyan-100'
+                    }`}>
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <div>
+                    <div className="flex items-center gap-3">
                       <p className="text-[1.75rem] font-semibold text-white">{tool}</p>
-                      <p className="mt-1 text-sm font-semibold tracking-[0.16em] text-slate-500 uppercase">
-                        Tonight Action
-                      </p>
+                      <span className={`rounded-full px-3 py-1 text-[0.76rem] font-semibold tracking-[0.08em] ${
+                        index === 0
+                          ? 'border border-amber-300/20 bg-amber-950/24 text-amber-100'
+                          : 'border border-white/10 bg-white/5 text-slate-300'
+                      }`}>
+                        {tag}
+                      </span>
                     </div>
                   </div>
-                  <span className="rounded-full border border-cyan-400/18 bg-cyan-950/30 px-3 py-1 text-sm font-semibold text-cyan-100">
+                  <span className="rounded-full border border-cyan-400/18 bg-cyan-950/30 px-3.5 py-1.5 text-[0.9rem] font-semibold text-cyan-100">
                     {time}
                   </span>
                 </div>
 
-                <p className="deck-balance max-w-[16ch] text-[2.1rem] font-semibold leading-[1.15] text-cyan-50">
-                  {action}
-                </p>
+                <div className="grid grid-cols-[1.18fr_0.82fr] items-start gap-4 pt-1">
+                  <div className="flex min-h-0 items-start pt-6">
+                    <p className="deck-balance max-w-[14ch] text-[2.22rem] font-semibold leading-[1.16] text-cyan-50">
+                      {action}
+                    </p>
+                  </div>
 
-                <div className="rounded-[1.25rem] border border-white/8 bg-black/18 px-4 py-3">
-                  <p className="deck-pretty text-[1.02rem] leading-[1.5] text-slate-300">
-                    {note}
-                  </p>
+                  <div
+                    className={`flex min-h-[10.6rem] flex-col justify-between rounded-[1.2rem] border px-4 py-3.5 ${
+                      index === 0
+                        ? 'border-amber-300/14 bg-amber-950/10'
+                        : 'border-white/8 bg-black/16'
+                    }`}
+                  >
+                    <div>
+                      <p className="text-[0.82rem] font-semibold tracking-[0.08em] text-slate-400">
+                        이렇게 시작
+                      </p>
+                      <p className="mt-2.5 text-[1.02rem] leading-[1.48] text-slate-200">
+                        {example}
+                      </p>
+                    </div>
+
+                    <div className="mt-3.5 border-t border-white/8 pt-3.5">
+                      <p className="text-[0.82rem] font-semibold tracking-[0.08em] text-slate-400">
+                        이걸 느껴보세요
+                      </p>
+                      <p className="mt-2.5 text-[1.02rem] leading-[1.48] text-slate-100">
+                        {note}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </AccentCard>
             ))}
