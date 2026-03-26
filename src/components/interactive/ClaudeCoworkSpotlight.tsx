@@ -36,8 +36,8 @@ export default function ClaudeCoworkSpotlight() {
 
   return (
     <div className="relative flex h-full min-h-0 flex-col">
-      <div className="grid min-h-0 flex-1 grid-cols-[0.92fr_1.08fr] gap-5">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-linear-to-b from-slate-950/96 via-[#07111d] to-[#040913] p-7 shadow-[0_30px_90px_rgba(0,0,0,0.34)]">
+      <div className="grid min-h-0 flex-1 grid-cols-[0.92fr_1.08fr] gap-4">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-linear-to-b from-slate-950/96 via-[#07111d] to-[#040913] p-5 shadow-[0_30px_90px_rgba(0,0,0,0.34)]">
           <div className="pointer-events-none absolute -top-14 -left-12 h-44 w-44 rounded-full bg-cyan-400/12 blur-3xl" />
           <div className="pointer-events-none absolute right-0 bottom-0 h-56 w-56 rounded-full bg-blue-500/10 blur-3xl" />
 
@@ -47,58 +47,58 @@ export default function ClaudeCoworkSpotlight() {
                 <p className="text-sm font-semibold tracking-[0.2em] text-cyan-100 uppercase">
                   {claudeCoworkSpotlight.label}
                 </p>
-                <h3 className="mt-3 text-[3.2rem] font-semibold leading-[0.96] tracking-[-0.05em] text-white">
+                <h3 className="mt-2 text-[2.85rem] font-semibold leading-[0.96] tracking-[-0.05em] text-white">
                   {claudeCoworkSpotlight.serviceName}
                 </h3>
-                <p className="mt-4 max-w-[26ch] text-[1.2rem] leading-[1.55] text-slate-200">
+                <p className="mt-3 max-w-[25ch] text-[1.05rem] leading-[1.5] text-slate-200">
                   {claudeCoworkSpotlight.shortDescription}
                 </p>
               </div>
-              <div className="rounded-[1.4rem] border border-cyan-400/16 bg-cyan-950/25 px-4 py-3 text-right">
+              <div className="rounded-[1.25rem] border border-cyan-400/16 bg-cyan-950/25 px-4 py-2.5 text-right">
                 <p className="text-[11px] font-semibold tracking-[0.16em] text-slate-400 uppercase">Core Message</p>
-                <p className="mt-2 text-lg font-semibold leading-tight text-cyan-50">AI 동료는 채팅창 안이 아니라 업무 화면 안으로 들어옵니다</p>
+                <p className="mt-1.5 text-[1rem] font-semibold leading-[1.35] text-cyan-50">AI 동료는 채팅창 안이 아니라 업무 화면 안으로 들어옵니다</p>
               </div>
             </div>
 
-            <div className="mt-6 grid grid-cols-[1.02fr_0.98fr] gap-4">
-              <div className="rounded-[1.4rem] border border-white/8 bg-black/18 px-5 py-5">
+            <div className="mt-4 grid grid-cols-[1.02fr_0.98fr] gap-3">
+              <div className="rounded-[1.25rem] border border-white/8 bg-black/18 px-4 py-4">
                 <p className="text-[12px] font-semibold tracking-[0.16em] text-slate-400 uppercase">이 서비스는 무엇인가</p>
-                <p className="mt-3 break-keep text-[1.02rem] leading-[1.68] text-slate-200">
+                <p className="mt-2.5 break-keep text-[0.95rem] leading-[1.58] text-slate-200">
                   {claudeCoworkSpotlight.definition}
                 </p>
               </div>
-              <div className="rounded-[1.4rem] border border-cyan-400/16 bg-linear-to-br from-cyan-950/28 to-slate-950 px-5 py-5">
+              <div className="rounded-[1.25rem] border border-cyan-400/16 bg-linear-to-br from-cyan-950/28 to-slate-950 px-4 py-4">
                 <p className="text-[12px] font-semibold tracking-[0.16em] text-cyan-100 uppercase">왜 지금 중요하나</p>
-                <p className="mt-3 break-keep text-[1.02rem] leading-[1.68] text-cyan-50">
+                <p className="mt-2.5 break-keep text-[0.95rem] leading-[1.58] text-cyan-50">
                   {claudeCoworkSpotlight.whyNow}
                 </p>
               </div>
             </div>
 
-            <div className="mt-5 grid grid-cols-3 gap-3">
+            <div className="mt-4 grid grid-cols-3 gap-3">
               {claudeCoworkSpotlight.strengths.map((strength) => (
                 <div
                   key={strength}
-                  className="rounded-[1.3rem] border border-white/8 bg-white/4 px-4 py-4 text-[0.97rem] leading-[1.58] text-slate-200"
+                  className="rounded-[1.15rem] border border-white/8 bg-white/4 px-3.5 py-3 text-[0.9rem] leading-[1.5] text-slate-200"
                 >
                   {strength}
                 </div>
               ))}
             </div>
 
-            <div className="mt-auto pt-5">
-              <div className="rounded-[1.5rem] border border-white/8 bg-black/18 px-5 py-4">
+            <div className="mt-auto pt-4">
+              <div className="rounded-[1.35rem] border border-white/8 bg-black/18 px-4 py-3.5">
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <p className="text-[12px] font-semibold tracking-[0.16em] text-slate-400 uppercase">한 문장 정리</p>
-                    <p className="mt-2 text-[1.08rem] font-semibold leading-[1.5] text-white">
+                    <p className="mt-1.5 text-[0.98rem] font-semibold leading-[1.45] text-white">
                       Claude Cowork는 답하는 AI가 아니라, 실제 업무 환경에서 다음 행동까지 이어가는 AI를 보여주는 대표 사례입니다.
                     </p>
                   </div>
                   <button
                     type="button"
                     onClick={() => setOpen(true)}
-                    className="shrink-0 rounded-full border border-cyan-300/24 bg-cyan-950/40 px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan-300/40 hover:bg-cyan-950/60"
+                    className="shrink-0 rounded-full border border-cyan-300/24 bg-cyan-950/40 px-4 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-cyan-300/40 hover:bg-cyan-950/60"
                   >
                     시연 보기
                   </button>
@@ -108,7 +108,7 @@ export default function ClaudeCoworkSpotlight() {
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-[2rem] border border-cyan-400/14 bg-linear-to-br from-[#081522] via-[#07111b] to-[#030811] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.3)]">
+        <div className="relative overflow-hidden rounded-[2rem] border border-cyan-400/14 bg-linear-to-br from-[#081522] via-[#07111b] to-[#030811] p-5 shadow-[0_30px_90px_rgba(0,0,0,0.3)]">
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-cyan-300/35 to-transparent" />
           <div className="pointer-events-none absolute top-10 right-10 h-36 w-36 rounded-full border border-cyan-400/10" />
           <div className="pointer-events-none absolute right-24 bottom-16 h-24 w-24 rounded-full border border-white/6" />
@@ -117,7 +117,7 @@ export default function ClaudeCoworkSpotlight() {
             <div className="flex items-center justify-between gap-4">
               <div>
                 <p className="text-[12px] font-semibold tracking-[0.18em] text-slate-500 uppercase">What You See In The Demo</p>
-                <h4 className="mt-2 text-[2rem] font-semibold leading-[1.02] tracking-[-0.04em] text-white">
+                <h4 className="mt-2 text-[1.78rem] font-semibold leading-[1.02] tracking-[-0.04em] text-white">
                   업무 화면 안에서
                   <br />
                   AI가 같이 일하는 방식
@@ -128,8 +128,8 @@ export default function ClaudeCoworkSpotlight() {
               </div>
             </div>
 
-            <div className="mt-5 rounded-[1.7rem] border border-white/8 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.1),transparent_35%),linear-gradient(180deg,rgba(8,15,26,0.95),rgba(2,8,16,0.96))] p-5">
-              <div className="flex items-center justify-between border-b border-white/8 pb-4">
+            <div className="mt-4 rounded-[1.5rem] border border-white/8 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.1),transparent_35%),linear-gradient(180deg,rgba(8,15,26,0.95),rgba(2,8,16,0.96))] p-4">
+              <div className="flex items-center justify-between border-b border-white/8 pb-3">
                 <div className="flex items-center gap-2">
                   <span className="h-2.5 w-2.5 rounded-full bg-rose-400/85" />
                   <span className="h-2.5 w-2.5 rounded-full bg-amber-300/85" />
@@ -138,9 +138,9 @@ export default function ClaudeCoworkSpotlight() {
                 <span className="font-mono text-[11px] tracking-[0.16em] text-cyan-100/70">cowork workspace</span>
               </div>
 
-              <div className="mt-4 grid grid-cols-[0.94fr_1.06fr] gap-4">
+              <div className="mt-3 grid grid-cols-[0.94fr_1.06fr] gap-3">
                 <div className="space-y-3">
-                  <div className="rounded-[1.2rem] border border-white/8 bg-white/4 px-4 py-4">
+                  <div className="rounded-[1.1rem] border border-white/8 bg-white/4 px-4 py-3">
                     <p className="text-[11px] font-semibold tracking-[0.16em] text-slate-500 uppercase">연결된 맥락</p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {['Files', 'Docs', 'Browser', 'Connectors'].map((item) => (
@@ -154,14 +154,11 @@ export default function ClaudeCoworkSpotlight() {
                     </div>
                   </div>
 
-                  <div className="rounded-[1.2rem] border border-cyan-400/14 bg-cyan-950/18 px-4 py-4">
+                  <div className="rounded-[1.1rem] border border-cyan-400/14 bg-cyan-950/18 px-4 py-3">
                     <p className="text-[11px] font-semibold tracking-[0.16em] text-cyan-100 uppercase">영상 속 핵심 장면</p>
                     <div className="mt-3 grid grid-cols-2 gap-2">
                       {claudeCoworkSpotlight.moments.map((moment) => (
-                        <div
-                          key={moment}
-                          className="rounded-[1rem] border border-white/8 bg-black/18 px-3 py-2 text-sm font-medium text-slate-100"
-                        >
+                        <div key={moment} className="rounded-[0.95rem] border border-white/8 bg-black/18 px-3 py-2 text-[0.82rem] font-medium text-slate-100">
                           {moment}
                         </div>
                       ))}
@@ -169,18 +166,18 @@ export default function ClaudeCoworkSpotlight() {
                   </div>
                 </div>
 
-                <div className="rounded-[1.4rem] border border-white/8 bg-black/18 px-4 py-4">
+                <div className="rounded-[1.2rem] border border-white/8 bg-black/18 px-4 py-3">
                   <p className="text-[11px] font-semibold tracking-[0.16em] text-slate-500 uppercase">AI가 맡는 흐름</p>
-                  <div className="mt-4 space-y-3">
+                  <div className="mt-3 space-y-2.5">
                     {claudeCoworkSpotlight.workflow.map((step, index) => (
                       <div
                         key={step}
-                        className="flex items-start gap-3 rounded-[1rem] border border-white/8 bg-white/4 px-3 py-3"
+                        className="flex items-start gap-3 rounded-[0.95rem] border border-white/8 bg-white/4 px-3 py-2.5"
                       >
                         <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-cyan-400/18 bg-cyan-950/30 text-sm font-semibold text-cyan-100">
                           {index + 1}
                         </span>
-                        <p className="text-[0.96rem] leading-[1.55] text-slate-200">{step}</p>
+                        <p className="text-[0.9rem] leading-[1.45] text-slate-200">{step}</p>
                       </div>
                     ))}
                   </div>
@@ -188,7 +185,7 @@ export default function ClaudeCoworkSpotlight() {
               </div>
             </div>
 
-            <div className="mt-4 grid grid-cols-3 gap-3">
+            <div className="mt-3 grid grid-cols-3 gap-3">
               {[
                 ['Reading', '자료를 읽고 맥락을 이해'],
                 ['Drafting', '정리와 초안을 먼저 생성'],
@@ -196,19 +193,14 @@ export default function ClaudeCoworkSpotlight() {
               ].map(([label, desc]) => (
                 <div
                   key={label}
-                  className="rounded-[1.25rem] border border-white/8 bg-white/4 px-4 py-4"
+                  className="rounded-[1.05rem] border border-white/8 bg-white/4 px-3.5 py-3"
                 >
                   <p className="text-[11px] font-semibold tracking-[0.16em] text-slate-500 uppercase">{label}</p>
-                  <p className="mt-2 text-[0.95rem] leading-[1.55] text-slate-200">{desc}</p>
+                  <p className="mt-1.5 text-[0.86rem] leading-[1.45] text-slate-200">{desc}</p>
                 </div>
               ))}
             </div>
 
-            <div className="mt-auto pt-4">
-              <p className="text-[0.98rem] leading-[1.62] text-slate-300">
-                {claudeCoworkSpotlight.videoCaption}
-              </p>
-            </div>
           </div>
         </div>
       </div>
