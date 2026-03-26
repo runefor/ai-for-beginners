@@ -1,52 +1,15 @@
-'use client';
-
-import dynamic from 'next/dynamic';
 import Slide from '@/components/presentation/Slide';
-
-const RevealPresentation = dynamic(
-  () => import('@/components/presentation/RevealPresentation'),
-  { ssr: false }
-);
-const TypingEffect = dynamic(
-  () => import('@/components/interactive/TypingEffect'),
-  { ssr: false }
-);
-const KnowledgeTest = dynamic(
-  () => import('@/components/interactive/KnowledgeTest'),
-  { ssr: false }
-);
-const AIvsHumanQuiz = dynamic(
-  () => import('@/components/interactive/AIvsHumanQuiz'),
-  { ssr: false }
-);
-const AILimitationsShowcase = dynamic(
-  () => import('@/components/interactive/AILimitationsShowcase'),
-  { ssr: false }
-);
-const GenerativeAIShowcase = dynamic(
-  () => import('@/components/interactive/GenerativeAIShowcase'),
-  { ssr: false }
-);
-const AIShiftTimeline = dynamic(
-  () => import('@/components/interactive/AIShiftTimeline'),
-  { ssr: false }
-);
-const StarterToolkitShowcase = dynamic(
-  () => import('@/components/interactive/StarterToolkitShowcase'),
-  { ssr: false }
-);
-const ClaudeCoworkSpotlight = dynamic(
-  () => import('@/components/interactive/ClaudeCoworkSpotlight'),
-  { ssr: false }
-);
-const PromptCraftingDemo = dynamic(
-  () => import('@/components/interactive/PromptCraftingDemo'),
-  { ssr: false }
-);
-const MNISTDemo = dynamic(
-  () => import('@/components/interactive/MNISTDemo'),
-  { ssr: false }
-);
+import RevealPresentation from '@/components/presentation/RevealPresentation';
+import TypingEffect from '@/components/interactive/TypingEffect';
+import KnowledgeTest from '@/components/interactive/KnowledgeTest';
+import AIvsHumanQuiz from '@/components/interactive/AIvsHumanQuiz';
+import AILimitationsShowcase from '@/components/interactive/AILimitationsShowcase';
+import GenerativeAIShowcase from '@/components/interactive/GenerativeAIShowcase';
+import AIShiftTimeline from '@/components/interactive/AIShiftTimeline';
+import StarterToolkitShowcase from '@/components/interactive/StarterToolkitShowcase';
+import ClaudeCoworkSpotlight from '@/components/interactive/ClaudeCoworkSpotlight';
+import PromptCraftingDemo from '@/components/interactive/PromptCraftingDemo';
+import MNISTDemo from '@/components/interactive/MNISTDemo';
 
 function Eyebrow({
   children,
@@ -532,7 +495,7 @@ export default function Home() {
       <Slide dataBackgroundColor="#081425" className="flex h-full flex-col justify-start pt-4">
         <div className="deck-shell flex h-full flex-col gap-3 !p-5">
           <div className="flex flex-col gap-1.5">
-            <Eyebrow>This Year's Direction</Eyebrow>
+            <Eyebrow>This Year&apos;s Direction</Eyebrow>
             <h2 className="text-[2.8rem] leading-none font-semibold tracking-[-0.04em] text-white">
               올해는 이런 서비스가 더 강화될 것 같습니다
             </h2>

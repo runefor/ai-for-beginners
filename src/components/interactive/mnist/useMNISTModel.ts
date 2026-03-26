@@ -1,30 +1,44 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import * as tf from "@tensorflow/tfjs";
+import type * as TFJS from "@tensorflow/tfjs";
 
 export interface PredictionResult {
   probabilities: number[];
   predictedDigit: number;
 }
 
-export function useMNISTModel() {
-  const [model, setModel] = useState<tf.LayersModel | null>(null);
-  const [loading, setLoading] = useState(true);
+export function useMNISTModel(enabled: boolean) {
+  const [model, setModel] = useState<TFJS.LayersModel | null>(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const modelRef = useRef<tf.LayersModel | null>(null);
+  const modelRef = useRef<TFJS.LayersModel | null>(null);
+  const tfRef = useRef<typeof import("@tensorflow/tfjs") | null>(null);
 
   useEffect(() => {
+    if (!enabled || modelRef.current) return;
+
     let cancelled = false;
+
     async function load() {
       try {
+        setLoading(true);
+        setError(null);
+
+        const tf = await import("@tensorflow/tfjs");
+        tfRef.current = tf;
+
         await tf.ready();
         const loaded = await tf.loadLayersModel("/models/mnist/model.json");
-        if (!cancelled) {
-          modelRef.current = loaded;
-          setModel(loaded);
-          setLoading(false);
+
+        if (cancelled) {
+          loaded.dispose();
+          return;
         }
+
+        modelRef.current = loaded;
+        setModel(loaded);
+        setLoading(false);
       } catch {
         if (!cancelled) {
           setError("모델을 불러올 수 없습니다");
@@ -36,12 +50,13 @@ export function useMNISTModel() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [enabled]);
 
   const predict = useCallback(
     (canvas: HTMLCanvasElement): PredictionResult | null => {
+      const tf = tfRef.current;
       const m = modelRef.current;
-      if (!m) return null;
+      if (!tf || !m) return null;
 
       const ctx = canvas.getContext("2d");
       if (!ctx) return null;
@@ -119,7 +134,7 @@ export function useMNISTModel() {
       // Run inference inside tf.tidy for tensor cleanup
       const probabilities = tf.tidy(() => {
         const tensor = tf.tensor4d(input, [1, 28, 28, 1]);
-        const prediction = m.predict(tensor) as tf.Tensor;
+        const prediction = m.predict(tensor) as TFJS.Tensor;
         return Array.from(prediction.dataSync());
       });
       const predictedDigit = probabilities.indexOf(Math.max(...probabilities));

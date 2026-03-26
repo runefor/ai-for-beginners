@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
 interface QuizItem {
@@ -68,6 +68,8 @@ const items: QuizItem[] = [
 ];
 
 export default function AIvsHumanQuiz() {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const wasPresentRef = useRef(false);
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<'ai' | 'human' | null>(null);
 
@@ -83,14 +85,27 @@ export default function AIvsHumanQuiz() {
   }
 
   useEffect(() => {
-    const handleHashChange = () => {
-      if (window.location.hash === '#/12') {
+    const root = rootRef.current;
+    const slide = root?.closest('section');
+    if (!slide) return;
+
+    const syncSlideState = () => {
+      const isPresent = slide.classList.contains('present');
+      if (isPresent && !wasPresentRef.current) {
         resetQuiz();
       }
+      wasPresentRef.current = isPresent;
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    syncSlideState();
+
+    const observer = new MutationObserver(syncSlideState);
+    observer.observe(slide, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   function handleAnswer(answer: 'ai' | 'human') {
@@ -110,7 +125,7 @@ export default function AIvsHumanQuiz() {
   const isMedia = item.type === 'image' || item.type === 'video';
 
   return (
-    <div className="flex w-full max-w-6xl flex-col items-center gap-5">
+    <div ref={rootRef} className="flex w-full max-w-6xl flex-col items-center gap-5">
       <div className="flex w-full items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="deck-pill">{current + 1} / {items.length}</span>
