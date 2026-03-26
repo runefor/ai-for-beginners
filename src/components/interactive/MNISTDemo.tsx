@@ -46,7 +46,7 @@ export default function MNISTDemo() {
   }
 
   return (
-    <div className="grid w-full max-w-6xl items-center gap-6 xl:grid-cols-[1fr_0.9fr_1fr]">
+    <div className="grid w-full max-w-6xl grid-cols-[1fr_0.9fr_1fr] items-center gap-6">
       <div className="deck-card min-h-[22rem] items-center justify-center bg-black/20">
         <DrawingCanvas onDraw={handleDraw} onClear={handleClear} />
       </div>

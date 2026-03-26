@@ -136,14 +136,14 @@ export default function AIShiftTimeline() {
   return (
     <div className="relative mx-auto flex h-full w-full max-w-[1480px] flex-col gap-4">
       <div className="rounded-full border border-cyan-500/20 bg-linear-to-r from-cyan-950/35 via-slate-950 to-slate-950 px-6 py-3 text-center shadow-[0_18px_40px_rgba(8,145,178,0.12)]">
-        <p className="text-[12px] font-semibold tracking-[0.16em] text-cyan-100 uppercase md:text-[0.95rem]">
+        <p className="text-[0.95rem] font-semibold tracking-[0.16em] text-cyan-100 uppercase">
           2025.01 - 2026.03 | 요즘 AI의 핵심은 대화가 아니라 실행입니다
         </p>
       </div>
 
       <div className="relative flex-1">
-        <div className="pointer-events-none absolute top-1/2 right-8 left-8 hidden h-px -translate-y-1/2 bg-linear-to-r from-cyan-400/0 via-cyan-400/40 to-cyan-400/0 lg:block" />
-        <div className="grid grid-cols-1 gap-3 lg:grid-cols-5">
+        <div className="pointer-events-none absolute top-1/2 right-8 left-8 h-px -translate-y-1/2 bg-linear-to-r from-cyan-400/0 via-cyan-400/40 to-cyan-400/0" />
+        <div className="grid grid-cols-5 gap-3">
           {milestones.map((milestone) => (
             <button
               key={milestone.date}
@@ -187,7 +187,7 @@ export default function AIShiftTimeline() {
           />
 
           <div
-            className="animate-fade-slide-up relative z-10 grid max-h-full w-full max-w-[1320px] gap-4 overflow-hidden rounded-[2rem] border border-cyan-400/18 bg-linear-to-b from-slate-900/96 to-[#050c16]/98 p-5 shadow-[0_30px_100px_rgba(0,0,0,0.46)] xl:grid-cols-[0.9fr_1.1fr]"
+            className="animate-fade-slide-up relative z-10 grid max-h-full w-full max-w-[1320px] grid-cols-[0.9fr_1.1fr] gap-4 overflow-hidden rounded-[2rem] border border-cyan-400/18 bg-linear-to-b from-slate-900/96 to-[#050c16]/98 p-5 shadow-[0_30px_100px_rgba(0,0,0,0.46)]"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex flex-col rounded-[1.6rem] border border-cyan-400/18 bg-cyan-950/20 p-5">

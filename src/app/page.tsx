@@ -115,7 +115,7 @@ export default function Home() {
             eyebrow="Warm-up Quiz"
             title="당신의 AI 상식은 몇 점일까요?"
           />
-          <div className="grid flex-1 gap-6 xl:grid-cols-[0.38fr_0.62fr]">
+          <div className="grid flex-1 grid-cols-[0.38fr_0.62fr] gap-6">
             <div className="deck-panel justify-between">
               <div>
                 <Eyebrow>BEFORE WE START</Eyebrow>
@@ -143,7 +143,7 @@ export default function Home() {
             eyebrow="Everyday AI"
             title="사실, 이미 AI를 쓰고 있습니다"
           />
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="grid grid-cols-3 gap-5">
             {[
               ['🎬', '넷플릭스', '취향을 읽고 다음 영화를 추천합니다', '추천'],
               ['🗣️', '시리 / 빅스비', '음성을 듣고 의도를 분류합니다', '음성'],
@@ -169,11 +169,11 @@ export default function Home() {
 
       <Slide dataBackgroundColor="#06101b">
         <div className="deck-shell deck-spotlight flex h-full items-center">
-          <div className="grid w-full gap-8 xl:grid-cols-[1.1fr_0.9fr]">
+          <div className="grid w-full grid-cols-[1.1fr_0.9fr] gap-8">
             <div className="space-y-8">
               <Eyebrow>Definition</Eyebrow>
               <h2 className="deck-title max-w-4xl">그래서 AI가 뭔가요?</h2>
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="grid grid-cols-3 gap-4">
                 <AccentCard>
                   <Eyebrow>INPUT</Eyebrow>
                   <p className="mt-3 text-3xl font-semibold text-white">많은 예시</p>
@@ -206,7 +206,7 @@ export default function Home() {
       <Slide dataBackgroundColor="#0a1426">
         <div className="deck-shell flex h-full flex-col justify-center gap-10">
           <Eyebrow>Human vs Machine</Eyebrow>
-          <div className="grid gap-6 xl:grid-cols-[0.96fr_1.04fr]">
+          <div className="grid grid-cols-[0.96fr_1.04fr] gap-6">
             <div className="deck-panel min-h-[22rem] justify-between">
               <span className="text-7xl">🤔</span>
               <div>
@@ -242,7 +242,7 @@ export default function Home() {
             eyebrow="Pattern Learning"
             title="AI는 어떻게 배울까요?"
           />
-          <div className="grid flex-1 gap-6 xl:grid-cols-[0.28fr_0.72fr]">
+          <div className="grid flex-1 grid-cols-[0.28fr_0.72fr] gap-6">
             <div className="deck-panel justify-between">
               <div>
                 <Eyebrow>TRY IT</Eyebrow>
@@ -268,7 +268,7 @@ export default function Home() {
             eyebrow="Risk Signal"
             title="하지만, AI도 틀립니다"
           />
-          <div className="grid flex-1 gap-6 xl:grid-cols-[0.26fr_0.74fr]">
+          <div className="grid flex-1 grid-cols-[0.26fr_0.74fr] gap-6">
             <div className="deck-panel border-red-500/20 bg-red-950/20">
               <Eyebrow className="text-red-200/80">REMEMBER</Eyebrow>
               <p className="mt-5 text-5xl font-semibold leading-tight text-white">AI는 자신감 있게 틀릴 수 있습니다</p>
@@ -294,7 +294,7 @@ export default function Home() {
               더 화제가 될까요?
             </h2>
           </div>
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="grid grid-cols-3 gap-5">
             <AccentCard>
               <Eyebrow>BEFORE</Eyebrow>
               <p className="mt-4 text-4xl font-semibold text-white">추천하고 분류하던 AI</p>
@@ -317,7 +317,7 @@ export default function Home() {
             eyebrow="Three Waves"
             title="AI는 세 단계로 바뀌고 있습니다"
           />
-          <div className="grid gap-5 xl:grid-cols-[0.8fr_0.95fr_1.15fr]">
+          <div className="grid grid-cols-[0.8fr_0.95fr_1.15fr] gap-5">
             {[
               ['1단계', '예측 AI', '추천, 분류, 번역처럼 여러 선택지 중 가장 그럴듯한 답을 고릅니다.', '01', 'border-cyan-400/20 bg-cyan-950/18'],
               ['2단계', '생성형 AI', '글, 이미지, 영상, 코드 초안을 직접 만들며 창작 과정에 들어왔습니다.', '02', 'border-amber-400/20 bg-amber-950/18'],
@@ -374,7 +374,7 @@ export default function Home() {
                 이제는 사람 눈으로도 글, 사진, 영상의 출처를 구분하기 어려워졌습니다. 감으로 맞히기보다 어떤 신호를 봐야 하는지가 중요합니다.
               </p>
             </div>
-            <div className="grid w-full max-w-4xl gap-4 sm:grid-cols-3">
+            <div className="grid w-full max-w-4xl grid-cols-3 gap-4">
               <AccentCard className="min-h-[12rem] items-center justify-center text-center">
                 <span className="text-6xl">📝</span>
                 <p className="mt-4 text-3xl font-semibold text-white">문장</p>
@@ -406,8 +406,8 @@ export default function Home() {
             eyebrow="Prompt Craft"
             title="AI 잘 쓰는 법 = 잘 물어보는 법"
           />
-          <div className="grid flex-1 gap-6 xl:grid-cols-[0.3fr_0.7fr]">
-            <div className="deck-panel justify-between">
+          <div className="grid min-h-0 flex-1 grid-cols-[0.3fr_0.7fr] gap-6">
+            <div className="deck-panel min-h-0 justify-between">
               <div>
                 <Eyebrow>THREE ELEMENTS</Eyebrow>
                 <div className="mt-6 space-y-4 text-2xl text-slate-200">
@@ -418,7 +418,7 @@ export default function Home() {
               </div>
               <div className="deck-callout">AI는 생각을 읽지 못합니다. 조건을 구조로 줘야 품질이 올라갑니다.</div>
             </div>
-            <div className="deck-panel">
+            <div className="deck-panel min-h-0 overflow-hidden">
               <PromptCraftingDemo />
             </div>
           </div>
@@ -431,7 +431,7 @@ export default function Home() {
             eyebrow="Starter Toolkit"
             title="초보자라면 여기서 시작하세요"
           />
-          <div className="grid gap-5 xl:grid-cols-4">
+          <div className="grid grid-cols-4 gap-5">
             {[
               ['BEST START', '💬', 'ChatGPT', '질문, 요약, 이미지까지 한 번에', '막막할 때 가장 먼저 켜는 기본 도구', '한 문장 질문부터 문서 요약, 이미지 생성까지 폭이 넓어서 입문자가 감 잡기 좋습니다.', 'chatgpt.com'],
               ['SEARCH', '🔍', 'Perplexity', '검색 결과를 AI가 정리', '빠르게 조사하고 출처까지 확인할 때', '궁금한 내용을 검색하듯 물으면 답과 함께 출처를 바로 보여줘 사실 확인 흐름이 좋습니다.', 'perplexity.ai'],
@@ -482,7 +482,7 @@ export default function Home() {
             eyebrow="Creative Surface"
             title="AI가 만드는 세상"
           />
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid grid-cols-4 gap-5">
             {[
               ['🎨', '이미지', 'Visual', '브랜드 키비주얼, 포스터, 썸네일 초안을 몇 분 안에 만들 수 있습니다.', 'ChatGPT / Midjourney', '아이디어 스케치가 아니라 실제 시안 제작 단계까지 바로 들어갑니다.'],
               ['🎥', '영상', 'Motion', '짧은 설명만으로 무드 영상, 광고 콘티, 장면 테스트를 생성합니다.', 'Veo / Sora', '문장으로 카메라 무빙과 장면 분위기를 지정하는 시대가 됐습니다.'],
@@ -525,7 +525,7 @@ export default function Home() {
             eyebrow="Agent Examples"
             title="최신 AI 비서 / 에이전트 사례"
           />
-          <div className="grid gap-5 xl:grid-cols-3">
+          <div className="grid grid-cols-3 gap-5">
             {[
               ['🦞', 'OpenClaw', '오픈형 개인 비서', '브라우저, 메신저, 스킬 연결을 로컬에서 다루는 실험형 접근.', '강력하지만 권한 관리와 검토가 핵심입니다.'],
               ['🤖', 'Claude Cowork', '업무 동료형 AI', '데스크톱 맥락 안에서 파일을 읽고 정리하며 다음 작업까지 이어갑니다.', '채팅창 안이 아니라 실제 업무 화면 안에서 같이 일하는 개념이 포인트입니다.'],
@@ -571,7 +571,7 @@ export default function Home() {
             eyebrow="Safety Board"
             title="알아둬야 할 것들"
           />
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="grid grid-cols-2 gap-5">
             {[
               ['⚖️', '편향과 차별', '학습 데이터가 치우치면 결과도 치우칩니다.', 'AI의 판단처럼 보여도 기준은 결국 데이터입니다.'],
               ['🔒', '개인정보', '민감한 정보는 입력 순간부터 리스크가 생깁니다.', '이름, 번호, 계약서, 내부 자료는 기본적으로 빼고 넣는 쪽이 안전합니다.'],
@@ -599,7 +599,7 @@ export default function Home() {
             eyebrow="Work Anxiety"
             title="AI가 내 일자리를 뺏을까?"
           />
-          <div className="grid flex-1 gap-6 xl:grid-cols-[0.9fr_1.1fr]">
+          <div className="grid flex-1 grid-cols-[0.9fr_1.1fr] gap-6">
             <div className="deck-panel items-center justify-center border-rose-400/20 bg-rose-950/18 text-center">
               <Eyebrow className="text-rose-100/80">흔한 걱정</Eyebrow>
               <p className="mt-6 text-[3.45rem] font-semibold leading-[1.1] text-white">
@@ -615,7 +615,7 @@ export default function Home() {
               <p className="deck-balance mt-6 max-w-[32ch] text-[1.82rem] leading-[1.45] text-white">
                 반복적인 정리와 초안 작업은 자동화되지만, <span className="text-emerald-200">문제 정의, 최종 판단, 책임</span>을 지는 사람의 역할은 더 중요해집니다.
               </p>
-              <div className="mt-8 grid w-full gap-4 md:grid-cols-3">
+              <div className="mt-8 grid w-full grid-cols-3 gap-4">
                 <AccentCard className="min-h-[10rem] bg-black/20">
                   <Eyebrow>LESS</Eyebrow>
                   <p className="mt-3 text-2xl text-white">반복 입력</p>
@@ -640,7 +640,7 @@ export default function Home() {
             eyebrow="How To Prepare"
             title="AI 시대, 어떻게 준비할까?"
           />
-          <div className="grid gap-5 xl:grid-cols-2">
+          <div className="grid grid-cols-2 gap-5">
             {[
               ['Start', '무료 도구부터 시작', '써보기 전에는 감이 안 옵니다. 일단 작은 문제 하나를 맡겨보세요.'],
               ['Context', '내 자료를 붙여서 물어보기', '문서형 AI는 일반 질문보다 훨씬 정확한 답을 줍니다.'],
@@ -670,7 +670,7 @@ export default function Home() {
             eyebrow="Take Action Tonight"
             title="오늘 집에 가서 해보세요"
           />
-          <div className="grid flex-1 gap-5 md:grid-cols-2">
+          <div className="grid flex-1 grid-cols-2 gap-5">
             {[
               ['ChatGPT', '5 min', '아무 주제로 3문장 요약해보기', '생각보다 얼마나 자연스럽게 답하는지 감을 잡는 첫 연습'],
               ['Perplexity', '7 min', '궁금한 주제 하나 조사해보기', '답만 보지 말고 출처까지 같이 보는 습관 만들기'],
@@ -744,7 +744,7 @@ export default function Home() {
       <Slide dataBackgroundColor="#081425">
         <div className="deck-shell flex h-full flex-col justify-center gap-10">
           <Eyebrow>Open Floor</Eyebrow>
-          <div className="grid items-center gap-8 xl:grid-cols-[1.2fr_0.8fr]">
+          <div className="grid items-center grid-cols-[1.2fr_0.8fr] gap-8">
             <div className="flex flex-col items-center text-center">
               <h2 className="deck-title">Q&A</h2>
               <p className="deck-pretty mt-6 max-w-[48ch] text-[1.32rem] leading-[1.52] text-slate-300">
@@ -762,7 +762,7 @@ export default function Home() {
       <Slide dataBackgroundColor="#06101b">
         <div className="deck-shell deck-spotlight flex h-full flex-col justify-center gap-10">
           <Eyebrow>Thank You</Eyebrow>
-          <div className="grid items-end gap-8 xl:grid-cols-[1.24fr_0.76fr]">
+          <div className="grid items-end grid-cols-[1.24fr_0.76fr] gap-8">
             <div className="flex flex-col items-center text-center">
               <h2 className="deck-title">감사합니다</h2>
               <p className="deck-pretty mt-6 max-w-[46ch] text-[1.34rem] leading-[1.55] text-slate-300">

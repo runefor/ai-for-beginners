@@ -168,7 +168,7 @@ export default function AIvsHumanQuiz() {
         </div>
       ) : null}
 
-      <div className={`grid w-full max-w-3xl gap-4 ${isMedia ? 'mt-1 md:grid-cols-2' : 'mt-4 md:grid-cols-2'}`}>
+      <div className={`grid w-full max-w-3xl grid-cols-2 gap-4 ${isMedia ? 'mt-1' : 'mt-4'}`}>
         <button
           type="button"
           onClick={() => handleAnswer('ai')}

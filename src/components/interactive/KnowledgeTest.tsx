@@ -95,7 +95,7 @@ export default function KnowledgeTest() {
         </p>
       </div>
 
-      <div className="mt-2 grid w-full gap-4 md:grid-cols-2">
+      <div className="mt-2 grid w-full grid-cols-2 gap-4">
         <button
           type="button"
           onClick={() => handleAnswer(true)}

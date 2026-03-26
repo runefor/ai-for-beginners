@@ -105,12 +105,12 @@ export default function PromptCraftingDemo() {
     : "";
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-5">
-      <div className="rounded-[1.8rem] border border-white/10 bg-white/4 p-6">
-        <div className="mb-3 flex items-center gap-2 text-lg text-slate-500">
+    <div className="mx-auto flex h-full min-h-0 w-full max-w-5xl flex-col gap-4">
+      <div className="rounded-[1.8rem] border border-white/10 bg-white/4 p-5">
+        <div className="mb-2 flex items-center gap-2 text-base text-slate-500">
           <span>💬</span> 프롬프트 미리보기
         </div>
-        <p className="text-[1.35rem] leading-relaxed text-slate-200">
+        <p className="text-[1.18rem] leading-relaxed text-slate-200">
           {active.role ? <span className="text-amber-200">{rolePart}</span> : null}
           {active.context ? (
             <span className="text-emerald-200">{mainPart}</span>
@@ -121,7 +121,7 @@ export default function PromptCraftingDemo() {
         </p>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="flex flex-wrap justify-center gap-3">
         {ELEMENTS.map((element) => {
           const isOn = active[element.key];
           return (
@@ -129,7 +129,7 @@ export default function PromptCraftingDemo() {
               key={element.key}
               type="button"
               onClick={() => toggle(element.key)}
-              className={`flex items-center gap-2 rounded-full border px-5 py-3 text-lg font-semibold transition-all duration-300 ${
+              className={`flex items-center gap-2 rounded-full border px-4 py-2.5 text-base font-semibold transition-all duration-300 ${
                 isOn
                   ? `${element.bgOn} ${element.borderOn} ${element.textOn}`
                   : "border-white/12 bg-white/6 text-slate-300"
@@ -142,8 +142,8 @@ export default function PromptCraftingDemo() {
         })}
       </div>
 
-      <div className="rounded-[1.8rem] border border-white/10 bg-white/4 px-6 py-5">
-        <div className="flex flex-wrap items-center justify-between gap-2 text-lg">
+      <div className="rounded-[1.8rem] border border-white/10 bg-white/4 px-5 py-4">
+        <div className="flex flex-wrap items-center justify-between gap-2 text-base">
           <span className="text-slate-300">프롬프트 품질</span>
           <span className={`font-semibold ${quality.textColor}`}>
             {quality.pct}% - {quality.label}
@@ -158,11 +158,11 @@ export default function PromptCraftingDemo() {
       </div>
 
       {showResponse ? (
-        <div className="animate-fade-slide-up rounded-[1.8rem] border border-cyan-400/14 bg-cyan-950/20 p-6">
-          <div className="mb-3 flex items-center gap-2 text-lg text-cyan-300">
+        <div className="animate-fade-slide-up flex min-h-0 flex-1 flex-col rounded-[1.8rem] border border-cyan-400/14 bg-cyan-950/20 p-5">
+          <div className="mb-2 flex items-center gap-2 text-base text-cyan-300">
             <span>🤖</span> AI 응답
           </div>
-          <div className="overflow-x-auto whitespace-pre-line text-lg leading-relaxed text-slate-200">
+          <div className="min-h-0 overflow-y-auto overflow-x-auto whitespace-pre-line pr-2 text-[1rem] leading-relaxed text-slate-200">
             <TypingEffect key={typingKey} text={AI_RESPONSE} speed={10} />
           </div>
         </div>
