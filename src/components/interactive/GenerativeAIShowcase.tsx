@@ -3,6 +3,7 @@
 import { useCallback, useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import TypingEffect from '@/components/interactive/TypingEffect';
+import { withBasePath } from '@/lib/utils';
 
 type TabId = 'chat' | 'document' | 'image' | 'video' | 'agent';
 
@@ -156,7 +157,7 @@ export default function GenerativeAIShowcase() {
                 playsInline
                 className="w-full rounded-[1.3rem] bg-black object-contain"
               >
-                <source src="/images/showcase/sora-tokyo-walk.mp4" type="video/mp4" />
+                <source src={withBasePath('/images/showcase/sora-tokyo-walk.mp4')} type="video/mp4" />
               </video>
             </div>
             <p className="mt-3 text-center text-sm text-slate-400">장면 설명만으로 영상 초안이 뜹니다.</p>

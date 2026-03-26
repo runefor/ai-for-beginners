@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import type * as TFJS from "@tensorflow/tfjs";
+import { withBasePath } from "@/lib/utils";
 
 export interface PredictionResult {
   probabilities: number[];
@@ -29,7 +30,7 @@ export function useMNISTModel(enabled: boolean) {
         tfRef.current = tf;
 
         await tf.ready();
-        const loaded = await tf.loadLayersModel("/models/mnist/model.json");
+        const loaded = await tf.loadLayersModel(withBasePath("/models/mnist/model.json"));
 
         if (cancelled) {
           loaded.dispose();

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import { withBasePath } from '@/lib/utils';
 
 interface QuizItem {
   label: string;
@@ -33,7 +34,7 @@ const items: QuizItem[] = [
     label: '초상화',
     type: 'image',
     description: '이 사람은 실존할까요?',
-    mediaUrl: '/images/quiz/ai-face.jpg',
+    mediaUrl: withBasePath('/images/quiz/ai-face.jpg'),
     answer: 'ai',
     explanation: 'AI가 만든 얼굴, 실제 사람처럼 보여도 존재하지 않습니다.',
   },
@@ -41,7 +42,7 @@ const items: QuizItem[] = [
     label: '사진',
     type: 'image',
     description: '교황 프란치스코의 패딩 사진, 진짜일까요?',
-    mediaUrl: '/images/quiz/pope-puffer.jpg',
+    mediaUrl: withBasePath('/images/quiz/pope-puffer.jpg'),
     answer: 'ai',
     explanation: 'AI 이미지 한 장이 전 세계를 속였던 대표 사례입니다.',
   },
@@ -49,7 +50,7 @@ const items: QuizItem[] = [
     label: '사진',
     type: 'image',
     description: '해변의 플라밍고, AI가 그린 걸까요?',
-    mediaUrl: '/images/quiz/real-photo.jpg',
+    mediaUrl: withBasePath('/images/quiz/real-photo.jpg'),
     answer: 'human',
     explanation: '진짜 사진인데도 AI처럼 보일 만큼 기준이 흔들리고 있습니다.',
   },
